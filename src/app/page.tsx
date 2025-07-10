@@ -200,7 +200,7 @@ export default function HomePage() {
                 type="url"
                 value={propertyUrl}
                 onChange={(e) => setPropertyUrl(e.target.value)}
-                placeholder="https://www.idealista.com/inmueble/12345678/ or other property listing URL"
+                placeholder="Add any property URL here - PropertyList URLs work best"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00ae9a] focus:border-transparent"
                 suppressHydrationWarning
               />
