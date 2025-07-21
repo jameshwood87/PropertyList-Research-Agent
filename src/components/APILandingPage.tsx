@@ -37,14 +37,11 @@ export default function APILandingPage() {
   return (
     <div
       className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
     >
       <div className="max-w-6xl mx-auto px-4 py-16">
         
         {/* Hero Section */}
-        <div variants={itemVariants} className="text-center mb-16">
+        <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
             PropertyList Research Agent
           </h1>
@@ -69,7 +66,7 @@ export default function APILandingPage() {
         </div>
 
         {/* API Workflow Cards */}
-        <div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           
           {/* Step 1: Submit Property Data */}
           <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
@@ -106,7 +103,7 @@ export default function APILandingPage() {
         </div>
 
         {/* API Features */}
-        <div variants={itemVariants} className="bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-white">
+        <div className="bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-white">
           <h2 className="text-2xl font-bold mb-6">What You Get</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
@@ -153,7 +150,7 @@ export default function APILandingPage() {
         </div>
 
         {/* Status Footer */}
-        <div variants={itemVariants} className="text-center mt-16">
+        <div className="text-center mt-16">
           <p className="text-gray-600">
             Ready to integrate? Check our{' '}
             <a href="/debug" className="text-primary hover:text-primary-dark font-medium">

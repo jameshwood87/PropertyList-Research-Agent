@@ -79,7 +79,7 @@ export default function APIStatusPanel() {
         {/* Main Status Indicator */}
         <div
           className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200/50 px-3 py-2 cursor-pointer"
-          whileHover={{ scale: 1.02 }}
+
           onClick={() => setIsExpanded(!isExpanded)}
         >
           <div className="flex items-center space-x-2">
@@ -126,10 +126,8 @@ export default function APIStatusPanel() {
         
           {isExpanded && status && (
             <div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
+              
+              
               className="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-gray-200/50 p-4"
             >
               {/* Header */}
