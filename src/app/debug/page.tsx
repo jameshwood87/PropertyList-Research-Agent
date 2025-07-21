@@ -325,9 +325,6 @@ export default function DebugPage() {
               {filteredLogs.map((log) => (
                 <div
                   key={log.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
                   className="bg-gray-800 rounded-lg p-4 cursor-pointer hover:bg-gray-750 transition-colors"
                   onClick={() => setSelectedLog(selectedLog?.id === log.id ? null : log)}
                 >
@@ -357,9 +354,6 @@ export default function DebugPage() {
 
                   {viewMode === 'detailed' && selectedLog?.id === log.id && (
                     <div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
                       className="mt-4 border-t border-gray-700 pt-4"
                     >
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
