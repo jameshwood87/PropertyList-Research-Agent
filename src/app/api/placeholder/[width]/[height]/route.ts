@@ -2,14 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { width: string; height: string } }
+  { params }: { params: Promise<{ width: string; height: string }> }
 ) {
-  const width = parseInt(params.width) || 400
-  const height = parseInt(params.height) || 300
+  const { width, height } = await params
+  const widthNum = parseInt(width) || 400
+  const heightNum = parseInt(height) || 300
   
   // Ensure reasonable dimensions
-  const safeWidth = Math.min(Math.max(width, 50), 2000)
-  const safeHeight = Math.min(Math.max(height, 50), 2000)
+  const safeWidth = Math.min(Math.max(widthNum, 50), 2000)
+  const safeHeight = Math.min(Math.max(heightNum, 50), 2000)
 
   // Create SVG placeholder
   const svg = `
