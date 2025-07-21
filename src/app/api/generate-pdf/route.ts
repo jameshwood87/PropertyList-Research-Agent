@@ -2091,20 +2091,20 @@ function generatePrintableBuyerPDFHTML(report: CMAReport, logoBase64: string): s
                 <span class="label">Beds/Baths:</span>
                 <span class="value" style="text-align: right;">${comp.bedrooms}🛏️ ${comp.bathrooms}🚿</span>
               </div>
-              ${comp.build_area && comp.build_area > 0 ? `
+              ${comp.buildArea && comp.buildArea > 0 ? `
               <div class="comparable-detail">
                 <span class="label">Build:</span>
-                <span class="value">${comp.build_area.toLocaleString()} m²</span>
+                <span class="value">${comp.buildArea.toLocaleString()} m²</span>
               </div>` : ''}
-              ${comp.terrace_area_m2 && comp.terrace_area_m2 > 0 ? `
+              ${comp.terraceArea && comp.terraceArea > 0 ? `
               <div class="comparable-detail">
                 <span class="label">Terrace:</span>
-                <span class="value">${comp.terrace_area_m2.toLocaleString()} m²</span>
+                <span class="value">${comp.terraceArea.toLocaleString()} m²</span>
               </div>` : ''}
-              ${comp.plot_area && comp.plot_area > 0 ? `
+              ${comp.plotArea && comp.plotArea > 0 ? `
               <div class="comparable-detail">
                 <span class="label">Plot:</span>
-                <span class="value">${comp.plot_area.toLocaleString()} m²</span>
+                <span class="value">${comp.plotArea.toLocaleString()} m²</span>
               </div>` : ''}
             </div>
             ${comp.refNumber ? `
@@ -3610,20 +3610,20 @@ function generateMobileBuyerPDFHTML(report: CMAReport, logoBase64: string): stri
                 <span class="label">Beds/Baths:</span>
                 <span class="value" style="text-align: right;">${prop.bedrooms}🛏️ ${prop.bathrooms}🚿</span>
               </div>
-              ${prop.build_area && prop.build_area > 0 ? `
+              ${prop.buildArea && prop.buildArea > 0 ? `
               <div class="comparable-detail">
                 <span class="label">Build:</span>
-                <span class="value">${prop.build_area.toLocaleString()} m²</span>
+                <span class="value">${prop.buildArea.toLocaleString()} m²</span>
               </div>` : ''}
-              ${prop.terrace_area_m2 && prop.terrace_area_m2 > 0 ? `
+              ${prop.terraceArea && prop.terraceArea > 0 ? `
               <div class="comparable-detail">
                 <span class="label">Terrace:</span>
-                <span class="value">${prop.terrace_area_m2.toLocaleString()} m²</span>
+                <span class="value">${prop.terraceArea.toLocaleString()} m²</span>
               </div>` : ''}
-              ${prop.plot_area && prop.plot_area > 0 ? `
+              ${prop.plotArea && prop.plotArea > 0 ? `
               <div class="comparable-detail">
                 <span class="label">Plot:</span>
-                <span class="value">${prop.plot_area.toLocaleString()} m²</span>
+                <span class="value">${prop.plotArea.toLocaleString()} m²</span>
               </div>` : ''}
             </div>
             ${prop.refNumber ? `
@@ -4348,20 +4348,20 @@ function generatePDFHTML(report: CMAReport, logoBase64: string, reportType?: str
               <span class="label">Beds/Baths:</span>
               <span class="value" style="text-align: right;">${comp.bedrooms}🛏️ ${comp.bathrooms}🚿</span>
             </div>
-              ${comp.build_area && comp.build_area > 0 ? `
+              ${comp.buildArea && comp.buildArea > 0 ? `
             <div class="comparable-detail">
               <span class="label">Build:</span>
-                <span class="value">${comp.build_area.toLocaleString()} m²</span>
+                <span class="value">${comp.buildArea.toLocaleString()} m²</span>
             </div>` : ''}
-              ${comp.plot_area && comp.plot_area > 0 ? `
+              ${comp.plotArea && comp.plotArea > 0 ? `
             <div class="comparable-detail">
               <span class="label">Plot:</span>
-                <span class="value">${comp.plot_area.toLocaleString()} m²</span>
+                <span class="value">${comp.plotArea.toLocaleString()} m²</span>
             </div>` : ''}
-              ${comp.terrace_area_m2 && comp.terrace_area_m2 > 0 ? `
+              ${comp.terraceArea && comp.terraceArea > 0 ? `
             <div class="comparable-detail">
               <span class="label">Terrace:</span>
-              <span class="value">${comp.terrace_area_m2.toLocaleString()} m²</span>
+              <span class="value">${comp.terraceArea.toLocaleString()} m²</span>
             </div>` : ''}
             ${comp.features && comp.features.length > 0 ? `
             <div class="comparable-detail">
