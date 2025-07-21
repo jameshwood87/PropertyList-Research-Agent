@@ -252,8 +252,17 @@
       "averageDistance": 0,
       "frequency": 3,
       "lastUpdated": "2025-07-21T20:12:24.927Z"
+    },
+    {
+      "centerArea": "test",
+      "memberAreas": [
+        "test"
+      ],
+      "averageDistance": 0,
+      "frequency": 1,
+      "lastUpdated": "2025-07-21T20:26:01.546Z"
     }
   ],
-  "analysisCount": 37,
-  "lastUpdated": "2025-07-21T20:12:24.927Z"
+  "analysisCount": 38,
+  "lastUpdated": "2025-07-21T20:26:01.548Z"
 }

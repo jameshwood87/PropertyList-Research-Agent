@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Activity, 
   MapPin, 
@@ -470,13 +470,9 @@ export default function AnalysisDashboard({ sessionId, property, userContext, se
 
         {/* Active Analyses */}
         <div className="space-y-6">
-          <AnimatePresence>
-            {activeAnalyses.map((analysis) => (
-                <motion.div
+          {activeAnalyses.map((analysis) => (
+                <div
                   key={analysis.sessionId}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
                   className="bg-white/90 backdrop-blur-sm rounded-xl shadow-xl border border-white/20 overflow-hidden"
                 >
                   {/* Analysis Steps */}
@@ -628,9 +624,8 @@ export default function AnalysisDashboard({ sessionId, property, userContext, se
                       <CMAReportDisplay report={sessionData.report} sessionId={sessionId} />
                     </div>
                   )}
-                </motion.div>
+                </div>
               ))}
-          </AnimatePresence>
         </div>
       </div>
     </div>

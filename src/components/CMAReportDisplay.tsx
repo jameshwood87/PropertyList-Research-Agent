@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import { 
   MapPin, 
@@ -837,14 +837,14 @@ export default function CMAReportDisplay({ report, sessionId }: CMAReportDisplay
       )}
 
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <motion.div
+        <div
           className="space-y-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* 🔍 Property Summary */}
-          <motion.div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
+          <div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
@@ -1157,10 +1157,10 @@ export default function CMAReportDisplay({ report, sessionId }: CMAReportDisplay
                   className="text-sm"
                 />
               </div>
-          </motion.div>
+          </div>
 
           {/* 📈 Market Data */}
-          <motion.div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
+          <div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <TrendingUp className="w-6 h-6 text-white" />
@@ -1182,10 +1182,10 @@ export default function CMAReportDisplay({ report, sessionId }: CMAReportDisplay
                 className="text-sm"
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* 💰 Full Valuation Analysis */}
-          <motion.div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
+          <div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <Euro className="w-6 h-6 text-white" />
@@ -1638,10 +1638,10 @@ export default function CMAReportDisplay({ report, sessionId }: CMAReportDisplay
                 className="text-sm"
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* 🏘️ Comparable Properties */}
-          <motion.div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
+          <div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
@@ -1920,10 +1920,10 @@ export default function CMAReportDisplay({ report, sessionId }: CMAReportDisplay
                 className="text-sm"
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* 🗺️ Map of Amenities */}
-          <motion.div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
+          <div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <Navigation className="w-6 h-6 text-white" />
@@ -2191,11 +2191,11 @@ export default function CMAReportDisplay({ report, sessionId }: CMAReportDisplay
                 className="text-sm"
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* 🚶 Mobility & Transportation */}
           {report.walkabilityData && (
-            <motion.div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
+            <div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex items-center space-x-3 mb-6">
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#00ae9a' }}>
                   <Footprints className="w-6 h-6 text-white" />
@@ -2359,11 +2359,11 @@ export default function CMAReportDisplay({ report, sessionId }: CMAReportDisplay
                 />
               </div>
 
-            </motion.div>
+            </div>
           )}
 
           {/* 🚧 Future Developments */}
-          <motion.div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
+          <div variants={itemVariants} className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <Building className="w-6 h-6 text-white" />
@@ -2460,10 +2460,10 @@ export default function CMAReportDisplay({ report, sessionId }: CMAReportDisplay
                 className="text-sm"
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* 🤖 AI Summary Report Card */}
-          <motion.div variants={itemVariants} className="bg-gradient-to-br from-primary to-primary-light rounded-xl shadow-lg p-6 text-white">
+          <div variants={itemVariants} className="bg-gradient-to-br from-primary to-primary-light rounded-xl shadow-lg p-6 text-white">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
                 <BarChart3 className="w-6 h-6 text-white" />
@@ -2578,8 +2578,8 @@ export default function CMAReportDisplay({ report, sessionId }: CMAReportDisplay
                 )}
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Image Gallery Modal */}

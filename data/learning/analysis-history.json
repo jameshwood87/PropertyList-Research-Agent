@@ -583,5 +583,24 @@
     ],
     "userFeedback": [],
     "regionalKnowledgeUpdates": 0
+  },
+  "Q2FsbGUgVGVzdCwgMTIzX01hcmJlbGxhX03DoWxhZ2E": {
+    "propertyId": "Q2FsbGUgVGVzdCwgMTIzX01hcmJlbGxhX03DoWxhZ2E",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-21T20:26:53.903Z",
+    "lastAnalysisDate": "2025-07-21T20:26:53.903Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
   }
 }

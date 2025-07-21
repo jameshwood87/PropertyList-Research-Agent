@@ -3107,5 +3107,36 @@
       "google_maps",
       "tavily_search"
     ]
+  },
+  {
+    "id": "pred_1753129613901_hdzvb9t4c",
+    "sessionId": "test_complete_session_1753129520718",
+    "propertyId": "Q2FsbGUgVGVzdCwg",
+    "timestamp": "2025-07-21T20:26:53.901Z",
+    "predictedPriceRange": {
+      "low": 425121,
+      "high": 431545,
+      "estimated": 428333,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
   }
 ]
