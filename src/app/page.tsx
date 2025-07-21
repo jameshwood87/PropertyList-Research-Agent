@@ -282,9 +282,16 @@ export default function Home() {
           
           console.log('📊 [FETCH] Session status:', sessionData.status, 'Steps:', sessionData.completedSteps, '/', sessionData.totalSteps)
         } else {
-          const errorData = await response.json()
-          console.error('❌ Session fetch failed:', errorData)
-          setError(errorData.message || 'Failed to load session')
+          let errorMessage = 'Failed to load session'
+          try {
+            const errorData = await response.json()
+            console.error('❌ Session fetch failed:', errorData)
+            errorMessage = errorData.message || errorData.error || `HTTP ${response.status}: ${response.statusText}`
+          } catch (parseError) {
+            console.error('❌ Session fetch failed with non-JSON response:', response.status, response.statusText)
+            errorMessage = `HTTP ${response.status}: ${response.statusText}`
+          }
+          setError(errorMessage)
         }
       } catch (err) {
         console.error('❌ Error fetching session data:', err)
