@@ -1,0 +1,1044 @@
+[
+  {
+    "location": "Benahavis, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-16T14:55:09.484Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 2200,
+        "source": "Benahavis Property Market Data",
+        "confidence": "high",
+        "dataPoints": 150
+      },
+      {
+        "year": "2019",
+        "price": 2775,
+        "source": "Benahavis Property Market Data",
+        "confidence": "high",
+        "dataPoints": 180
+      },
+      {
+        "year": "2020",
+        "price": 3330,
+        "source": "Benahavis Property Market Data",
+        "confidence": "high",
+        "dataPoints": 200
+      },
+      {
+        "year": "2021",
+        "price": 3885,
+        "source": "Benahavis Property Market Data",
+        "confidence": "high",
+        "dataPoints": 220
+      },
+      {
+        "year": "2022",
+        "price": 4440,
+        "source": "Benahavis Property Market Data",
+        "confidence": "high",
+        "dataPoints": 250
+      },
+      {
+        "year": "2023",
+        "price": 4995,
+        "source": "Benahavis Property Market Data",
+        "confidence": "high",
+        "dataPoints": 280
+      },
+      {
+        "year": "2024",
+        "price": 5405,
+        "source": "Benahavis Luxury Property Market Data",
+        "confidence": "high",
+        "dataPoints": 300
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 5405000,
+      "averagePricePerM2": 5405,
+      "totalComparables": 300,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Marbella, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-17T22:46:24.665Z",
+    "dataSource": "hybrid",
+    "dataQuality": "medium",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 3200,
+        "source": "Marbella Real Estate Market Reports",
+        "confidence": "high",
+        "dataPoints": 200
+      },
+      {
+        "year": "2019",
+        "price": 3600,
+        "source": "Marbella Real Estate Market Reports",
+        "confidence": "high",
+        "dataPoints": 220
+      },
+      {
+        "year": "2020",
+        "price": 3800,
+        "source": "Marbella Real Estate Market Reports",
+        "confidence": "high",
+        "dataPoints": 240
+      },
+      {
+        "year": "2021",
+        "price": 4200,
+        "source": "Marbella Real Estate Market Reports",
+        "confidence": "high",
+        "dataPoints": 260
+      },
+      {
+        "year": "2022",
+        "price": 4500,
+        "source": "Marbella Real Estate Market Reports",
+        "confidence": "high",
+        "dataPoints": 280
+      },
+      {
+        "year": "2023",
+        "price": 4700,
+        "source": "Marbella Real Estate Market Reports",
+        "confidence": "high",
+        "dataPoints": 300
+      },
+      {
+        "year": "2024",
+        "price": 4812,
+        "source": "Marbella Market Research Data",
+        "confidence": "high",
+        "dataPoints": 320
+      },
+      {
+        "year": "2025",
+        "price": 9583.333333333334,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 1925672,
+      "averagePricePerM2": null,
+      "totalComparables": 34,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Estepona, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-16T14:55:12.451Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 2800,
+        "source": "Estepona Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 150
+      },
+      {
+        "year": "2019",
+        "price": 3100,
+        "source": "Estepona Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 170
+      },
+      {
+        "year": "2020",
+        "price": 3300,
+        "source": "Estepona Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 190
+      },
+      {
+        "year": "2021",
+        "price": 3500,
+        "source": "Estepona Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 210
+      },
+      {
+        "year": "2022",
+        "price": 3600,
+        "source": "Estepona Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 230
+      },
+      {
+        "year": "2023",
+        "price": 3729,
+        "source": "Estepona Market Research Data",
+        "confidence": "high",
+        "dataPoints": 250
+      },
+      {
+        "year": "2024",
+        "price": 4328,
+        "source": "Estepona Market Research Data",
+        "confidence": "high",
+        "dataPoints": 270
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 4328000,
+      "averagePricePerM2": 4328,
+      "totalComparables": 270,
+      "marketTrend": "up",
+      "annualGrowth": 16.1
+    }
+  },
+  {
+    "location": "Benalmádena, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-16T14:55:12.451Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 2200,
+        "source": "Benalmádena Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 120
+      },
+      {
+        "year": "2019",
+        "price": 2400,
+        "source": "Benalmádena Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 140
+      },
+      {
+        "year": "2020",
+        "price": 2600,
+        "source": "Benalmádena Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 160
+      },
+      {
+        "year": "2021",
+        "price": 2800,
+        "source": "Benalmádena Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 180
+      },
+      {
+        "year": "2022",
+        "price": 3000,
+        "source": "Benalmádena Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 200
+      },
+      {
+        "year": "2023",
+        "price": 3200,
+        "source": "Benalmádena Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 220
+      },
+      {
+        "year": "2024",
+        "price": 3400,
+        "source": "Benalmádena Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 240
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 3400000,
+      "averagePricePerM2": 3400,
+      "totalComparables": 240,
+      "marketTrend": "up",
+      "annualGrowth": 12.5
+    }
+  },
+  {
+    "location": "Fuengirola, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-16T14:55:12.452Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 2000,
+        "source": "Fuengirola Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 100
+      },
+      {
+        "year": "2019",
+        "price": 2200,
+        "source": "Fuengirola Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 120
+      },
+      {
+        "year": "2020",
+        "price": 2400,
+        "source": "Fuengirola Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 140
+      },
+      {
+        "year": "2021",
+        "price": 2600,
+        "source": "Fuengirola Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 160
+      },
+      {
+        "year": "2022",
+        "price": 2800,
+        "source": "Fuengirola Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 180
+      },
+      {
+        "year": "2023",
+        "price": 3000,
+        "source": "Fuengirola Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 200
+      },
+      {
+        "year": "2024",
+        "price": 3200,
+        "source": "Fuengirola Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 220
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 3200000,
+      "averagePricePerM2": 3200,
+      "totalComparables": 220,
+      "marketTrend": "up",
+      "annualGrowth": 13.3
+    }
+  },
+  {
+    "location": "Torremolinos, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-16T14:55:12.452Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 1800,
+        "source": "Torremolinos Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 80
+      },
+      {
+        "year": "2019",
+        "price": 2000,
+        "source": "Torremolinos Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 100
+      },
+      {
+        "year": "2020",
+        "price": 2200,
+        "source": "Torremolinos Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 120
+      },
+      {
+        "year": "2021",
+        "price": 2400,
+        "source": "Torremolinos Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 140
+      },
+      {
+        "year": "2022",
+        "price": 2600,
+        "source": "Torremolinos Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 160
+      },
+      {
+        "year": "2023",
+        "price": 2800,
+        "source": "Torremolinos Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 180
+      },
+      {
+        "year": "2024",
+        "price": 3000,
+        "source": "Torremolinos Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 200
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 3000000,
+      "averagePricePerM2": 3000,
+      "totalComparables": 200,
+      "marketTrend": "up",
+      "annualGrowth": 14.3
+    }
+  },
+  {
+    "location": "Mijas, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-16T14:55:12.452Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 2400,
+        "source": "Mijas Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 110
+      },
+      {
+        "year": "2019",
+        "price": 2600,
+        "source": "Mijas Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 130
+      },
+      {
+        "year": "2020",
+        "price": 2800,
+        "source": "Mijas Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 150
+      },
+      {
+        "year": "2021",
+        "price": 3000,
+        "source": "Mijas Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 170
+      },
+      {
+        "year": "2022",
+        "price": 3100,
+        "source": "Mijas Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 190
+      },
+      {
+        "year": "2023",
+        "price": 3200,
+        "source": "Mijas Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 210
+      },
+      {
+        "year": "2024",
+        "price": 3300,
+        "source": "Mijas Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 230
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 3300000,
+      "averagePricePerM2": 3300,
+      "totalComparables": 230,
+      "marketTrend": "up",
+      "annualGrowth": 12.5
+    }
+  },
+  {
+    "location": "San Pedro de Alcántara, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-16T14:55:15.805Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 3800,
+        "source": "San Pedro de Alcántara Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 180
+      },
+      {
+        "year": "2019",
+        "price": 4100,
+        "source": "San Pedro de Alcántara Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 200
+      },
+      {
+        "year": "2020",
+        "price": 4300,
+        "source": "San Pedro de Alcántara Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 220
+      },
+      {
+        "year": "2021",
+        "price": 4500,
+        "source": "San Pedro de Alcántara Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 240
+      },
+      {
+        "year": "2022",
+        "price": 4700,
+        "source": "San Pedro de Alcántara Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 260
+      },
+      {
+        "year": "2023",
+        "price": 4645,
+        "source": "San Pedro de Alcántara Market Research Data",
+        "confidence": "high",
+        "dataPoints": 280
+      },
+      {
+        "year": "2024",
+        "price": 5220,
+        "source": "San Pedro de Alcántara Market Research Data",
+        "confidence": "high",
+        "dataPoints": 300
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 5220000,
+      "averagePricePerM2": 5220,
+      "totalComparables": 300,
+      "marketTrend": "up",
+      "annualGrowth": 12.38
+    }
+  },
+  {
+    "location": "Puerto Banús, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-16T14:55:15.807Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 4500,
+        "source": "Puerto Banús Luxury Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 150
+      },
+      {
+        "year": "2019",
+        "price": 4800,
+        "source": "Puerto Banús Luxury Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 170
+      },
+      {
+        "year": "2020",
+        "price": 5000,
+        "source": "Puerto Banús Luxury Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 190
+      },
+      {
+        "year": "2021",
+        "price": 5200,
+        "source": "Puerto Banús Luxury Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 210
+      },
+      {
+        "year": "2022",
+        "price": 5400,
+        "source": "Puerto Banús Luxury Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 230
+      },
+      {
+        "year": "2023",
+        "price": 5600,
+        "source": "Puerto Banús Luxury Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 250
+      },
+      {
+        "year": "2024",
+        "price": 5800,
+        "source": "Puerto Banús Luxury Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 270
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 5800000,
+      "averagePricePerM2": 5800,
+      "totalComparables": 270,
+      "marketTrend": "up",
+      "annualGrowth": 15.2
+    }
+  },
+  {
+    "location": "Nueva Andalucía, Málaga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-16T14:55:15.808Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2018",
+        "price": 4200,
+        "source": "Nueva Andalucía Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 160
+      },
+      {
+        "year": "2019",
+        "price": 4500,
+        "source": "Nueva Andalucía Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 180
+      },
+      {
+        "year": "2020",
+        "price": 4700,
+        "source": "Nueva Andalucía Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 200
+      },
+      {
+        "year": "2021",
+        "price": 4900,
+        "source": "Nueva Andalucía Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 220
+      },
+      {
+        "year": "2022",
+        "price": 5100,
+        "source": "Nueva Andalucía Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 240
+      },
+      {
+        "year": "2023",
+        "price": 4867,
+        "source": "Nueva Andalucía Market Research Data",
+        "confidence": "high",
+        "dataPoints": 260
+      },
+      {
+        "year": "2024",
+        "price": 5400,
+        "source": "Nueva Andalucía Real Estate Market Data",
+        "confidence": "high",
+        "dataPoints": 280
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 5400000,
+      "averagePricePerM2": 5400,
+      "totalComparables": 280,
+      "marketTrend": "up",
+      "annualGrowth": 14.2
+    }
+  },
+  {
+    "location": "Benahavis, Málaga",
+    "propertyType": "villa",
+    "lastUpdated": "2025-07-17T13:19:25.432Z",
+    "dataSource": "web_research",
+    "dataQuality": "medium",
+    "historicalData": [
+      {
+        "year": "2022",
+        "price": 1121.2121212121212,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2023",
+        "price": 1177.2727272727273,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2024",
+        "price": 1233.3333333333335,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2025",
+        "price": 1289.3939393939395,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 193409,
+      "averagePricePerM2": 1289,
+      "totalComparables": 17,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Marbella, Málaga",
+    "propertyType": "penthouse",
+    "lastUpdated": "2025-07-17T13:37:08.950Z",
+    "dataSource": "web_research",
+    "dataQuality": "medium",
+    "historicalData": [
+      {
+        "year": "2022",
+        "price": 4464.285714285715,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2023",
+        "price": 4687.5,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2024",
+        "price": 4910.714285714285,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2025",
+        "price": 5133.928571428572,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 770089,
+      "averagePricePerM2": 5134,
+      "totalComparables": 34,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Marbella, Málaga",
+    "propertyType": "Penthouse",
+    "lastUpdated": "2025-07-17T14:36:52.490Z",
+    "dataSource": "hybrid",
+    "dataQuality": "medium",
+    "historicalData": [
+      {
+        "year": "2022",
+        "price": 4464.285714285715,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2023",
+        "price": 4687.5,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2024",
+        "price": 4910.714285714285,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2025",
+        "price": 5133.928571428572,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 888847,
+      "averagePricePerM2": 4116,
+      "totalComparables": 47,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Marbella, Málaga",
+    "propertyType": "Apartment",
+    "lastUpdated": "2025-07-19T14:47:07.827Z",
+    "dataSource": "hybrid",
+    "dataQuality": "medium",
+    "historicalData": [
+      {
+        "year": "2022",
+        "price": 3750,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2023",
+        "price": 3937.5,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2024",
+        "price": 4125.000000000001,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2025",
+        "price": 4312.499999999999,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 753823,
+      "averagePricePerM2": null,
+      "totalComparables": 124,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Marbella, MA",
+    "propertyType": "Apartment",
+    "lastUpdated": "2025-07-18T14:26:55.152Z",
+    "dataSource": "hybrid",
+    "dataQuality": "medium",
+    "historicalData": [
+      {
+        "year": "2022",
+        "price": 4483.050847457627,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2023",
+        "price": 4707.203389830508,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2024",
+        "price": 4931.35593220339,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2025",
+        "price": 5155.5084745762715,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 824947,
+      "averagePricePerM2": 5513,
+      "totalComparables": 37,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Málaga, Málaga",
+    "propertyType": "Apartment",
+    "lastUpdated": "2025-07-18T19:29:41.739Z",
+    "dataSource": "web_research",
+    "dataQuality": "medium",
+    "historicalData": [
+      {
+        "year": "2022",
+        "price": 2916.6666666666665,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2023",
+        "price": 3062.5,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2024",
+        "price": 3208.333333333334,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2025",
+        "price": 3354.166666666666,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 503125,
+      "averagePricePerM2": 3354,
+      "totalComparables": 30,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Marbella, MA",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-19T09:47:57.378Z",
+    "dataSource": "hybrid",
+    "dataQuality": "medium",
+    "historicalData": [
+      {
+        "year": "2022",
+        "price": 8132.530120481928,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2023",
+        "price": 8539.156626506025,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2024",
+        "price": 8945.783132530121,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2025",
+        "price": 9352.409638554216,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 1895804,
+      "averagePricePerM2": 8919,
+      "totalComparables": 44,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Marbella, M�laga",
+    "propertyType": "Villa",
+    "lastUpdated": "2025-07-21T14:52:42.464Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2022",
+        "price": 3400,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2023",
+        "price": 3570,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2024",
+        "price": 3740.0000000000005,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2025",
+        "price": 3909.9999999999995,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 586500,
+      "averagePricePerM2": 3910,
+      "totalComparables": 24,
+      "marketTrend": "up"
+    }
+  },
+  {
+    "location": "Fuengirola, MA",
+    "propertyType": "penthouse",
+    "lastUpdated": "2025-07-21T18:00:55.896Z",
+    "dataSource": "web_research",
+    "dataQuality": "high",
+    "historicalData": [
+      {
+        "year": "2022",
+        "price": 3846,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2023",
+        "price": 4038.3,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2024",
+        "price": 4230.6,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      },
+      {
+        "year": "2025",
+        "price": 4422.9,
+        "source": "estimated_trend",
+        "confidence": "medium",
+        "dataPoints": 10
+      }
+    ],
+    "currentMetrics": {
+      "averagePrice": 663435,
+      "averagePricePerM2": 4423,
+      "totalComparables": 20,
+      "marketTrend": "up"
+    }
+  }
+]

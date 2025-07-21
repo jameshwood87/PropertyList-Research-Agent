@@ -1,0 +1,501 @@
+
+
+ 
+ 
+ 
+ 
+XML Export  
+Version 1.0 
+ 
+ 
+ 
+Introduction 
+ 
+Generating Feed 
+ 
+Resources 
+ 
+XML Format Description 
+ 
+Root Element <properties>...</properties> 
+ 
+Property Element <properties>...</properties> 
+ 
+Contact Person Element <contact_person> ... </contact_person> 
+ 
+Descriptions Element <descriptions>...</descriptions> 
+ 
+Photo Element <photos>...</photos> 
+ 
+Features Element <features>...</features> 
+ 
+Valid Property Type Codes  
+ 
+Valid Feature Codes  
+ 
+Valid Province Codes  
+ 
+Valid Description Languages 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PropertyList.es 
+
+ 
+Introduction 
+This document explains how to export property listings from PropertyList using an XML feed. The 
+feed can be used to update the agency’s website with the latest property listings. 
+ 
+You can also use our REST API to feed property data to the website. 
+ 
+ 
+Generating the Feed 
+Any PropertyList user with Full Access can create and view previously generated feeds. Follow 
+these steps to create a feed: 
+ 
+1. Log in to PropertyList with a Full Access account. 
+2. Go to the settings page by clicking the gear icon in the bottom-left corner. 
+3. Click on the “Property Export” tab. 
+4. If you see a feed starting with “Format: PropertyList,” click the “Show Link” button to view 
+the feed URL. 
+5. If no suitable feed is listed, click the “+ New Export Feed” link to create one. The new feed 
+will appear in the list. 
+6. The feed includes public details of all the listings. Once created, the feed updates 
+automatically every 24 hours. The feed URL will always give you the most recent version 
+of the file. 
+ 
+Resources 
+ 
+Sample XML export file with description of each node:  
+https://propertylist.es/files/property_list_v1.xml  
+ 
+XML Format Description  
+ 
+The following is a description of the XML file structure. Please make sure to check the sample XML 
+file, listed in the Resources section, for reference. 
+ 
+Root Element <properties>...</properties> 
+                                                                                                 
+Root Element Attribute  Mandatory Value 
+properties  Yes 1 or more property elements as described further.   
+ type Yes Must be: PropertyList.es 
+version  Yes Must be: 3.0 
+ created_at Yes Date and time the feed has been created in UTC format  
+(e.g. 2014-01-27T 16:25:05Z). 
+ 
+ 
+ 
+PropertyList.es 
+
+ 
+Property Element <properties>...</properties> 
+ 
+Child Element Attribute Mandatory Value 
+ created_at Yes Date and time the property has been added to the system. 
+ last_updated_at Yes Date and time the property has been updated for the last 
+time. Valid value: UTC date time. 
+(e.g. 2014-01-27T16:25:05Z) 
+ direct No Present only on another agency listings (if included in the 
+feed) with the value of false. Valid values: true, false 
+reference  Yes Property reference. Valid value: text 
+is_sale 
+ 
+ No Is the property listed for sale? Valid values: true, false 
+is_short_term  No Is the property available for holiday rent? Valid values: true, 
+false 
+is_long_term  No Is the property available for long term rent? Valid values: 
+true, false 
+property_type  Yes The code of the property type. Valid values: list of property 
+type codes 
+bedrooms  No Number of bedrooms Valid value: integer 
+bathrooms  No Number of bathrooms Valid value: integer 
+parking_spaces  No Number of parking spaces Valid value: integer 
+province  Yes The code of province of Spain where the property is located. 
+Valid values: list of province codes 
+city  Yes The name of the city where the property is located. Valid 
+value: text up to 100 characters, e.g. Marbella, Fuengirola, 
+Madrid 
+suburb  No The name of the suburb within the city where the property is 
+located. Valid value: text up to 100 characters, e.g. Golden 
+Mile, Elviria, Atocha 
+urbanization  No The name of the urbanization where the property is located. 
+Valid value: text up to 100 characters 
+latitude  No Latitude of the location of the property, or latitude of the 
+center of the suburb the property is located in. Valid value: 
+decimal number 
+longitude  No Longitude of the location of the property, or longitude of the 
+center of the suburb the property is located in Valid value: 
+decimal number. 
+build_size  No Build size in square meters. Valid value: integer 
+plot_size  No Plot size in square meters. Valid value: integer 
+terrace_size  No Terrace size in square meters. Valid value: integer 
+floor_number  No Floor number, 0 being the ground floor. Valid value: integer 
+PropertyList.es 
+
+ 
+exclusive_listing  No Does the agency have an exclusive listing agreement in 
+force signed with the owner? The information will be used to 
+dispute potential duplicate listings issues. Valid values: true, 
+false 
+sale_price  No List price of the property for sale in Euros. Valid value: 
+integer 
+ hide No Should the price be hidden on the website. Valid values: 
+true, false 
+furnished  No Is the property offered for rent furnished? Valid values: true, 
+false 
+monthly_price  No Long term rental price per month in Euros. Valid value: 
+integer 
+rental_deposit  No Long term rental deposit to be paid by the tenant in Euros. 
+Valid value: integer 
+rental_commissio
+n 
+ No Long term rental commission to be paid by the tenant in 
+Euros. Valid value: integer 
+property_tax  No Property tax (IBI) per year in Euros. Valid value: integer 
+garbage_tax  No Garbage tax (Basura) per year in Euros. Valid value: integer 
+community_fees  No Community fees per month in Euros. Valid value: integer 
+available_from  No The date the long term rental property is available from. Valid 
+value: date in the following form YYYY-MM-DD 
+weekly_price_fro
+m 
+ No Low season price per week in Euros. Valid value: integer 
+weekly_price_to  No High season price per week in Euros. Valid value: integer 
+sleeps  No Number of people the holiday rental is suited for. Valid value: 
+integer 
+energy_rating  No Energy rating of the property. Valid values: A, B, C, D, E, F, 
+G 
+orientation  No Property orientation. Valid values: east, north, north-east, 
+north-west, south, south-east, south-west, west 
+freehold  No Is the property available as freehold? Applies only to 
+commercial properties. Valid values: true, false 
+leasehold  No Is the property available as leasehold? Applies only to 
+commercial properties. Valid values: true, false 
+contact_person  No The agency staff member who should be assigned to the 
+property. Valid value: a contact_person element as described 
+further. 
+descriptions  Yes Property descriptions. Valid value: a descriptions element as 
+described further. 
+features  No Property features. Valid value: a features element as 
+described further 
+photos  Yes Property photos. Valid value: a photos element as described 
+further 
+PropertyList.es 
+
+ 
+Contact Person Element <contact_person> ... </contact_person> 
+ 
+The contact person set for the property in PropertyList.  
+Child Element Mandatory Value 
+name No First name. Valid value: text, 1 to 100 
+characters 
+surname No Last name. Valid value: text, 1 to 100 
+characters. 
+ 
+ 
+Descriptions Element <descriptions>...</descriptions> 
+ 
+The descriptions element contains one or more description elements with the following child nodes:  
+ 
+Child Element Attribute Mandatory Value 
+ language Yes The language code of the description. Valid values: list of language 
+codes 
+text  No The text of the description. Valid value: text, can be enclosed in 
+CDATA 
+ 
+ 
+Photo Element <photos>...</photos> 
+ 
+The photos element contains between 5 and 30 photo elements:  
+ 
+Child Element Mandatory Value 
+photo Yes 5 - 30 The URL of the photo. Valid value: URL 
+ 
+ 
+Features Element <features>...</features> 
+ 
+The features element can contain up to 100 feature elements:  
+ 
+Child Element Mandatory Value 
+feature No One of the feature codes listed below. Valid values: 24-hour-security or 
+frontline-beach etc. 
+ 
+ 
+Valid Property Type Codes  
+ 
+Code Residential / Commercial 
+apartment Residential 
+country-house Residential 
+PropertyList.es 
+
+ 
+penthouse Residential 
+plot Residential 
+townhouse Residential 
+villa Residential 
+office Commercial 
+business Commercial 
+cafe Commercial 
+bar Commercial 
+restaurant Commercial 
+retail Commercial 
+shop Commercial 
+hotel Commercial 
+leisure Commercial 
+industrial Commercial 
+warehouse Commercial 
+commercial-land Commercial 
+development Commercial 
+ 
+ 
+Valid Feature Codes  
+ 
+alarm-system Alarm System 
+all-electric-home Air Conditioning  
+bank-repossession Alarm System 
+bar Beachside. Only applicable to areas where beachside 
+can be distinguished from the rest of the area, i.e. 
+mountain side. Not to be confused with the Frontline 
+Beach feature.  
+ 
+barbeque-area Close to Park 
+basement Close to Schools 
+beach-front Double Glazing 
+central-heating Fireplace frontline-beach Frontline Beach 
+ close-to-beach Frontline Golf  
+close-to-golf Gated Complex 
+PropertyList.es 
+
+ 
+close-to-marina Close to the marina 
+close-to-restaurants Close to restaurants 
+close-to-schools Close to schools 
+close-to-shops Close to shops 
+close-to-ski-resort Close to ski resort 
+close-to-town-centre Close to town centre 
+cold-hot-ac-units Hot & cold a/c wall units 
+commercial-district In the commercial district 
+countryside In the countryside 
+covered-terrace Covered terrace 
+disabled-access Disabled access 
+distressed-property Distressed property 
+double-glazing Double glazing 
+drinkable-water Drinkable water 
+ducted-central-ac Ducted central air conditioning 
+east East-facing 
+electric-blinds Electric blinds 
+ensuite-bathroom Ensuite bathroom 
+entry-phone-system Entry phone system 
+excellent-condition Property is in excellent condition 
+fair-condition Property is in fair condition 
+fibre-internet Fibre internet 
+fireplace Fireplace 
+fitted-wardrobes Fitted wardrobes 
+fully-equipped-kitchen Fully equipped kitchen 
+fully-furnished Fully furnished 
+games-room Games room 
+garage Garage 
+garden-communal Communal garden 
+garden-landscaped Landscaped garden 
+garden-private Private garden 
+gas Gas 
+PropertyList.es 
+
+ 
+gated-complex Gated complex 
+golf-front Golf-front 
+good-condition Property is in good condition 
+guest-apartment Guest apartment 
+guest-house Guest house 
+gym Gym 
+heated-bathroom-floors Heated bathroom floors 
+historic-property Historic property 
+home-automation Home automation 
+investment-opportunity Investment opportunity 
+jacuzzi Jacuzzi 
+kitchen-not-equipped Kitchen not equipped 
+lift Lift 
+luxury-property Luxury property 
+marble-flooring Marble flooring 
+modern Modern 
+mountain Mountain views 
+near-public-transport Near public transport 
+new-development New development 
+newly-built Newly built 
+north North-facing 
+north-east North-east-facing 
+north-west North-west-facing 
+off-plan-project Off-plan project 
+on-site-restaurant On-site restaurant 
+open-plan-kitchen-lounge Open-plan kitchen/lounge 
+paddle-court Paddle court 
+parking-communal Communal parking 
+parking-covered Covered parking 
+parking-multiple Multiple parking spaces 
+parking-private-space Private parking space 
+parking-underground Underground parking 
+PropertyList.es 
+
+ 
+partially-equipped-kitchen Partially equipped kitchen 
+partially-furnished Partially furnished 
+pool-childrens Children's pool 
+pool-communal Communal pool 
+pool-heated Heated pool 
+pool-indoor Indoor pool 
+pool-private Private pool 
+pool-room-for Pool room for 
+port-marina Located in within the Port or Marina 
+pre-installed-ac Pre-installed A/C 
+private-terrace Private terrace 
+private-well Private water well on land 
+recently-refurbished Recently refurbished 
+recently-renovated Recently renovated 
+reception-24-hour 24-hour reception 
+requires-renovation Requires renovation 
+satellite-tv Satellite TV 
+sauna Sauna 
+security-24-hour 24-hour security 
+smart-home Smart home 
+solar-power Solar power electric 
+solar-water-heating Solar water heating 
+solarium Solarium 
+south South-facing 
+south-east South-east-facing 
+south-west South-west-facing 
+stables Stables 
+staff-accommodation Staff accommodation 
+storage-room Storage room 
+style-andalucian Andalusian style property 
+style-rustic Rustic style property 
+suburban-area Suburban area 
+PropertyList.es 
+
+ 
+surrounded-by-nature Surrounded by nature 
+tennis-court Tennis court 
+town-centre Town centre 
+underfloor-heating Underfloor heating 
+unfurnished Unfurnished 
+urban-living Urban living 
+utility-room Utility room 
+views-beach Beach views 
+views-city City views 
+views-countryside Countryside views 
+views-forest Forest views 
+views-garden Garden views 
+views-golf Golf views 
+views-lake Lake views 
+views-marina Marina views 
+views-mountain Mountain views 
+views-panoramic Panoramic views 
+views-pool Pool views 
+views-sea Sea views 
+views-ski-resort Ski resort views 
+village Village 
+walking-amenities Walking distance to amenities 
+walking-beach Walking distance to beach 
+west West-facing 
+wifi WiFi 
+with-planning-permission With planning permission 
+wooden-flooring Wooden flooring 
+ 
+ 
+Valid Province Codes  
+ 
+Code Province Name 
+C A Coruña 
+PropertyList.es 
+
+ 
+VI Álava 
+AB Albacete 
+A Alicante 
+AL Almería 
+O Asturias 
+AV Ávila 
+BA Badajoz 
+PM Balears 
+B Barcelona 
+BU Burgos 
+CC Cáceres 
+CA Cádiz 
+S Cantabria 
+CS Castellón 
+EA Ceuta, Melilla 
+CR Ciudad Real 
+CO Córdoba 
+CU Cuenca 
+GI Girona 
+GR Granada 
+GU Guadalajara 
+SS Guipúzcoa 
+H Huelva 
+HU  Huesca 
+J Jaén 
+LO La Rioja 
+GC Las Palmas 
+LE León 
+L Lleida 
+LU Lugo 
+M Madrid 
+MA Málaga 
+PropertyList.es 
+
+ 
+MU Murcia 
+NA Navarra 
+OP Ourense 
+P Palencia 
+PO Pontevedra 
+SA Salamanca 
+TF Santa Cruz de Tenerife 
+SG Segovia 
+SE Sevilla 
+SO Soria 
+T Tarragona 
+TE Teruel 
+TO Toledo 
+V Valencia 
+VA Valladolid 
+BI Vizcaya 
+ZA Zamora 
+Z Zaragoza 
+ 
+ 
+Valid Description Languages 
+ 
+Code Language Name 
+ar Arabic 
+da Danish 
+nl Dutch 
+en English 
+et Estonian 
+fi Finnish 
+fr French 
+de German 
+hu Hungarian 
+it Italian 
+PropertyList.es 
+
+ 
+lt Lithuanian 
+no Norwegian 
+pl Polish 
+pt Portuguese 
+ru Russian 
+es SPanish 
+sv Swedish 
+ 
+ 
+ 
+ 
+ 
+ 
+Version 1.0 
+PropertyList.es 

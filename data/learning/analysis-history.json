@@ -1,0 +1,558 @@
+{
+  "TWFyYmVsbGEsIE1BX01hcmJlbGxhX01B": {
+    "propertyId": "TWFyYmVsbGEsIE1BX01hcmJlbGxhX01B",
+    "analysisCount": 4,
+    "firstAnalysisDate": "2025-07-18T20:49:12.281Z",
+    "lastAnalysisDate": "2025-07-19T19:24:08.000Z",
+    "analysisQualityScores": [
+      100,
+      100,
+      100,
+      100
+    ],
+    "promptVersions": [
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "QXZlbmlkYSBkZWwgTWFyX01hcmJlbGxhX03vv71sYWdh": {
+    "propertyId": "QXZlbmlkYSBkZWwgTWFyX01hcmJlbGxhX03vv71sYWdh",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-19T12:47:02.885Z",
+    "lastAnalysisDate": "2025-07-19T12:47:02.885Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "QXZlbmlkYSBkZWwgTWFyX01hcmJlbGxhX01B": {
+    "propertyId": "QXZlbmlkYSBkZWwgTWFyX01hcmJlbGxhX01B",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-19T13:01:16.324Z",
+    "lastAnalysisDate": "2025-07-19T13:01:16.324Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "Q2FsbGUgTGFyaW9zLCAyNV9Nw6FsYWdhX03DoWxhZ2E": {
+    "propertyId": "Q2FsbGUgTGFyaW9zLCAyNV9Nw6FsYWdhX03DoWxhZ2E",
+    "analysisCount": 6,
+    "firstAnalysisDate": "2025-07-19T16:45:07.532Z",
+    "lastAnalysisDate": "2025-07-19T17:02:33.664Z",
+    "analysisQualityScores": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "promptVersions": [
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "TmV3IEdvbGRlbiBNaWxlLCBFc3RlcG9uYSwgTUFfRXN0ZXBvbmFfTcOhbGFnYQ": {
+    "propertyId": "TmV3IEdvbGRlbiBNaWxlLCBFc3RlcG9uYSwgTUFfRXN0ZXBvbmFfTcOhbGFnYQ",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-19T17:08:28.484Z",
+    "lastAnalysisDate": "2025-07-19T17:08:28.484Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "TnVldmEgQW5kYWx1Y2lhLCBMYSBDYW1wYW5hLCBNYXJiZWxsYSwgTUFfTWFyYmVsbGFfTUE": {
+    "propertyId": "TnVldmEgQW5kYWx1Y2lhLCBMYSBDYW1wYW5hLCBNYXJiZWxsYSwgTUFfTWFyYmVsbGFfTUE",
+    "analysisCount": 14,
+    "firstAnalysisDate": "2025-07-19T20:27:09.348Z",
+    "lastAnalysisDate": "2025-07-19T20:59:02.718Z",
+    "analysisQualityScores": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "promptVersions": [
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "Q2FsbGUgQmVuYWhhdmlzLCA0NTYsIE1hcmJlbGxhLCBNQV9NYXJiZWxsYV9Nw6FsYWdh": {
+    "propertyId": "Q2FsbGUgQmVuYWhhdmlzLCA0NTYsIE1hcmJlbGxhLCBNQV9NYXJiZWxsYV9Nw6FsYWdh",
+    "analysisCount": 24,
+    "firstAnalysisDate": "2025-07-19T22:52:38.828Z",
+    "lastAnalysisDate": "2025-07-21T17:49:04.422Z",
+    "analysisQualityScores": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "promptVersions": [
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "TnVldmEgQW5kYWx1Y2lhLCBNYXJiZWxsYSwgTUFfTWFyYmVsbGFfTUE": {
+    "propertyId": "TnVldmEgQW5kYWx1Y2lhLCBNYXJiZWxsYSwgTUFfTWFyYmVsbGFfTUE",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-20T00:02:57.471Z",
+    "lastAnalysisDate": "2025-07-20T00:02:57.471Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "UHVlcnRvIEJhbsO6cywgTWFyYmVsbGEsIE1BX01hcmJlbGxhX03DoWxhZ2E": {
+    "propertyId": "UHVlcnRvIEJhbsO6cywgTWFyYmVsbGEsIE1BX01hcmJlbGxhX03DoWxhZ2E",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-20T09:13:12.982Z",
+    "lastAnalysisDate": "2025-07-20T09:13:12.982Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "QXZlbmlkYSBkZWwgTWFyLCBNYXJiZWxsYV9NYXJiZWxsYV9Nw6FsYWdh": {
+    "propertyId": "QXZlbmlkYSBkZWwgTWFyLCBNYXJiZWxsYV9NYXJiZWxsYV9Nw6FsYWdh",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-20T12:06:10.040Z",
+    "lastAnalysisDate": "2025-07-20T12:06:10.040Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "UHJvcGVydHkgdW5kZWZpbmVkX01hcmJlbGxhX01B": {
+    "propertyId": "UHJvcGVydHkgdW5kZWZpbmVkX01hcmJlbGxhX01B",
+    "analysisCount": 5,
+    "firstAnalysisDate": "2025-07-20T12:11:47.117Z",
+    "lastAnalysisDate": "2025-07-20T14:46:29.719Z",
+    "analysisQualityScores": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "promptVersions": [
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1",
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "Q2FsbGUgQWxhbWVkYSwgMTUsIE1hcmJlbGxhX01hcmJlbGxhX03vv71sYWdh": {
+    "propertyId": "Q2FsbGUgQWxhbWVkYSwgMTUsIE1hcmJlbGxhX01hcmJlbGxhX03vv71sYWdh",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-20T12:12:34.327Z",
+    "lastAnalysisDate": "2025-07-20T12:12:34.327Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "Q2FsbGUgTWFyYmVsbGEgMTIzX01hcmJlbGxhX03vv71sYWdh": {
+    "propertyId": "Q2FsbGUgTWFyYmVsbGEgMTIzX01hcmJlbGxhX03vv71sYWdh",
+    "analysisCount": 2,
+    "firstAnalysisDate": "2025-07-21T14:53:51.952Z",
+    "lastAnalysisDate": "2025-07-21T15:19:34.816Z",
+    "analysisQualityScores": [
+      100,
+      100
+    ],
+    "promptVersions": [
+      "level_1",
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "comparables",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "TG9zIFBhY29zLCBGdWVuZ2lyb2xhLCBNQV9GdWVuZ2lyb2xhX01B": {
+    "propertyId": "TG9zIFBhY29zLCBGdWVuZ2lyb2xhLCBNQV9GdWVuZ2lyb2xhX01B",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-21T18:01:52.549Z",
+    "lastAnalysisDate": "2025-07-21T18:01:52.549Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "Q29ydGlqbyBCbGFuY28sIFNhbiBQZWRybyBBbGNhbnRhcmEsIE1BX1NhbiBQZWRybyBBbGNhbnRhcmFfTUE": {
+    "propertyId": "Q29ydGlqbyBCbGFuY28sIFNhbiBQZWRybyBBbGNhbnRhcmEsIE1BX1NhbiBQZWRybyBBbGNhbnRhcmFfTUE",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-21T18:07:23.507Z",
+    "lastAnalysisDate": "2025-07-21T18:07:23.507Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  },
+  "Q2FydmFqYWwsIEZ1ZW5naXJvbGEsIE1BX0Z1ZW5naXJvbGFfTUE": {
+    "propertyId": "Q2FydmFqYWwsIEZ1ZW5naXJvbGEsIE1BX0Z1ZW5naXJvbGFfTUE",
+    "analysisCount": 1,
+    "firstAnalysisDate": "2025-07-21T18:12:34.553Z",
+    "lastAnalysisDate": "2025-07-21T18:12:34.553Z",
+    "analysisQualityScores": [
+      100
+    ],
+    "promptVersions": [
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
+  }
+}

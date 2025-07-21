@@ -1,0 +1,351 @@
+[
+  {
+    "id": "city_marbella",
+    "regionType": "city",
+    "regionName": "Marbella",
+    "marketCharacteristics": {
+      "averagePricePerM2": 267.85714285714283,
+      "priceVolatility": 0,
+      "priceAppreciation": 26.16742857142855,
+      "averageTimeOnMarket": 0,
+      "inventoryLevels": "moderate",
+      "demandLevel": "moderate",
+      "bestPerformingTypes": [],
+      "worstPerformingTypes": [
+        "Villa",
+        "Apartment"
+      ],
+      "averageRentalYield": 0,
+      "investmentGrade": "C",
+      "riskFactors": [],
+      "opportunities": []
+    },
+    "pricingPatterns": [],
+    "developmentImpacts": [
+      {
+        "developmentType": "mixed",
+        "distance": 1,
+        "impactOnPrice": 0,
+        "impactTimeframe": "1-2 years",
+        "confidence": 100,
+        "historicalCases": []
+      },
+      {
+        "developmentType": "infrastructure",
+        "distance": 1,
+        "impactOnPrice": 5,
+        "impactTimeframe": "1-2 years",
+        "confidence": 64,
+        "historicalCases": []
+      },
+      {
+        "developmentType": "residential",
+        "distance": 1,
+        "impactOnPrice": 5,
+        "impactTimeframe": "1-2 years",
+        "confidence": 40,
+        "historicalCases": []
+      }
+    ],
+    "seasonalPatterns": [
+      {
+        "season": "summer",
+        "priceAdjustment": 0,
+        "marketActivity": "moderate",
+        "averageTimeOnMarket": null,
+        "yearsOfData": 1,
+        "confidence": 98
+      }
+    ],
+    "demographicInsights": [],
+    "confidenceScore": 64,
+    "lastUpdated": "2025-07-21T17:49:04.406Z",
+    "dataPoints": 35
+  },
+  {
+    "id": "province_málaga",
+    "regionType": "province",
+    "regionName": "Málaga",
+    "marketCharacteristics": {
+      "averagePricePerM2": 288.46153846153845,
+      "priceVolatility": 0,
+      "priceAppreciation": 15.457692307692316,
+      "averageTimeOnMarket": 0,
+      "inventoryLevels": "moderate",
+      "demandLevel": "moderate",
+      "bestPerformingTypes": [
+        "Apartment"
+      ],
+      "worstPerformingTypes": [
+        "Villa"
+      ],
+      "averageRentalYield": 0,
+      "investmentGrade": "C",
+      "riskFactors": [],
+      "opportunities": []
+    },
+    "pricingPatterns": [],
+    "developmentImpacts": [],
+    "seasonalPatterns": [],
+    "demographicInsights": [],
+    "confidenceScore": 50,
+    "lastUpdated": "2025-07-21T17:49:04.408Z",
+    "dataPoints": 26
+  },
+  {
+    "id": "province_ma",
+    "regionType": "province",
+    "regionName": "MA",
+    "marketCharacteristics": {
+      "averagePricePerM2": 0,
+      "priceVolatility": 0,
+      "priceAppreciation": 56.45333333333334,
+      "averageTimeOnMarket": 0,
+      "inventoryLevels": "moderate",
+      "demandLevel": "moderate",
+      "bestPerformingTypes": [],
+      "worstPerformingTypes": [],
+      "averageRentalYield": 0,
+      "investmentGrade": "C",
+      "riskFactors": [],
+      "opportunities": []
+    },
+    "pricingPatterns": [],
+    "developmentImpacts": [],
+    "seasonalPatterns": [],
+    "demographicInsights": [],
+    "confidenceScore": 18,
+    "lastUpdated": "2025-07-21T18:12:34.550Z",
+    "dataPoints": 9
+  },
+  {
+    "id": "postal_code_29660",
+    "regionType": "postal_code",
+    "regionName": "29660",
+    "marketCharacteristics": {
+      "averagePricePerM2": 0,
+      "priceVolatility": 0,
+      "priceAppreciation": 4.54,
+      "averageTimeOnMarket": 0,
+      "inventoryLevels": "low",
+      "demandLevel": "high",
+      "bestPerformingTypes": [],
+      "worstPerformingTypes": [],
+      "averageRentalYield": 0,
+      "investmentGrade": "C",
+      "riskFactors": [],
+      "opportunities": []
+    },
+    "pricingPatterns": [],
+    "developmentImpacts": [],
+    "seasonalPatterns": [],
+    "demographicInsights": [
+      {
+        "buyerProfile": {
+          "ageRange": "35-55",
+          "incomeLevel": "high",
+          "familyStatus": "family",
+          "nationality": [
+            "Spanish",
+            "International"
+          ]
+        },
+        "preferences": {
+          "propertyTypes": [
+            "Apartment"
+          ],
+          "features": [],
+          "priceRange": {
+            "min": 1000000,
+            "max": 1500000
+          }
+        },
+        "motivations": [
+          "primary_residence"
+        ],
+        "sensitivity": {
+          "priceChanges": 70,
+          "marketConditions": 60
+        }
+      }
+    ],
+    "confidenceScore": 2,
+    "lastUpdated": "2025-07-20T00:02:57.468Z",
+    "dataPoints": 1
+  },
+  {
+    "id": "postal_code_29600",
+    "regionType": "postal_code",
+    "regionName": "29600",
+    "marketCharacteristics": {
+      "averagePricePerM2": 3750,
+      "priceVolatility": 0,
+      "priceAppreciation": 4.54,
+      "averageTimeOnMarket": 0,
+      "inventoryLevels": "low",
+      "demandLevel": "high",
+      "bestPerformingTypes": [],
+      "worstPerformingTypes": [],
+      "averageRentalYield": 0,
+      "investmentGrade": "C",
+      "riskFactors": [],
+      "opportunities": []
+    },
+    "pricingPatterns": [],
+    "developmentImpacts": [],
+    "seasonalPatterns": [],
+    "demographicInsights": [
+      {
+        "buyerProfile": {
+          "ageRange": "35-55",
+          "incomeLevel": "medium",
+          "familyStatus": "family",
+          "nationality": [
+            "Spanish",
+            "International"
+          ]
+        },
+        "preferences": {
+          "propertyTypes": [
+            "Apartment"
+          ],
+          "features": [
+            "Air Conditioning",
+            "Balcony",
+            "Parking",
+            "Pool",
+            "Garden"
+          ],
+          "priceRange": {
+            "min": 360000,
+            "max": 540000
+          }
+        },
+        "motivations": [
+          "primary_residence"
+        ],
+        "sensitivity": {
+          "priceChanges": 70,
+          "marketConditions": 60
+        }
+      }
+    ],
+    "confidenceScore": 2,
+    "lastUpdated": "2025-07-20T12:06:10.021Z",
+    "dataPoints": 1
+  },
+  {
+    "id": "province_m�laga",
+    "regionType": "province",
+    "regionName": "M�laga",
+    "marketCharacteristics": {
+      "averagePricePerM2": 0,
+      "priceVolatility": 0,
+      "priceAppreciation": 4.54,
+      "averageTimeOnMarket": 0,
+      "inventoryLevels": "low",
+      "demandLevel": "high",
+      "bestPerformingTypes": [],
+      "worstPerformingTypes": [],
+      "averageRentalYield": 0,
+      "investmentGrade": "C",
+      "riskFactors": [],
+      "opportunities": []
+    },
+    "pricingPatterns": [],
+    "developmentImpacts": [],
+    "seasonalPatterns": [],
+    "demographicInsights": [],
+    "confidenceScore": 6,
+    "lastUpdated": "2025-07-21T15:19:34.810Z",
+    "dataPoints": 3
+  },
+  {
+    "id": "city_fuengirola",
+    "regionType": "city",
+    "regionName": "Fuengirola",
+    "marketCharacteristics": {
+      "averagePricePerM2": 0,
+      "priceVolatility": 0,
+      "priceAppreciation": 3.0700000000000003,
+      "averageTimeOnMarket": 0,
+      "inventoryLevels": "moderate",
+      "demandLevel": "moderate",
+      "bestPerformingTypes": [],
+      "worstPerformingTypes": [],
+      "averageRentalYield": 0,
+      "investmentGrade": "C",
+      "riskFactors": [],
+      "opportunities": []
+    },
+    "pricingPatterns": [],
+    "developmentImpacts": [
+      {
+        "developmentType": "residential",
+        "distance": 1,
+        "impactOnPrice": 5,
+        "impactTimeframe": "1-2 years",
+        "confidence": 43,
+        "historicalCases": []
+      }
+    ],
+    "seasonalPatterns": [
+      {
+        "season": "summer",
+        "priceAdjustment": 0,
+        "marketActivity": "moderate",
+        "averageTimeOnMarket": null,
+        "yearsOfData": 1,
+        "confidence": 32
+      }
+    ],
+    "demographicInsights": [],
+    "confidenceScore": 12,
+    "lastUpdated": "2025-07-21T18:12:34.549Z",
+    "dataPoints": 2
+  },
+  {
+    "id": "city_san_pedro_alcantara",
+    "regionType": "city",
+    "regionName": "San Pedro Alcantara",
+    "marketCharacteristics": {
+      "averagePricePerM2": 0,
+      "priceVolatility": 0,
+      "priceAppreciation": 1.6,
+      "averageTimeOnMarket": 0,
+      "inventoryLevels": "moderate",
+      "demandLevel": "moderate",
+      "bestPerformingTypes": [],
+      "worstPerformingTypes": [],
+      "averageRentalYield": 0,
+      "investmentGrade": "D",
+      "riskFactors": [],
+      "opportunities": []
+    },
+    "pricingPatterns": [],
+    "developmentImpacts": [
+      {
+        "developmentType": "residential",
+        "distance": 1,
+        "impactOnPrice": 5,
+        "impactTimeframe": "1-2 years",
+        "confidence": 43,
+        "historicalCases": []
+      }
+    ],
+    "seasonalPatterns": [
+      {
+        "season": "summer",
+        "priceAdjustment": 0,
+        "marketActivity": "moderate",
+        "averageTimeOnMarket": null,
+        "yearsOfData": 1,
+        "confidence": 30
+      }
+    ],
+    "demographicInsights": [],
+    "confidenceScore": 10,
+    "lastUpdated": "2025-07-21T18:07:23.502Z",
+    "dataPoints": 1
+  }
+]

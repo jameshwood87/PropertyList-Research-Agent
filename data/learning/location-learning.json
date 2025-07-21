@@ -1,0 +1,250 @@
+{
+  "relationships": [
+    {
+      "sourceArea": "benahavis",
+      "targetArea": "nueva andalucia",
+      "relationshipType": "urbanisation",
+      "frequency": 40,
+      "lastSeen": "2025-07-21T17:02:04.670Z",
+      "confidence": 1
+    },
+    {
+      "sourceArea": "benahavis",
+      "targetArea": "artola",
+      "relationshipType": "urbanisation",
+      "frequency": 10,
+      "lastSeen": "2025-07-20T00:18:45.681Z",
+      "confidence": 1
+    },
+    {
+      "sourceArea": "benahavis",
+      "targetArea": "cabopino",
+      "relationshipType": "urbanisation",
+      "frequency": 10,
+      "lastSeen": "2025-07-20T00:18:45.681Z",
+      "confidence": 1
+    },
+    {
+      "sourceArea": "benahavis",
+      "targetArea": "nagueles",
+      "relationshipType": "urbanisation",
+      "frequency": 5,
+      "lastSeen": "2025-07-20T00:18:45.681Z",
+      "confidence": 1
+    },
+    {
+      "sourceArea": "benahavis",
+      "targetArea": "las chapas",
+      "relationshipType": "urbanisation",
+      "frequency": 1,
+      "lastSeen": "2025-07-21T17:02:04.670Z",
+      "confidence": 0.2
+    },
+    {
+      "sourceArea": "benahavis",
+      "targetArea": "sierra blanca",
+      "relationshipType": "urbanisation",
+      "frequency": 2,
+      "lastSeen": "2025-07-21T17:02:04.670Z",
+      "confidence": 0.4
+    },
+    {
+      "sourceArea": "benahavis",
+      "targetArea": "elviria",
+      "relationshipType": "urbanisation",
+      "frequency": 1,
+      "lastSeen": "2025-07-21T17:02:04.670Z",
+      "confidence": 0.2
+    }
+  ],
+  "urbanisations": [
+    {
+      "name": "nueva andalucia",
+      "aliases": [],
+      "frequency": 53,
+      "firstSeen": "2025-07-20T00:02:56.778Z",
+      "lastSeen": "2025-07-21T17:02:04.670Z",
+      "commonStreets": [],
+      "nearbyAreas": [],
+      "confidence": 1
+    },
+    {
+      "name": "benahavis",
+      "aliases": [],
+      "frequency": 20,
+      "firstSeen": "2025-07-20T00:07:47.419Z",
+      "lastSeen": "2025-07-21T17:47:49.509Z",
+      "commonStreets": [
+        "benahavis"
+      ],
+      "nearbyAreas": [],
+      "confidence": 1
+    },
+    {
+      "name": "artola",
+      "aliases": [],
+      "frequency": 10,
+      "firstSeen": "2025-07-20T00:07:47.420Z",
+      "lastSeen": "2025-07-20T00:18:45.681Z",
+      "commonStreets": [],
+      "nearbyAreas": [],
+      "confidence": 1
+    },
+    {
+      "name": "cabopino",
+      "aliases": [],
+      "frequency": 10,
+      "firstSeen": "2025-07-20T00:07:47.420Z",
+      "lastSeen": "2025-07-20T00:18:45.681Z",
+      "commonStreets": [],
+      "nearbyAreas": [],
+      "confidence": 1
+    },
+    {
+      "name": "nagueles",
+      "aliases": [],
+      "frequency": 5,
+      "firstSeen": "2025-07-20T00:07:47.420Z",
+      "lastSeen": "2025-07-20T00:18:45.681Z",
+      "commonStreets": [],
+      "nearbyAreas": [],
+      "confidence": 0.5
+    },
+    {
+      "name": "puerto banús",
+      "aliases": [],
+      "frequency": 1,
+      "firstSeen": "2025-07-20T09:13:08.772Z",
+      "lastSeen": "2025-07-20T09:13:08.772Z",
+      "commonStreets": [],
+      "nearbyAreas": [],
+      "confidence": 0.1
+    },
+    {
+      "name": "las chapas",
+      "aliases": [],
+      "frequency": 1,
+      "firstSeen": "2025-07-21T17:02:04.670Z",
+      "lastSeen": "2025-07-21T17:02:04.670Z",
+      "commonStreets": [],
+      "nearbyAreas": [],
+      "confidence": 0.1
+    },
+    {
+      "name": "sierra blanca",
+      "aliases": [],
+      "frequency": 2,
+      "firstSeen": "2025-07-21T17:02:04.670Z",
+      "lastSeen": "2025-07-21T17:02:04.670Z",
+      "commonStreets": [],
+      "nearbyAreas": [],
+      "confidence": 0.2
+    },
+    {
+      "name": "elviria",
+      "aliases": [],
+      "frequency": 1,
+      "firstSeen": "2025-07-21T17:02:04.670Z",
+      "lastSeen": "2025-07-21T17:02:04.670Z",
+      "commonStreets": [],
+      "nearbyAreas": [],
+      "confidence": 0.1
+    },
+    {
+      "name": "san pedro alcantara",
+      "aliases": [],
+      "frequency": 1,
+      "firstSeen": "2025-07-21T18:06:28.176Z",
+      "lastSeen": "2025-07-21T18:06:28.176Z",
+      "commonStreets": [],
+      "nearbyAreas": [],
+      "confidence": 0.1
+    }
+  ],
+  "clusters": [
+    {
+      "centerArea": "nueva andalucia",
+      "memberAreas": [
+        "nueva andalucia",
+        "marbella"
+      ],
+      "averageDistance": 0,
+      "frequency": 24,
+      "lastUpdated": "2025-07-21T17:47:49.510Z"
+    },
+    {
+      "centerArea": "del mar",
+      "memberAreas": [
+        "del mar"
+      ],
+      "averageDistance": 0,
+      "frequency": 1,
+      "lastUpdated": "2025-07-20T12:06:08.881Z"
+    },
+    {
+      "centerArea": "unknown",
+      "memberAreas": [],
+      "averageDistance": 0,
+      "frequency": 1,
+      "lastUpdated": "2025-07-20T12:11:46.399Z"
+    },
+    {
+      "centerArea": "unknown",
+      "memberAreas": [],
+      "averageDistance": 0,
+      "frequency": 1,
+      "lastUpdated": "2025-07-20T12:11:53.244Z"
+    },
+    {
+      "centerArea": "unknown",
+      "memberAreas": [],
+      "averageDistance": 0,
+      "frequency": 1,
+      "lastUpdated": "2025-07-20T12:12:05.410Z"
+    },
+    {
+      "centerArea": "alameda",
+      "memberAreas": [
+        "alameda"
+      ],
+      "averageDistance": 0,
+      "frequency": 1,
+      "lastUpdated": "2025-07-20T12:12:33.613Z"
+    },
+    {
+      "centerArea": "unknown",
+      "memberAreas": [],
+      "averageDistance": 0,
+      "frequency": 1,
+      "lastUpdated": "2025-07-20T14:46:17.711Z"
+    },
+    {
+      "centerArea": "unknown",
+      "memberAreas": [],
+      "averageDistance": 0,
+      "frequency": 1,
+      "lastUpdated": "2025-07-20T14:46:28.596Z"
+    },
+    {
+      "centerArea": "fuengirola",
+      "memberAreas": [
+        "fuengirola"
+      ],
+      "averageDistance": 0,
+      "frequency": 2,
+      "lastUpdated": "2025-07-21T18:11:52.043Z"
+    },
+    {
+      "centerArea": "san pedro alcantara",
+      "memberAreas": [
+        "san pedro alcantara",
+        "alcantara"
+      ],
+      "averageDistance": 0,
+      "frequency": 1,
+      "lastUpdated": "2025-07-21T18:06:28.177Z"
+    }
+  ],
+  "analysisCount": 34,
+  "lastUpdated": "2025-07-21T18:11:52.044Z"
+}

@@ -1,0 +1,3018 @@
+[
+  {
+    "id": "pred_1752834225666_ymj97s9nr",
+    "sessionId": "session_1752834097811_fa8p9gn7o",
+    "propertyId": "Q2FsbGUgQWxhbWVk",
+    "timestamp": "2025-07-18T10:23:45.666Z",
+    "predictedPriceRange": {
+      "low": 206168,
+      "high": 222233,
+      "estimated": 214200,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752836060452_0pebi8qkf",
+    "sessionId": "session_1752835873481_0l9312ml7",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-18T10:54:20.452Z",
+    "predictedPriceRange": {
+      "low": 314160,
+      "high": 338640,
+      "estimated": 326400,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752838516918_t5q9kmwxv",
+    "sessionId": "session_1752838395231_vyauy1mbh",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-18T11:35:16.919Z",
+    "predictedPriceRange": {
+      "low": 314160,
+      "high": 338640,
+      "estimated": 326400,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752839149659_oq6sh217l",
+    "sessionId": "session_1752839034666_hso9l8tmt",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-18T11:45:49.659Z",
+    "predictedPriceRange": {
+      "low": 314160,
+      "high": 338640,
+      "estimated": 326400,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752841765965_hleccx5ip",
+    "sessionId": "session_1752841476824_w7neewmn1",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-18T12:29:25.965Z",
+    "predictedPriceRange": {
+      "low": 315739,
+      "high": 340342,
+      "estimated": 328040,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752842369870_twlvbi7rw",
+    "sessionId": "session_1752842267811_38nh11b5m",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-18T12:39:29.871Z",
+    "predictedPriceRange": {
+      "low": 315739,
+      "high": 340342,
+      "estimated": 328040,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752843211413_vo02q92js",
+    "sessionId": "session_1752842906722_gvpv7ffoh",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-18T12:53:31.413Z",
+    "predictedPriceRange": {
+      "low": 315739,
+      "high": 340342,
+      "estimated": 328040,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752843716388_3czh7yy2p",
+    "sessionId": "session_1752843532924_b3pckv463",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-18T13:01:56.388Z",
+    "predictedPriceRange": {
+      "low": 315739,
+      "high": 340342,
+      "estimated": 328040,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752844534122_ep9xcrpqr",
+    "sessionId": "session_1752844353948_08j2zsv89",
+    "propertyId": "Q2FsbGUgQWxhbWVk",
+    "timestamp": "2025-07-18T13:15:34.122Z",
+    "predictedPriceRange": {
+      "low": 452688,
+      "high": 459530,
+      "estimated": 456109,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752845136101_ot4x25gkz",
+    "sessionId": "session_1752844995448_rifvswczz",
+    "propertyId": "Q2FsbGUgQWxhbWVk",
+    "timestamp": "2025-07-18T13:25:36.101Z",
+    "predictedPriceRange": {
+      "low": 452688,
+      "high": 459530,
+      "estimated": 456109,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752845409021_nh0a9i6jt",
+    "sessionId": "session_1752845227943_rw876oiln",
+    "propertyId": "Q2FsbGUgQWxhbWVk",
+    "timestamp": "2025-07-18T13:30:09.021Z",
+    "predictedPriceRange": {
+      "low": 452688,
+      "high": 459530,
+      "estimated": 456109,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752846140226_m6sme38q5",
+    "sessionId": "session_1752845870661_g5c02elzd",
+    "propertyId": "Q2FsbGUgQWxhbWVk",
+    "timestamp": "2025-07-18T13:42:20.226Z",
+    "predictedPriceRange": {
+      "low": 452688,
+      "high": 459530,
+      "estimated": 456109,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752847097692_9ymdknjcc",
+    "sessionId": "session_1752846438577_uerrhd6jb",
+    "propertyId": "Q2FsbGUgQWxhbWVk",
+    "timestamp": "2025-07-18T13:58:17.692Z",
+    "predictedPriceRange": {
+      "low": 525257,
+      "high": 533195,
+      "estimated": 529226,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752849068093_qwlf10r15",
+    "sessionId": "session_1752848665315_263y8lfy5",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-18T14:31:08.093Z",
+    "predictedPriceRange": {
+      "low": 983351,
+      "high": 998213,
+      "estimated": 990782,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752851049167_hmz290qug",
+    "sessionId": "session_1752850781162_enolk1c27",
+    "propertyId": "UHJvcGVydHkgUEww",
+    "timestamp": "2025-07-18T15:04:09.167Z",
+    "predictedPriceRange": {
+      "low": 634889,
+      "high": 644485,
+      "estimated": 639687,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752860616892_j8ds9neft",
+    "sessionId": "session_1752860358193_07uelibfs",
+    "propertyId": "Q2FsbGUgQWxhbWVk",
+    "timestamp": "2025-07-18T17:43:36.893Z",
+    "predictedPriceRange": {
+      "low": 260164,
+      "high": 280436,
+      "estimated": 270300,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752861164549_ybmhpkyqs",
+    "sessionId": "session_1752860921615_7xb9n5h3g",
+    "propertyId": "Q2FsbGUgQWxhbWVk",
+    "timestamp": "2025-07-18T17:52:44.549Z",
+    "predictedPriceRange": {
+      "low": 260164,
+      "high": 280436,
+      "estimated": 270300,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752867092905_f6ce40r8d",
+    "sessionId": "session_1752866842716_qjfzqr36j",
+    "propertyId": "Q2FsbGUgSmFyZMOt",
+    "timestamp": "2025-07-18T19:31:32.905Z",
+    "predictedPriceRange": {
+      "low": 346500,
+      "high": 373500,
+      "estimated": 360000,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752867679442_tmzp5k40b",
+    "sessionId": "session_1752867534726_t1smj2dqn",
+    "propertyId": "Q2FsbGUgTGFyaW9z",
+    "timestamp": "2025-07-18T19:41:19.442Z",
+    "predictedPriceRange": {
+      "low": 215985,
+      "high": 232815,
+      "estimated": 224400,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752868040801_axgprilzy",
+    "sessionId": "session_1752867901188_r7znnnxt9",
+    "propertyId": "Q2FsbGUgTGFyaW9z",
+    "timestamp": "2025-07-18T19:47:20.801Z",
+    "predictedPriceRange": {
+      "low": 384876,
+      "high": 396598,
+      "estimated": 390737,
+      "confidence": 90
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 90,
+    "modelConfidence": 90,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752868238216_evh67512b",
+    "sessionId": "session_1752868087116_fa92uugnn",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-18T19:50:38.216Z",
+    "predictedPriceRange": {
+      "low": 850016,
+      "high": 862862,
+      "estimated": 856439,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752869595686_h0r3rdozz",
+    "sessionId": "session_1752868487769_4dylivwb9",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-18T20:13:15.686Z",
+    "predictedPriceRange": {
+      "low": 850016,
+      "high": 862862,
+      "estimated": 856439,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752871752278_1y48cfivd",
+    "sessionId": "session_1752871536173_2o8qcu83h",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-18T20:49:12.278Z",
+    "predictedPriceRange": {
+      "low": 850016,
+      "high": 862862,
+      "estimated": 856439,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752882254340_gn5mrp6ii",
+    "sessionId": "session_1752881979040_bxn9yri7h",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-18T23:44:14.340Z",
+    "predictedPriceRange": {
+      "low": 850016,
+      "high": 862862,
+      "estimated": 856439,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752918568537_qu0o6evfu",
+    "sessionId": "session_1752918408321_pi0n0mo5h",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-19T09:49:28.537Z",
+    "predictedPriceRange": {
+      "low": 783022,
+      "high": 806870,
+      "estimated": 794946,
+      "confidence": 90
+    },
+    "predictedMarketTrend": "up",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 90,
+    "modelConfidence": 90,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752926861522_yguy51bd4",
+    "sessionId": "session_1752926704267_kdvgbn4pi",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T12:07:41.522Z",
+    "predictedPriceRange": {
+      "low": 334950,
+      "high": 361050,
+      "estimated": 348000,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752929222881_cenqv666d",
+    "sessionId": "session_1752929118712_k6xelrjgf",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T12:47:02.881Z",
+    "predictedPriceRange": {
+      "low": 269500,
+      "high": 290500,
+      "estimated": 280000,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752930076321_21s6p8uz1",
+    "sessionId": "session_1752929913920_3hmgi4vu9",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T13:01:16.321Z",
+    "predictedPriceRange": {
+      "low": 279125,
+      "high": 300875,
+      "estimated": 290000,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752931359799_fsfyd9hx9",
+    "sessionId": "session_1752931276979_wsq5jyoea",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T13:22:39.799Z",
+    "predictedPriceRange": {
+      "low": 334950,
+      "high": 361050,
+      "estimated": 348000,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752931544541_befpdg0sm",
+    "sessionId": "session_1752931443367_3iwxmifsq",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T13:25:44.541Z",
+    "predictedPriceRange": {
+      "low": 334950,
+      "high": 361050,
+      "estimated": 348000,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752931764912_oewjpp2hx",
+    "sessionId": "session_1752931664791_10bz59or7",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T13:29:24.912Z",
+    "predictedPriceRange": {
+      "low": 334950,
+      "high": 361050,
+      "estimated": 348000,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752932138271_prjjws3bs",
+    "sessionId": "session_1752932052313_w0xi4jokc",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T13:35:38.271Z",
+    "predictedPriceRange": {
+      "low": 334950,
+      "high": 361050,
+      "estimated": 348000,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752932432570_avscid3rz",
+    "sessionId": "session_1752932335602_2gdyhsenf",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T13:40:32.570Z",
+    "predictedPriceRange": {
+      "low": 334950,
+      "high": 361050,
+      "estimated": 348000,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752932701473_y45c4289q",
+    "sessionId": "session_1752932610578_gkaxet8hh",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T13:45:01.473Z",
+    "predictedPriceRange": {
+      "low": 625251,
+      "high": 634701,
+      "estimated": 629976,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752932992586_zj2476ed3",
+    "sessionId": "session_1752932908595_7vrvent88",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T13:49:52.587Z",
+    "predictedPriceRange": {
+      "low": 625251,
+      "high": 634701,
+      "estimated": 629976,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752933410675_4j6ky4clo",
+    "sessionId": "session_1752933311057_mcrhjdqzx",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T13:56:50.676Z",
+    "predictedPriceRange": {
+      "low": 667267,
+      "high": 677351,
+      "estimated": 672309,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752933754796_3vcnw3ztf",
+    "sessionId": "session_1752933634903_s8edvu2tm",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T14:02:34.796Z",
+    "predictedPriceRange": {
+      "low": 667267,
+      "high": 677351,
+      "estimated": 672309,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752934169032_rgkzc5u42",
+    "sessionId": "session_1752933792227_u7rvgomz6",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T14:09:29.032Z",
+    "predictedPriceRange": {
+      "low": 667267,
+      "high": 677351,
+      "estimated": 672309,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752936500347_bmybm9s40",
+    "sessionId": "session_1752936337255_ylb4ilcec",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T14:48:20.347Z",
+    "predictedPriceRange": {
+      "low": 667267,
+      "high": 677351,
+      "estimated": 672309,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "B",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752937131372_bbppsz1ee",
+    "sessionId": "session_1752936997415_14bngre9a",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-19T14:58:51.372Z",
+    "predictedPriceRange": {
+      "low": 639823,
+      "high": 649493,
+      "estimated": 644658,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752943507530_0kbi2nbvz",
+    "sessionId": "session_1752943422499_srwo5m0ac",
+    "propertyId": "Q2FsbGUgTGFyaW9z",
+    "timestamp": "2025-07-19T16:45:07.530Z",
+    "predictedPriceRange": {
+      "low": 272290,
+      "high": 297950,
+      "estimated": 285120,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752943778888_wy6flv6ru",
+    "sessionId": "session_1752943709950_w25o7hyd0",
+    "propertyId": "Q2FsbGUgTGFyaW9z",
+    "timestamp": "2025-07-19T16:49:38.888Z",
+    "predictedPriceRange": {
+      "low": 272290,
+      "high": 297950,
+      "estimated": 285120,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752944144051_tz588u4ra",
+    "sessionId": "session_1752944085669_57lgmf40s",
+    "propertyId": "Q2FsbGUgTGFyaW9z",
+    "timestamp": "2025-07-19T16:55:44.052Z",
+    "predictedPriceRange": {
+      "low": 607170,
+      "high": 625662,
+      "estimated": 616416,
+      "confidence": 90
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 90,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752944345335_2ap9gj3e4",
+    "sessionId": "session_1752944296573_bnhca859v",
+    "propertyId": "Q2FsbGUgTGFyaW9z",
+    "timestamp": "2025-07-19T16:59:05.335Z",
+    "predictedPriceRange": {
+      "low": 636493,
+      "high": 646113,
+      "estimated": 641303,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752944438035_wap8i0abt",
+    "sessionId": "session_1752944375539_lod7o51jy",
+    "propertyId": "Q2FsbGUgTGFyaW9z",
+    "timestamp": "2025-07-19T17:00:38.035Z",
+    "predictedPriceRange": {
+      "low": 688287,
+      "high": 698689,
+      "estimated": 693488,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752944553663_9g2ubxul2",
+    "sessionId": "session_1752944476741_vl5cu16de",
+    "propertyId": "Q2FsbGUgTGFyaW9z",
+    "timestamp": "2025-07-19T17:02:33.663Z",
+    "predictedPriceRange": {
+      "low": 688287,
+      "high": 698689,
+      "estimated": 693488,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752944908475_i80t9asrm",
+    "sessionId": "session_1752944681406_fauo0oms1",
+    "propertyId": "TmV3IEdvbGRlbiBN",
+    "timestamp": "2025-07-19T17:08:28.476Z",
+    "predictedPriceRange": {
+      "low": 3358324,
+      "high": 3409080,
+      "estimated": 3383702,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752953047996_kya0bogd1",
+    "sessionId": "session_1752952818500_8ifhwjjw6",
+    "propertyId": "TWFyYmVsbGEsIE1B",
+    "timestamp": "2025-07-19T19:24:07.997Z",
+    "predictedPriceRange": {
+      "low": 763706,
+      "high": 775248,
+      "estimated": 769477,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752956829333_vbd7a551g",
+    "sessionId": "session_1752956816614_s0b8w1m2f",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:27:09.333Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752957016006_4t2cs7glt",
+    "sessionId": "session_1752957013630_42f3fztlw",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:30:16.006Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752957203470_uepn4fam9",
+    "sessionId": "session_1752957200629_74xajb1r2",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:33:23.470Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752957364884_0qbs3kupw",
+    "sessionId": "session_1752957362414_w9j2st0lv",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:36:04.885Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752957422647_w07hvmkgh",
+    "sessionId": "session_1752957419696_46ee797qf",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:37:02.648Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752957547531_ooc9ksyxd",
+    "sessionId": "session_1752957544996_ykhbax5nz",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:39:07.531Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752957680278_gw46uq7br",
+    "sessionId": "session_1752957677438_pxr1r4g7a",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:41:20.278Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752957760174_x977bboah",
+    "sessionId": "session_1752957757164_zbk10gc9s",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:42:40.174Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752957788028_ddm9x91dn",
+    "sessionId": "session_1752957785616_97igdsi8x",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:43:08.029Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752957909261_udfcesp2d",
+    "sessionId": "session_1752957907480_fn8svkiti",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:45:09.261Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752958059491_ln6okka6c",
+    "sessionId": "session_1752958057767_yxr5gncev",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:47:39.491Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752958413979_mrq5eko77",
+    "sessionId": "session_1752958412422_suq4lsjup",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:53:33.979Z",
+    "predictedPriceRange": {
+      "low": 433690,
+      "high": 440244,
+      "estimated": 436967,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752958559472_otbkcs2yx",
+    "sessionId": "session_1752958557130_kxk00pm8c",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:55:59.473Z",
+    "predictedPriceRange": {
+      "low": 474948,
+      "high": 482126,
+      "estimated": 478537,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752958742716_6mk79t96p",
+    "sessionId": "session_1752958740263_jmgktfwd6",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-19T20:59:02.717Z",
+    "predictedPriceRange": {
+      "low": 474948,
+      "high": 482126,
+      "estimated": 478537,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752965558825_2xrn2in66",
+    "sessionId": "session_1752965544887_bvdaybmtg",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-19T22:52:38.826Z",
+    "predictedPriceRange": {
+      "low": 1784211,
+      "high": 1811177,
+      "estimated": 1797694,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752966530253_9t0w2mjrb",
+    "sessionId": "session_1752966526920_y7pea2k8o",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-19T23:08:50.253Z",
+    "predictedPriceRange": {
+      "low": 1784211,
+      "high": 1811177,
+      "estimated": 1797694,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752966569501_3lh8hbglo",
+    "sessionId": "session_1752966566586_l5d6ck1or",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-19T23:09:29.501Z",
+    "predictedPriceRange": {
+      "low": 759416,
+      "high": 830984,
+      "estimated": 795200,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752966873449_yd4mljaea",
+    "sessionId": "session_1752966869697_7idbvcam4",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-19T23:14:33.449Z",
+    "predictedPriceRange": {
+      "low": 759416,
+      "high": 830984,
+      "estimated": 795200,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752967648673_4nwx2cqto",
+    "sessionId": "session_1752967644717_bccy3n7c4",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-19T23:27:28.673Z",
+    "predictedPriceRange": {
+      "low": 759416,
+      "high": 830984,
+      "estimated": 795200,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752969777469_5vq383gbn",
+    "sessionId": "session_1752969676391_1iz7d0g2h",
+    "propertyId": "TnVldmEgQW5kYWx1",
+    "timestamp": "2025-07-20T00:02:57.469Z",
+    "predictedPriceRange": {
+      "low": 1146894,
+      "high": 1164228,
+      "estimated": 1155561,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752970068122_t2mgr8acd",
+    "sessionId": "session_1752970065914_szqht1xj0",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-20T00:07:48.122Z",
+    "predictedPriceRange": {
+      "low": 1784861,
+      "high": 1811837,
+      "estimated": 1798349,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752970193678_5rln83nmx",
+    "sessionId": "session_1752970191158_f1msozmjy",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-20T00:09:53.678Z",
+    "predictedPriceRange": {
+      "low": 1784861,
+      "high": 1811837,
+      "estimated": 1798349,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752970402266_xnxbhuchd",
+    "sessionId": "session_1752970400152_usfepw61y",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-20T00:13:22.266Z",
+    "predictedPriceRange": {
+      "low": 1784861,
+      "high": 1811837,
+      "estimated": 1798349,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752970483732_mk3cwgeis",
+    "sessionId": "session_1752970481497_1dn1i6znp",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-20T00:14:43.732Z",
+    "predictedPriceRange": {
+      "low": 1784861,
+      "high": 1811837,
+      "estimated": 1798349,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1752970726343_5o1i5dzm3",
+    "sessionId": "session_1752970724674_l7n4aiktz",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-20T00:18:46.343Z",
+    "predictedPriceRange": {
+      "low": 1784861,
+      "high": 1811837,
+      "estimated": 1798349,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753002792978_d752dy4va",
+    "sessionId": "session_1753002743483_bed1ma68j",
+    "propertyId": "UHVlcnRvIEJhbsO6",
+    "timestamp": "2025-07-20T09:13:12.979Z",
+    "predictedPriceRange": {
+      "low": 353574,
+      "high": 381126,
+      "estimated": 367350,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753012130356_fsq2kmf2i",
+    "sessionId": "session_1753012126665_rtpabty87",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-20T11:48:50.357Z",
+    "predictedPriceRange": {
+      "low": 759416,
+      "high": 830984,
+      "estimated": 795200,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753013170027_u72moe29e",
+    "sessionId": "session_1753013002975_bvxeh4huf",
+    "propertyId": "QXZlbmlkYSBkZWwg",
+    "timestamp": "2025-07-20T12:06:10.028Z",
+    "predictedPriceRange": {
+      "low": 279510,
+      "high": 301290,
+      "estimated": 290400,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753013507116_jz0a1knmn",
+    "sessionId": "session_1753013500318_tfrkkacn2",
+    "propertyId": "UHJvcGVydHkgdW5k",
+    "timestamp": "2025-07-20T12:11:47.116Z",
+    "predictedPriceRange": {
+      "low": 215830,
+      "high": 236170,
+      "estimated": 226000,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753013516859_6yn84er9h",
+    "sessionId": "session_1753013512420_8wm6xhagf",
+    "propertyId": "UHJvcGVydHkgdW5k",
+    "timestamp": "2025-07-20T12:11:56.859Z",
+    "predictedPriceRange": {
+      "low": 215830,
+      "high": 236170,
+      "estimated": 226000,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753013526114_iurgt8hkm",
+    "sessionId": "session_1753013524671_0ehw6buem",
+    "propertyId": "UHJvcGVydHkgdW5k",
+    "timestamp": "2025-07-20T12:12:06.114Z",
+    "predictedPriceRange": {
+      "low": 215830,
+      "high": 236170,
+      "estimated": 226000,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753013554326_qgc9o7p6k",
+    "sessionId": "session_1753013535802_nrt2h2ft4",
+    "propertyId": "Q2FsbGUgQWxhbWVk",
+    "timestamp": "2025-07-20T12:12:34.326Z",
+    "predictedPriceRange": {
+      "low": 261288,
+      "high": 285912,
+      "estimated": 273600,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753016125953_6eqgxh06a",
+    "sessionId": "session_1753016123635_zopulopez",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-20T12:55:25.953Z",
+    "predictedPriceRange": {
+      "low": 759416,
+      "high": 830984,
+      "estimated": 795200,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753022779085_10eqdkwwp",
+    "sessionId": "session_1753022775046_rus8kslxv",
+    "propertyId": "UHJvcGVydHkgdW5k",
+    "timestamp": "2025-07-20T14:46:19.085Z",
+    "predictedPriceRange": {
+      "low": 215830,
+      "high": 236170,
+      "estimated": 226000,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753022789715_ffyscbfkr",
+    "sessionId": "session_1753022787545_oq7qhp4ws",
+    "propertyId": "UHJvcGVydHkgdW5k",
+    "timestamp": "2025-07-20T14:46:29.715Z",
+    "predictedPriceRange": {
+      "low": 215830,
+      "high": 236170,
+      "estimated": 226000,
+      "confidence": 70
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 70,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753109631949_9jfw459d8",
+    "sessionId": "session_1753109018027_29p0i9e8z",
+    "propertyId": "Q2FsbGUgTWFyYmVs",
+    "timestamp": "2025-07-21T14:53:51.949Z",
+    "predictedPriceRange": {
+      "low": 733906,
+      "high": 791094,
+      "estimated": 762500,
+      "confidence": 75
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 75,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753111174812_m9cceo85k",
+    "sessionId": "session_1753109584899_uy3eqp019",
+    "propertyId": "Q2FsbGUgTWFyYmVs",
+    "timestamp": "2025-07-21T15:19:34.812Z",
+    "predictedPriceRange": {
+      "low": 771150,
+      "high": 818850,
+      "estimated": 795000,
+      "confidence": 80
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 80,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753115286746_a8qjzaqy5",
+    "sessionId": "session_1753115206863_gt3l04r8k",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T16:28:06.747Z",
+    "predictedPriceRange": {
+      "low": 831096,
+      "high": 882504,
+      "estimated": 856800,
+      "confidence": 80
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 80,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753115552808_yr5nigt8a",
+    "sessionId": "session_1753115483984_buaxj7jhc",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T16:32:32.808Z",
+    "predictedPriceRange": {
+      "low": 831096,
+      "high": 882504,
+      "estimated": 856800,
+      "confidence": 80
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 80,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753115847206_p0hwqsdj9",
+    "sessionId": "session_1753115780226_0hq4a3fsi",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T16:37:27.206Z",
+    "predictedPriceRange": {
+      "low": 831096,
+      "high": 882504,
+      "estimated": 856800,
+      "confidence": 80
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 80,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753116206526_kn4zlm48l",
+    "sessionId": "session_1753116131206_bl81g0299",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T16:43:26.526Z",
+    "predictedPriceRange": {
+      "low": 831096,
+      "high": 882504,
+      "estimated": 856800,
+      "confidence": 80
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 80,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753117109823_i5s9hhz7v",
+    "sessionId": "session_1753117037826_po29rpsxv",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T16:58:29.823Z",
+    "predictedPriceRange": {
+      "low": 831096,
+      "high": 882504,
+      "estimated": 856800,
+      "confidence": 80
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "D",
+    "dataQuality": 70,
+    "modelConfidence": 80,
+    "analysisMethod": [
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753117403798_g1lotlk4r",
+    "sessionId": "session_1753117313126_dbkdxq7z8",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T17:03:23.798Z",
+    "predictedPriceRange": {
+      "low": 742919,
+      "high": 754147,
+      "estimated": 748533,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753119097244_5itvrdz2v",
+    "sessionId": "session_1753119024530_nca6cqfa0",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T17:31:37.244Z",
+    "predictedPriceRange": {
+      "low": 742919,
+      "high": 754147,
+      "estimated": 748533,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753119348843_447esul1m",
+    "sessionId": "session_1753119272026_6tepu3r4b",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T17:35:48.843Z",
+    "predictedPriceRange": {
+      "low": 742919,
+      "high": 754147,
+      "estimated": 748533,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753119639803_72iclnr2k",
+    "sessionId": "session_1753119574274_4xpz3g96n",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T17:40:39.803Z",
+    "predictedPriceRange": {
+      "low": 742919,
+      "high": 754147,
+      "estimated": 748533,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753119782088_povu6pv27",
+    "sessionId": "session_1753119723471_tahjq5tdu",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T17:43:02.089Z",
+    "predictedPriceRange": {
+      "low": 742919,
+      "high": 754147,
+      "estimated": 748533,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753119975855_ayj6tgd2v",
+    "sessionId": "session_1753119912629_kojhe4ayv",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T17:46:15.855Z",
+    "predictedPriceRange": {
+      "low": 761909,
+      "high": 773425,
+      "estimated": 767667,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753120144412_isz1djfeo",
+    "sessionId": "session_1753120041652_1ilhsfltc",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T17:49:04.413Z",
+    "predictedPriceRange": {
+      "low": 761909,
+      "high": 773425,
+      "estimated": 767667,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753120912542_n463ji8p7",
+    "sessionId": "session_1753120730793_t5y4j49av",
+    "propertyId": "TG9zIFBhY29zLCBG",
+    "timestamp": "2025-07-21T18:01:52.543Z",
+    "predictedPriceRange": {
+      "low": 257554,
+      "high": 261446,
+      "estimated": 259500,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 2.27,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753121243504_4ii1egn2g",
+    "sessionId": "session_1753121123609_iiq2u5j2e",
+    "propertyId": "Q29ydGlqbyBCbGFu",
+    "timestamp": "2025-07-21T18:07:23.505Z",
+    "predictedPriceRange": {
+      "low": 170015,
+      "high": 172585,
+      "estimated": 171300,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 0.8,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753121554551_78reot6e4",
+    "sessionId": "session_1753121471821_zp1yzpe33",
+    "propertyId": "Q2FydmFqYWwsIEZ1",
+    "timestamp": "2025-07-21T18:12:34.551Z",
+    "predictedPriceRange": {
+      "low": 231375,
+      "high": 234871,
+      "estimated": 233123,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 0.8,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  }
+]
