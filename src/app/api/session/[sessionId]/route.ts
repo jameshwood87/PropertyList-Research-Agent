@@ -145,6 +145,13 @@ export async function GET(
       return handleSessionData(sessionData, sessionId, now, isBasicRequest)
     }
     
+    // Check if session exists in public session storage
+    const publicSessionStorage = (globalThis as any).publicSessionStorage
+    if (publicSessionStorage && publicSessionStorage.has(sessionId)) {
+      const sessionData = publicSessionStorage.get(sessionId)
+      return handleSessionData(sessionData, sessionId, now, isBasicRequest)
+    }
+    
     return NextResponse.json(
       { error: 'Session not found' }, 
       { status: 404 }
