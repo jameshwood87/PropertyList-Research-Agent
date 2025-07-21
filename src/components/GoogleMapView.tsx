@@ -91,8 +91,7 @@ export default function GoogleMapView({ center, amenities, layers }: GoogleMapVi
               fillOpacity: 1,
               strokeColor: '#ffffff',
               strokeWeight: 2,
-              scale: 2,
-              anchor: { x: 10, y: 20 }
+              scale: 2
             }}
           />
         </GoogleMap>

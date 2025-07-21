@@ -2,6 +2,8 @@
 
 A comprehensive AI-powered property analysis system for the Spanish real estate market, providing detailed CMA reports, rental analysis, and market insights.
 
+**Latest Update**: Enhanced with comprehensive features including XML feed processing, session management, and advanced AI analysis.
+
 ## 🏠 Features
 
 ### Core Analysis

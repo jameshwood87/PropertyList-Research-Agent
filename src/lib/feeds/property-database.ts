@@ -2470,10 +2470,10 @@ export class PropertyDatabase {
         : dbProperty.image
           ? [dbProperty.image]
           : [],
-      // Area details (matching XML feed field names)
-      build_area: dbProperty.build_area,
-      plot_area: dbProperty.plot_area,
-      terrace_area_m2: dbProperty.terrace_area_m2,
+      // Area details (camelCase for frontend compatibility)
+      buildArea: dbProperty.build_area,
+      plotArea: dbProperty.plot_area,
+      terraceArea: dbProperty.terrace_area_m2,
       areaType: areaType,
       displayArea: displayArea,
       features: mappedFeatures, // Use mapped features instead of raw codes

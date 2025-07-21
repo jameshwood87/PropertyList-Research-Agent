@@ -1209,7 +1209,7 @@ export class FeedIntegration {
     // Calculate price per m² for all comparables
     const comparablesWithPricePerM2 = comparables.map(comp => ({
       ...comp,
-      pricePerM2: comp.price / (comp.build_area || comp.m2 || 100)
+      pricePerM2: comp.price / (comp.buildArea || comp.m2 || 100)
     }))
     
     // Calculate the target price per m²
