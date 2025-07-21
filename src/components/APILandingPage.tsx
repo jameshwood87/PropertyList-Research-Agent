@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
 import { 
   Database, 
   Zap, 
@@ -35,7 +35,7 @@ export default function APILandingPage() {
   }
 
   return (
-    <motion.div
+    <div
       className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50"
       variants={containerVariants}
       initial="hidden"
@@ -44,7 +44,7 @@ export default function APILandingPage() {
       <div className="max-w-6xl mx-auto px-4 py-16">
         
         {/* Hero Section */}
-        <motion.div variants={itemVariants} className="text-center mb-16">
+        <div variants={itemVariants} className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
             PropertyList Research Agent
           </h1>
@@ -66,10 +66,10 @@ export default function APILandingPage() {
               <span className="font-medium">AI Powered</span>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* API Workflow Cards */}
-        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           
           {/* Step 1: Submit Property Data */}
           <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
@@ -103,10 +103,10 @@ export default function APILandingPage() {
               Get comprehensive CMA report with PDF download capability.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* API Features */}
-        <motion.div variants={itemVariants} className="bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-white">
+        <div variants={itemVariants} className="bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-white">
           <h2 className="text-2xl font-bold mb-6">What You Get</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
@@ -150,10 +150,10 @@ export default function APILandingPage() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Status Footer */}
-        <motion.div variants={itemVariants} className="text-center mt-16">
+        <div variants={itemVariants} className="text-center mt-16">
           <p className="text-gray-600">
             Ready to integrate? Check our{' '}
             <a href="/debug" className="text-primary hover:text-primary-dark font-medium">
@@ -161,8 +161,8 @@ export default function APILandingPage() {
             </a>{' '}
             for API logs and system status.
           </p>
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   )
 } 

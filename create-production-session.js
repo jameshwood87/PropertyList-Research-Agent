@@ -94,6 +94,8 @@ async function createProductionSession() {
       previewOnly: true
     });
     
+    console.log('📊 Response:', createResponse);
+    
     if (createResponse.success) {
       console.log('✅ Session created successfully!');
       const sessionUrl = `https://property-list-research-agent.vercel.app/session/${realPropertyData.sessionId}`;
@@ -108,7 +110,7 @@ async function createProductionSession() {
       console.log('   - Valuation estimate');
       
     } else {
-      console.log('❌ Failed to create session:', createResponse.error);
+      console.log('❌ Failed to create session:', createResponse.error || createResponse);
     }
     
   } catch (error) {

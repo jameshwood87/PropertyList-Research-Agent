@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// import { motion, AnimatePresence } from 'framer-motion'
 import { useApiStatus } from '@/hooks/useApiStatus'
 
 interface ServiceStatus {
@@ -77,7 +77,7 @@ export default function APIStatusPanel() {
         onMouseLeave={() => setIsExpanded(false)}
       >
         {/* Main Status Indicator */}
-        <motion.div
+        <div
           className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200/50 px-3 py-2 cursor-pointer"
           whileHover={{ scale: 1.02 }}
           onClick={() => setIsExpanded(!isExpanded)}
@@ -120,12 +120,12 @@ export default function APIStatusPanel() {
               </svg>
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* Expanded Panel */}
-        <AnimatePresence>
+        
           {isExpanded && status && (
-            <motion.div
+            <div
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -189,9 +189,9 @@ export default function APIStatusPanel() {
                 <span>Last checked: {new Date(status.lastChecked).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                 <span>Manual refresh only</span>
         </div>
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
+        
       </div>
     </div>
   )

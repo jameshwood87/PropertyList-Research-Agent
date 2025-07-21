@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// import { motion, AnimatePresence } from 'framer-motion'
 
 interface AnalysisLog {
   id: string
@@ -321,9 +321,9 @@ export default function DebugPage() {
           </div>
         ) : (
           <div className="space-y-4">
-            <AnimatePresence>
+            
               {filteredLogs.map((log) => (
-                <motion.div
+                <div
                   key={log.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -356,7 +356,7 @@ export default function DebugPage() {
                   )}
 
                   {viewMode === 'detailed' && selectedLog?.id === log.id && (
-                    <motion.div
+                    <div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
@@ -419,11 +419,11 @@ export default function DebugPage() {
                           </div>
                         )}
                       </div>
-                    </motion.div>
+                    </div>
                   )}
-                </motion.div>
+                </div>
               ))}
-            </AnimatePresence>
+            
           </div>
         )}
 
