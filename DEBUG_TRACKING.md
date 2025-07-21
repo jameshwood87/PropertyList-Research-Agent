@@ -1,3 +1,94 @@
+# Debug Tracking & Cleanup System
+
+## 🧹 **Temporary Files Tracking**
+
+### **Current Session (2025-07-21)**
+- ✅ `extract-session-url.js` - DELETED
+- ✅ `get-session-url.js` - DELETED  
+- ✅ `test-send-property.js` - DELETED
+- ✅ `test-real-property-with-images.json` - DELETED
+- ✅ `test-feed-system.js` - DELETED
+- ✅ `test-database-load.js` - DELETED
+- ✅ `fix-google-maps-env.js` - DELETED
+- ✅ `test-env.js` - DELETED
+- ✅ `test-generated-pdf.pdf` - DELETED
+- ✅ `test-working-pdf.pdf` - DELETED
+- ✅ `test-simple-pdf.pdf` - DELETED
+- ✅ `test-database.js` - DELETED
+- ✅ `test-malaga-property.json` - DELETED
+- ✅ `test-feed-search.js` - DELETED
+- ✅ `test-spanish-property.json` - DELETED
+- ✅ `test-property-data.json` - DELETED
+
+### **Future Session Template**
+```
+## Session [DATE]
+### Created Files:
+- [ ] `temp-script-name.js` - Purpose: [description]
+- [ ] `test-data-name.json` - Purpose: [description]
+- [ ] `debug-output-name.pdf` - Purpose: [description]
+
+### Modified Files:
+- [ ] `src/file.ts` - Changes: [description]
+
+### Cleanup Status:
+- [ ] All temporary files deleted
+- [ ] All test scripts removed
+- [ ] All debug outputs cleaned
+- [ ] Code changes reviewed and committed
+```
+
+## 📋 **Cleanup Checklist**
+
+### **Before Each Session:**
+- [ ] Review previous session's cleanup status
+- [ ] Note any files that should be preserved
+
+### **During Development:**
+- [ ] Prefix temporary files with `temp-`, `test-`, or `debug-`
+- [ ] Document purpose of each temporary file
+- [ ] Keep track of modified files
+
+### **After Each Session:**
+- [ ] Delete all temporary files
+- [ ] Remove test scripts
+- [ ] Clean debug outputs
+- [ ] Review and commit legitimate changes
+- [ ] Update this tracking file
+
+## 🎯 **Best Practices**
+
+### **File Naming Conventions:**
+- Temporary scripts: `temp-[purpose]-[date].js`
+- Test data: `test-[type]-[date].json`
+- Debug outputs: `debug-[type]-[date].[ext]`
+
+### **Code Comments:**
+```javascript
+// TEMPORARY: Remove after [purpose] is complete
+// TODO: Clean up this test code
+// DEBUG: This is for testing only
+```
+
+### **Git Management:**
+- Don't commit temporary files
+- Use `.gitignore` for test outputs
+- Commit legitimate changes separately from cleanup
+
+## 📊 **Session History**
+
+### **2025-07-21 Session:**
+- **Purpose:** Property analysis system testing and authentication fixes
+- **Files Created:** 16 temporary files
+- **Files Modified:** `src/lib/auth.ts` (legitimate change)
+- **Cleanup Status:** ✅ COMPLETE
+- **Notes:** Successfully sent property to preview page, authentication working
+
+---
+
+**Last Updated:** 2025-07-21
+**Next Review:** Before next development session
+
 # Debug Tracking - Memory Cleanup Required
 
 ## Debug Additions to Remove Later

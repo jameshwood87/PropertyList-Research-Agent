@@ -45,22 +45,42 @@ function hasMinimumDataForReport(
 
 // Real data only - no fallback data generation
 
-// Function to update listener server with step progress
-async function updateListenerProgress(sessionId: string, stepNumber: number, totalSteps: number) {
+// In-memory session storage for production compatibility
+const sessionStorage = new Map<string, any>()
+
+// Make session storage globally accessible for other API routes
+if (typeof globalThis !== 'undefined') {
+  (globalThis as any).sessionStorage = sessionStorage
+}
+
+// Function to update session progress (works for both local and production)
+async function updateSessionProgress(sessionId: string, stepNumber: number, totalSteps: number, data?: any) {
   try {
-    const listenerUrl = process.env.LISTENER_URL || 'http://localhost:3001'
-    await fetch(`${listenerUrl}/session/${sessionId}/update-progress`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        completedSteps: stepNumber,
-        totalSteps: totalSteps,
-        currentStep: stepNumber + 1 <= totalSteps ? stepNumber + 1 : totalSteps
+    // Store session data in memory for production
+    const sessionData = {
+      sessionId,
+      status: stepNumber >= totalSteps ? 'completed' : 'analyzing',
+      completedSteps: stepNumber,
+      totalSteps: totalSteps,
+      currentStep: stepNumber + 1 <= totalSteps ? stepNumber + 1 : totalSteps,
+      lastUpdated: new Date().toISOString(),
+      ...data
+    }
+    
+    sessionStorage.set(sessionId, sessionData)
+    
+    // Try to update listener server if in development
+    if (process.env.NODE_ENV === 'development') {
+      const listenerUrl = process.env.LISTENER_URL || 'http://localhost:3004'
+      await fetch(`${listenerUrl}/session/${sessionId}/update-progress`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sessionData)
       })
-    })
-    console.log(`📡 Updated listener progress: ${stepNumber}/${totalSteps} completed`)
+      console.log(`📡 Updated listener progress: ${stepNumber}/${totalSteps} completed`)
+    }
   } catch (error) {
-    console.warn('⚠️ Failed to update listener progress:', error instanceof Error ? error.message : error)
+    console.warn('⚠️ Failed to update session progress:', error instanceof Error ? error.message : error)
   }
 }
 
@@ -236,7 +256,7 @@ export async function POST(request: NextRequest) {
       //   searchQueries: locationDetails.searchQueries.length
       // })
       completedSteps++
-      await updateListenerProgress(sessionId, completedSteps, totalSteps)
+      await updateSessionProgress(sessionId, completedSteps, totalSteps)
     } catch (error) {
       handleStepError(sessionId, 1, 'Property Description Analysis', error)
       // This step failing is not critical - we can continue with basic address
@@ -271,7 +291,7 @@ export async function POST(request: NextRequest) {
       //   architecturalStyle: enhancedPropertyData.architecturalStyle
       // })
       completedSteps++
-      await updateListenerProgress(sessionId, completedSteps, totalSteps)
+      await updateSessionProgress(sessionId, completedSteps, totalSteps)
     } catch (error) {
       handleStepError(sessionId, 2, 'Property Condition & Style Analysis', error)
       // This step failing is not critical - we can continue with original data
@@ -370,7 +390,7 @@ export async function POST(request: NextRequest) {
         insightsLength: insights.length
       })
       completedSteps++
-      await updateListenerProgress(sessionId, completedSteps, totalSteps)
+      await updateSessionProgress(sessionId, completedSteps, totalSteps)
     } catch (error) {
       handleStepError(sessionId, 3, 'Geolocation & Amenities', error)
       if (!coordinates) {
@@ -388,7 +408,7 @@ export async function POST(request: NextRequest) {
       analysisLogger.completeStep(sessionId, 4, { marketData: !!marketData })
       console.log('✅ Step 4 completed:', { marketData: !!marketData })
       completedSteps++
-      await updateListenerProgress(sessionId, completedSteps, totalSteps)
+      await updateSessionProgress(sessionId, completedSteps, totalSteps)
     } catch (error) {
       handleStepError(sessionId, 4, 'Market Data', error)
       // Market data failure is not critical - we can estimate
@@ -405,7 +425,7 @@ export async function POST(request: NextRequest) {
       analysisLogger.completeStep(sessionId, 5, { comparables: comparables.length, totalFound: comparablePropertiesTotal })
       console.log('✅ Step 5 completed:', { comparables: comparables.length, totalFound: comparablePropertiesTotal })
       completedSteps++
-      await updateListenerProgress(sessionId, completedSteps, totalSteps)
+      await updateSessionProgress(sessionId, completedSteps, totalSteps)
     } catch (error) {
       console.error('❌ [STEP5 DEBUG] getComparableListings failed with error:', error)
       console.error('❌ [STEP5 DEBUG] Error details:', {
@@ -435,7 +455,7 @@ export async function POST(request: NextRequest) {
       analysisLogger.completeStep(sessionId, 6, { developments: developments.length })
       console.log('✅ Step 6 completed:', { developments: developments.length })
       completedSteps++
-      await updateListenerProgress(sessionId, completedSteps, totalSteps)
+      await updateSessionProgress(sessionId, completedSteps, totalSteps)
     } catch (error) {
       handleStepError(sessionId, 6, 'Future Developments', error)
       // Development data failure is not critical
@@ -507,7 +527,7 @@ export async function POST(request: NextRequest) {
       analysisLogger.completeStep(sessionId, 7, { aiSummary: !!aiSummary.executiveSummary })
       console.log('✅ Step 7 completed:', { aiSummary: !!aiSummary.executiveSummary })
       completedSteps++
-      await updateListenerProgress(sessionId, completedSteps, totalSteps)
+      await updateSessionProgress(sessionId, completedSteps, totalSteps)
     } catch (error) {
       handleStepError(sessionId, 7, 'AI Summary Generation', error)
       // Generate fallback AI summary if AI generation fails
@@ -534,7 +554,7 @@ export async function POST(request: NextRequest) {
       }
       // Mark step as completed even with fallback
       completedSteps++
-      await updateListenerProgress(sessionId, completedSteps, totalSteps)
+      await updateSessionProgress(sessionId, completedSteps, totalSteps)
     }
     
     // Always generate a report with available real data only

@@ -3014,5 +3014,98 @@
       "google_maps",
       "tavily_search"
     ]
+  },
+  {
+    "id": "pred_1753128674806_9aursn1yq",
+    "sessionId": "session_1753128605521_24legkjih",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T20:11:14.807Z",
+    "predictedPriceRange": {
+      "low": 917533,
+      "high": 931401,
+      "estimated": 924467,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753128739556_uzvq7is3p",
+    "sessionId": "session_1753128665135_wvzqiw69l",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T20:12:19.556Z",
+    "predictedPriceRange": {
+      "low": 917533,
+      "high": 931401,
+      "estimated": 924467,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
+  },
+  {
+    "id": "pred_1753128808992_hbl78i2f4",
+    "sessionId": "session_1753128739856_6vzi0w7jc",
+    "propertyId": "Q2FsbGUgQmVuYWhh",
+    "timestamp": "2025-07-21T20:13:28.992Z",
+    "predictedPriceRange": {
+      "low": 917533,
+      "high": 931401,
+      "estimated": 924467,
+      "confidence": 95
+    },
+    "predictedMarketTrend": "stable",
+    "predictedPriceChange": 49.58,
+    "predictionTimeframe": "6_months",
+    "investmentGrade": "C",
+    "dataQuality": 100,
+    "modelConfidence": 95,
+    "analysisMethod": [
+      "comparable_analysis",
+      "market_data_analysis",
+      "development_impact_analysis",
+      "mobility_analysis",
+      "amenity_analysis"
+    ],
+    "dataSourcesUsed": [
+      "property_feed",
+      "property_feed",
+      "google_maps",
+      "tavily_search"
+    ]
   }
 ]

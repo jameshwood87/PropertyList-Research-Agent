@@ -6,7 +6,7 @@
     "marketCharacteristics": {
       "averagePricePerM2": 267.85714285714283,
       "priceVolatility": 0,
-      "priceAppreciation": 26.16742857142855,
+      "priceAppreciation": 31.929999999999986,
       "averageTimeOnMarket": 0,
       "inventoryLevels": "moderate",
       "demandLevel": "moderate",
@@ -43,7 +43,7 @@
         "distance": 1,
         "impactOnPrice": 5,
         "impactTimeframe": "1-2 years",
-        "confidence": 40,
+        "confidence": 49,
         "historicalCases": []
       }
     ],
@@ -54,13 +54,13 @@
         "marketActivity": "moderate",
         "averageTimeOnMarket": null,
         "yearsOfData": 1,
-        "confidence": 98
+        "confidence": 100
       }
     ],
     "demographicInsights": [],
     "confidenceScore": 64,
-    "lastUpdated": "2025-07-21T17:49:04.406Z",
-    "dataPoints": 35
+    "lastUpdated": "2025-07-21T20:13:28.989Z",
+    "dataPoints": 38
   },
   {
     "id": "province_málaga",
@@ -69,7 +69,7 @@
     "marketCharacteristics": {
       "averagePricePerM2": 288.46153846153845,
       "priceVolatility": 0,
-      "priceAppreciation": 15.457692307692316,
+      "priceAppreciation": 24.116551724137935,
       "averageTimeOnMarket": 0,
       "inventoryLevels": "moderate",
       "demandLevel": "moderate",
@@ -89,8 +89,8 @@
     "seasonalPatterns": [],
     "demographicInsights": [],
     "confidenceScore": 50,
-    "lastUpdated": "2025-07-21T17:49:04.408Z",
-    "dataPoints": 26
+    "lastUpdated": "2025-07-21T20:13:28.990Z",
+    "dataPoints": 29
   },
   {
     "id": "province_ma",

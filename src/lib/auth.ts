@@ -11,6 +11,17 @@ interface AuthResult {
  * @returns AuthResult indicating if the token is valid
  */
 export function validateApiToken(request: NextRequest): AuthResult {
+  // Allow local development access without authentication
+  const host = request.headers.get('host') || ''
+  const isLocalhost = host.includes('localhost') || host.includes('127.0.0.1') || host.includes('192.168.')
+  
+  if (isLocalhost && process.env.NODE_ENV === 'development') {
+    console.log('🔓 Local development access granted (no authentication required)')
+    return {
+      isValid: true
+    }
+  }
+
   // Get the authorization header
   const authHeader = request.headers.get('authorization')
   

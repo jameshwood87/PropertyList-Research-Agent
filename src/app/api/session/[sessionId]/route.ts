@@ -4,6 +4,39 @@ import { fixPropertySpanishCharacters } from '@/lib/utils'
 // Simple in-memory cache
 const sessionCache = new Map<string, { data: any; timestamp: number }>()
 
+// Helper function to handle session data processing
+const handleSessionData = (data: any, sessionId: string, now: number, isBasicRequest: boolean) => {
+  // Fix Spanish characters in property data
+  if (data.property) {
+    data.property = fixPropertySpanishCharacters(data.property)
+  }
+  
+  // Cache the response
+  const ttl = getCacheTTL(data.status)
+  sessionCache.set(sessionId, { data, timestamp: now })
+  
+  // Return basic data if requested
+  if (isBasicRequest) {
+    const basicData = {
+      sessionId: data.sessionId,
+      status: data.status,
+      property: {
+        address: data.property?.address,
+        city: data.property?.city,
+        province: data.property?.province,
+        price: data.property?.price,
+        propertyType: data.property?.propertyType
+      },
+      completedSteps: data.completedSteps,
+      totalSteps: data.totalSteps,
+      createdAt: data.createdAt
+    }
+    return NextResponse.json(basicData)
+  }
+  
+  return NextResponse.json(data)
+}
+
 // Cache TTL based on session status
 const getCacheTTL = (sessionStatus: string) => {
   switch (sessionStatus) {
@@ -72,59 +105,50 @@ export async function GET(
       }
     }
     
-    // Forward request to listener server
-    const listenerUrl = process.env.LISTENER_URL || 'http://localhost:3004'
-    const timestamp = Date.now()
-    const fullUrl = `${listenerUrl}/session/${sessionId}?t=${timestamp}`
+    // For production, we need to handle sessions without external listener server
+    // Check if we're in development (localhost) or production
+    const isDevelopment = process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'development'
     
-    const response = await fetch(fullUrl, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      cache: 'no-store'
-    })
-    
-    if (!response.ok) {
-      return NextResponse.json(
-        { error: 'Session not found' }, 
-        { status: response.status }
-      )
-    }
-    
-    const data = await response.json()
-    
-    // Fix Spanish characters in property data
-    if (data.property) {
-      data.property = fixPropertySpanishCharacters(data.property)
-    }
-    
-    // Cache the response
-    const ttl = getCacheTTL(data.status)
-    sessionCache.set(sessionId, { data, timestamp: now })
-    
-    // console.log(`💾 [CACHE] Cached session: ${sessionId} with TTL: ${ttl}ms`)
-    
-    // Return basic data if requested
-    if (isBasicRequest) {
-      const basicData = {
-        sessionId: data.sessionId,
-        status: data.status,
-        property: {
-          address: data.property?.address,
-          city: data.property?.city,
-          province: data.property?.province,
-          price: data.property?.price,
-          propertyType: data.property?.propertyType
-        },
-        completedSteps: data.completedSteps,
-        totalSteps: data.totalSteps,
-        createdAt: data.createdAt
+    if (isDevelopment) {
+      // In development, try to fetch from listener server
+      const listenerUrl = process.env.LISTENER_URL || 'http://localhost:3004'
+      const timestamp = Date.now()
+      const fullUrl = `${listenerUrl}/session/${sessionId}?t=${timestamp}`
+      
+      try {
+        const response = await fetch(fullUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          cache: 'no-store'
+        })
+        
+        if (response.ok) {
+          const data = await response.json()
+          return handleSessionData(data, sessionId, now, isBasicRequest)
+        }
+      } catch (error) {
+        console.log('⚠️ Listener server not available, falling back to cache')
       }
-      return NextResponse.json(basicData)
     }
     
-    return NextResponse.json(data)
+    // Fallback: Return cached data or error
+    if (cached) {
+      return handleSessionData(cached.data, sessionId, now, isBasicRequest)
+    }
+    
+    // Check if session exists in property analysis storage
+    const propertyAnalysisStorage = (globalThis as any).sessionStorage
+    if (propertyAnalysisStorage && propertyAnalysisStorage.has(sessionId)) {
+      const sessionData = propertyAnalysisStorage.get(sessionId)
+      return handleSessionData(sessionData, sessionId, now, isBasicRequest)
+    }
+    
+    return NextResponse.json(
+      { error: 'Session not found' }, 
+      { status: 404 }
+    )
     
   } catch (error) {
     console.error('❌ Session fetch error:', error)

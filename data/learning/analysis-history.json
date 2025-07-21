@@ -554,5 +554,34 @@
     ],
     "userFeedback": [],
     "regionalKnowledgeUpdates": 0
+  },
+  "Q2FsbGUgQmVuYWhhdmlzLCA0NTZfTWFyYmVsbGFfTcOhbGFnYQ": {
+    "propertyId": "Q2FsbGUgQmVuYWhhdmlzLCA0NTZfTWFyYmVsbGFfTcOhbGFnYQ",
+    "analysisCount": 3,
+    "firstAnalysisDate": "2025-07-21T20:11:14.809Z",
+    "lastAnalysisDate": "2025-07-21T20:13:28.996Z",
+    "analysisQualityScores": [
+      100,
+      100,
+      100
+    ],
+    "promptVersions": [
+      "level_1",
+      "level_1",
+      "level_1"
+    ],
+    "dataGaps": [
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights",
+      "market_data",
+      "mobility_data",
+      "neighborhood_insights"
+    ],
+    "userFeedback": [],
+    "regionalKnowledgeUpdates": 0
   }
 }
