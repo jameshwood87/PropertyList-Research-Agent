@@ -39,6 +39,30 @@ export default function SessionPage() {
         
         const sessionData = await response.json()
         setSession(sessionData)
+        
+        // If analysis is still in progress, set up polling
+        if (sessionData.status === 'analyzing' || sessionData.status === 'pending') {
+          // Poll every 2 seconds for updates
+          const pollInterval = setInterval(async () => {
+            try {
+              const pollResponse = await fetch(`/api/session/${sessionId}`)
+              if (pollResponse.ok) {
+                const updatedSessionData = await pollResponse.json()
+                setSession(updatedSessionData)
+                
+                // Stop polling when analysis is complete
+                if (updatedSessionData.status === 'completed' || updatedSessionData.status === 'error') {
+                  clearInterval(pollInterval)
+                }
+              }
+            } catch (err) {
+              console.warn('Polling error:', err)
+            }
+          }, 2000)
+          
+          // Cleanup interval on unmount
+          return () => clearInterval(pollInterval)
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load session')
       } finally {

@@ -862,6 +862,15 @@ export async function POST(request: NextRequest) {
      
      // Complete the session with success
     analysisLogger.completeSession(sessionId, report, true)
+    
+    // Store the complete session data with report for production
+    await updateSessionProgress(sessionId, completedSteps, totalSteps, {
+      report: report,
+      property: enhancedPropertyData,
+      status: 'completed',
+      qualityScore: analysisQualityScore,
+      criticalErrors: criticalErrorsCount
+    })
      
      // 🧠 LEARNING ENGINE INTEGRATION
      // Update the AI system with knowledge from this analysis
