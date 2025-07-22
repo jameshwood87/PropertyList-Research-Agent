@@ -1,0 +1,26 @@
+{
+  "id": "e00a3183-e8f8-4ef2-a85f-2ed28e47f2db",
+  "propertyData": {
+    "reference": "R5081149",
+    "latitude": 36.5108,
+    "longitude": -4.8816,
+    "property_type": "townhouse",
+    "city": "Marbella",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "sale_price": 980000,
+    "build_area": 150,
+    "address": "Marbella, Costa del Sol",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"
+    ],
+    "build_square_meters": 150,
+    "totalCost": null,
+    "pricePerSqm": null
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T23:04:38.230Z",
+  "updatedAt": "2025-07-22T23:04:38.230Z",
+  "analysisResults": null
+}

@@ -395,14 +395,22 @@ export default function AnalysisPage() {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-6">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                  <Home className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-white">
-                    AI Property Research Agent
-                  </h1>
-                  <p className="text-primary-100 text-sm">Advanced Market Analysis Platform</p>
+                {/* PropertyList Logo */}
+                <div className="flex items-center space-x-4">
+                  <Image
+                    src="/PropertyList logo.png"
+                    alt="PropertyList.es"
+                    width={48}
+                    height={48}
+                    className="rounded-xl bg-white/10 p-1"
+                    style={{ filter: 'brightness(0) invert(1)' }}
+                  />
+                  <div>
+                    <h1 className="text-2xl font-bold text-white">
+                      PropertyList.es AI Agent
+                    </h1>
+                    <p className="text-primary-100 text-sm">Advanced Market Analysis Platform</p>
+                  </div>
                 </div>
               </div>
               <SystemStatus />
@@ -422,7 +430,7 @@ export default function AnalysisPage() {
                 </div>
                 <div className="ml-6">
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Property Preview</h2>
-                  <p className="text-gray-700 text-lg">Review the property details below and add any additional information you'd like included (such as urbanisation, street name, local landmarks, condition etc). Then click <span className="font-semibold text-primary-600">"Analyse Property"</span> to begin the AI-powered market analysis.</p>
+                  <p className="text-gray-700 text-lg">Review the property details and include any relevant info - such as street name, urbanisation, landmarks, or condition. Then click <span className="font-semibold text-primary-600">"Analyse Property"</span> to begin the AI market analysis.</p>
                 </div>
               </div>
             </div>
@@ -547,29 +555,35 @@ export default function AnalysisPage() {
                 </div>
                 {sessionData?.propertyData ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div className="spec-item">
-                      <div className="spec-label">
-                        <Home className="w-4 h-4" />
-                        <span>Bedrooms</span>
+                    {sessionData.propertyData.bedrooms && sessionData.propertyData.bedrooms > 0 && (
+                      <div className="spec-item">
+                        <div className="spec-label">
+                          <Home className="w-4 h-4" />
+                          <span>Bedrooms</span>
+                        </div>
+                        <span className="spec-value">{sessionData.propertyData.bedrooms}</span>
                       </div>
-                      <span className="spec-value">{sessionData.propertyData.bedrooms || 'N/A'}</span>
-                    </div>
+                    )}
                     
-                    <div className="spec-item">
-                      <div className="spec-label">
-                        <div className="w-4 h-4 flex items-center justify-center">🚿</div>
-                        <span>Bathrooms</span>
+                    {sessionData.propertyData.bathrooms && sessionData.propertyData.bathrooms > 0 && (
+                      <div className="spec-item">
+                        <div className="spec-label">
+                          <div className="w-4 h-4 flex items-center justify-center">🚿</div>
+                          <span>Bathrooms</span>
+                        </div>
+                        <span className="spec-value">{sessionData.propertyData.bathrooms}</span>
                       </div>
-                      <span className="spec-value">{sessionData.propertyData.bathrooms || 'N/A'}</span>
-                    </div>
+                    )}
                     
-                    <div className="spec-item">
-                      <div className="spec-label">
-                        <Building className="w-4 h-4" />
-                        <span>Build Area</span>
+                    {sessionData.propertyData.build_square_meters && sessionData.propertyData.build_square_meters > 0 && (
+                      <div className="spec-item">
+                        <div className="spec-label">
+                          <Building className="w-4 h-4" />
+                          <span>Build Area</span>
+                        </div>
+                        <span className="spec-value">{sessionData.propertyData.build_square_meters}m²</span>
                       </div>
-                      <span className="spec-value">{sessionData.propertyData.build_square_meters || 'N/A'}m²</span>
-                    </div>
+                    )}
                     
                     {sessionData.propertyData.plot_square_meters && (
                       <div className="spec-item">
@@ -591,13 +605,15 @@ export default function AnalysisPage() {
                       </div>
                     )}
                     
-                    <div className="spec-item">
-                      <div className="spec-label">
-                        <Car className="w-4 h-4" />
-                        <span>Parking</span>
+                    {sessionData.propertyData.parking_spaces && sessionData.propertyData.parking_spaces > 0 && (
+                      <div className="spec-item">
+                        <div className="spec-label">
+                          <Car className="w-4 h-4" />
+                          <span>Parking</span>
+                        </div>
+                        <span className="spec-value">{sessionData.propertyData.parking_spaces} spaces</span>
                       </div>
-                      <span className="spec-value">{sessionData.propertyData.parking_spaces || 0} spaces</span>
-                    </div>
+                    )}
                     
                     {sessionData.propertyData.floor_number && (
                       <div className="spec-item">
@@ -953,18 +969,38 @@ export default function AnalysisPage() {
   // Results State
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-primary/5">
-      {/* Header with Download Button */}
+      {/* Header with PropertyList Logo and Download Button */}
       <div className="sticky top-0 z-50 bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Property Analysis Report</h1>
-            <p className="text-sm text-gray-600">Generated on {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <div className="flex items-center space-x-4">
+            {/* PropertyList Logo */}
+            <div className="flex items-center space-x-3">
+              <Image
+                src="/PropertyList logo.png"
+                alt="PropertyList.es"
+                width={56}
+                height={56}
+                className="rounded-lg"
+              />
+              <div>
+                <div className="text-lg font-bold text-primary-600">PropertyList.es</div>
+                <div className="text-xs text-gray-500">Professional Property Analysis</div>
+              </div>
+            </div>
+            {/* Report Title */}
+            <div className="border-l border-gray-300 pl-4 ml-4">
+              <h1 className="text-2xl font-bold text-gray-900">Property Analysis Report</h1>
+              <p className="text-sm text-gray-600">Generated on {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            </div>
           </div>
           <div className="flex items-center space-x-4">
             <SystemStatus />
             <button
               onClick={handleDownloadReport}
-              className="flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-200 shadow-lg transform hover:-translate-y-0.5 bg-primary hover:bg-primary-600 text-white hover:shadow-xl"
+              className="flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-200 shadow-lg transform hover:-translate-y-0.5 text-white hover:shadow-xl"
+              style={{ backgroundColor: '#00ae9a' }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#009d8b'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = '#00ae9a'}
             >
               <Download className="w-5 h-5" />
               <span>Download Full CMA</span>

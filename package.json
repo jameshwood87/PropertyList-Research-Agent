@@ -9,7 +9,11 @@
     "client": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:start": "docker-compose -f docker-compose.dev.yml up -d",
+    "db:stop": "docker-compose -f docker-compose.dev.yml down",
+    "db:restart": "npm run db:stop && npm run db:start",
+    "db:logs": "docker-compose -f docker-compose.dev.yml logs -f postgres"
   },
   "dependencies": {
     "autoprefixer": "^10.4.21",
@@ -60,3 +64,4 @@
   "author": "AI Property Research Agent",
   "license": "MIT"
 }
+ 

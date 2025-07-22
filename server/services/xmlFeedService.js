@@ -23,7 +23,7 @@ class XMLFeedService {
       }
     });
     
-    this.feedUrl = process.env.XML_FEED_URL || 'http://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/47/export/189963705804aee9/admin.xml';
+    this.feedUrl = process.env.XML_FEED_URL || 'https://propertylist.es/files/property_list_v1.xml';
     this.isProcessing = false;
   }
 
@@ -253,10 +253,10 @@ class XMLFeedService {
         floor_number: this.extractNumericValue(xmlProperty, ['floor', 'floor_number']),
         
         // Property characteristics
-        orientation: this.extractValue(xmlProperty, ['orientation']),
-        condition_rating: this.extractValue(xmlProperty, ['condition', 'condition_rating']),
+        orientation: this.ensureString(this.extractValue(xmlProperty, ['orientation'])),
+        condition_rating: this.ensureString(this.extractValue(xmlProperty, ['condition', 'condition_rating'])),
         year_built: this.extractNumericValue(xmlProperty, ['year_built', 'built_year']),
-        energy_rating: this.extractValue(xmlProperty, ['energy_rating', 'energy_certificate']),
+        energy_rating: this.ensureString(this.extractValue(xmlProperty, ['energy_rating', 'energy_certificate'])),
         
         // Pricing
         sale_price: this.extractNumericValue(xmlProperty, ['sale_price', 'price']),
@@ -265,11 +265,11 @@ class XMLFeedService {
         weekly_price_to: this.extractNumericValue(xmlProperty, ['weekly_price_to']),
         
         // JSON fields
-        features: JSON.stringify(featureData.featureNames), // Store human-readable names
-        feature_ids: JSON.stringify(featureData.featureIds), // Store numeric IDs for indexing
-        descriptions: JSON.stringify(descriptions),
-        images: JSON.stringify(images),
-        virtual_tour_url: this.extractValue(xmlProperty, ['virtual_tour', 'virtual_tour_url']),
+        features: JSON.stringify(featureData.featureNames || []), // Store human-readable names
+        feature_ids: JSON.stringify(featureData.featureIds || []), // Store numeric IDs for indexing
+        descriptions: JSON.stringify(descriptions || {}),
+        images: JSON.stringify(images || []),
+        virtual_tour_url: this.ensureString(this.extractValue(xmlProperty, ['virtual_tour', 'virtual_tour_url'])),
         
         // Metadata
         last_seen: new Date().toISOString(),
@@ -320,6 +320,14 @@ class XMLFeedService {
     
     const lowerValue = value.toLowerCase();
     return lowerValue === 'true' || lowerValue === '1' || lowerValue === 'yes';
+  }
+
+  /**
+   * Ensure value is a string, handle null/undefined safely
+   */
+  ensureString(value) {
+    if (value === null || value === undefined) return null;
+    return String(value).trim() || null;
   }
 
   /**

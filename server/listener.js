@@ -3,10 +3,10 @@ const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ path: '.env.local' });
 
 // Import new optimized services
-const PropertyDatabase = require('./database/propertyDatabase');
+const PropertyDatabase = require('./database/postgresDatabase');
 const XMLFeedService = require('./services/xmlFeedService');
 const ComparableService = require('./services/comparableService');
 const PropertyDataMapper = require('./services/propertyDataMapper');
@@ -108,7 +108,7 @@ function cleanupOldSessions() {
 app.get('/api/health', (req, res) => {
   const hasOpenAI = !!process.env.OPENAI_API_KEY;
   const hasTavily = !!process.env.TAVILY_API_KEY;
-  const isDatabaseActive = propertyDatabase?.isInitialized || false;
+  const isDatabaseActive = propertyDatabase?.initialized || false;
   
   const status = {
     status: 'healthy',
@@ -136,7 +136,7 @@ app.get('/api/health', (req, res) => {
     status.message = 'OpenAI API key not found - AI analysis will be disabled';
   }
   
-  if (propertyDatabase?.isInitialized) {
+  if (propertyDatabase?.initialized) {
     status.database = propertyDatabase.getFeedStats();
   }
   

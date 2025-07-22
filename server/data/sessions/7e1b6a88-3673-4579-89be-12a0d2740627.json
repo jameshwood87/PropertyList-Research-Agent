@@ -1,0 +1,26 @@
+{
+  "id": "7e1b6a88-3673-4579-89be-12a0d2740627",
+  "propertyData": {
+    "reference": "R5018605",
+    "latitude": 36.5108,
+    "longitude": -4.8816,
+    "property_type": "villa",
+    "city": "Marbella",
+    "bedrooms": 6,
+    "bathrooms": 7,
+    "sale_price": 4500000,
+    "build_area": 500,
+    "address": "Marbella, Costa del Sol",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"
+    ],
+    "build_square_meters": 500,
+    "totalCost": null,
+    "pricePerSqm": null
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T23:01:45.098Z",
+  "updatedAt": "2025-07-22T23:01:45.098Z",
+  "analysisResults": null
+}

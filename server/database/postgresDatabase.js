@@ -15,7 +15,7 @@ class PostgresDatabase {
     try {
       // Create connection pool
       this.pool = new Pool({
-        connectionString: process.env.DATABASE_URL || 'postgres://propertylist:secure_password@localhost:5432/propertylist_db',
+        connectionString: process.env.DATABASE_URL || 'postgresql://postgres:dev_password_123@localhost:5433/propertylist_db',
         min: parseInt(process.env.DATABASE_POOL_MIN) || 2,
         max: parseInt(process.env.DATABASE_POOL_MAX) || 20,
         idleTimeoutMillis: 30000,
@@ -88,11 +88,11 @@ class PostgresDatabase {
         urbanization TEXT,
         address TEXT,
         
-        -- Geospatial data (PostGIS)
-        geom GEOMETRY(Point, 4326),
+        -- Geospatial data
         latitude DECIMAL(10, 8),
         longitude DECIMAL(11, 8),
         geohash TEXT,
+        geom GEOMETRY(Point, 4326),
         
         -- Size and layout
         plot_size DECIMAL(10, 2),
@@ -428,8 +428,8 @@ class PostgresDatabase {
         const placeholders = [];
         
         batch.forEach((property, index) => {
-          const baseIndex = index * 35; // Number of columns
-          const placeholder = `($${baseIndex + 1}, $${baseIndex + 2}, $${baseIndex + 3}, $${baseIndex + 4}, $${baseIndex + 5}, $${baseIndex + 6}, $${baseIndex + 7}, $${baseIndex + 8}, $${baseIndex + 9}, $${baseIndex + 10}, $${baseIndex + 11}, $${baseIndex + 12}, $${baseIndex + 13}, $${baseIndex + 14}, ST_SetSRID(ST_MakePoint($${baseIndex + 15}, $${baseIndex + 16}), 4326), $${baseIndex + 17}, $${baseIndex + 18}, $${baseIndex + 19}, $${baseIndex + 20}, $${baseIndex + 21}, $${baseIndex + 22}, $${baseIndex + 23}, $${baseIndex + 24}, $${baseIndex + 25}, $${baseIndex + 26}, $${baseIndex + 27}, $${baseIndex + 28}, $${baseIndex + 29}, $${baseIndex + 30}, $${baseIndex + 31}, $${baseIndex + 32}, $${baseIndex + 33}, $${baseIndex + 34}, $${baseIndex + 35})`;
+                      const baseIndex = index * 43; // Number of values that worked before
+                      const placeholder = `($${baseIndex + 1}, $${baseIndex + 2}, $${baseIndex + 3}, $${baseIndex + 4}, $${baseIndex + 5}, $${baseIndex + 6}, $${baseIndex + 7}, $${baseIndex + 8}, $${baseIndex + 9}, $${baseIndex + 10}, $${baseIndex + 11}, $${baseIndex + 12}, $${baseIndex + 13}, $${baseIndex + 14}, $${baseIndex + 15}, $${baseIndex + 16}, $${baseIndex + 17}, $${baseIndex + 18}, $${baseIndex + 19}, $${baseIndex + 20}, $${baseIndex + 21}, $${baseIndex + 22}, $${baseIndex + 23}, $${baseIndex + 24}, $${baseIndex + 25}, $${baseIndex + 26}, $${baseIndex + 27}, $${baseIndex + 28}, $${baseIndex + 29}, $${baseIndex + 30}, $${baseIndex + 31}, $${baseIndex + 32}, $${baseIndex + 33}, $${baseIndex + 34}, $${baseIndex + 35}, $${baseIndex + 36}, $${baseIndex + 37}, $${baseIndex + 38}, $${baseIndex + 39}, $${baseIndex + 40}, $${baseIndex + 41}, ST_SetSRID(ST_MakePoint($${baseIndex + 42}, $${baseIndex + 43}), 4326))`;  
           
           placeholders.push(placeholder);
           
@@ -437,13 +437,14 @@ class PostgresDatabase {
             property.id, property.reference, property.created_at, property.last_updated_at, property.direct,
             property.is_sale, property.is_short_term, property.is_long_term,
             property.property_type, property.province, property.city, property.suburb, property.urbanization, property.address,
-            property.longitude, property.latitude, property.latitude, property.longitude, property.geohash,
+            property.latitude, property.longitude, property.geohash,
             property.plot_size, property.build_area, property.terrace_area, property.total_area,
             property.bedrooms, property.bathrooms, property.parking_spaces, property.floor_number,
             property.orientation, property.condition_rating, property.year_built, property.energy_rating,
             property.sale_price, property.monthly_price, property.weekly_price_from, property.weekly_price_to,
             property.features, property.feature_ids, property.descriptions, property.images, property.virtual_tour_url,
-            property.last_seen, property.is_active, property.raw_data
+            property.last_seen, property.is_active, property.raw_data,
+            property.longitude, property.latitude // For ST_MakePoint(longitude, latitude) - geom column values
           );
         });
 
@@ -452,13 +453,14 @@ class PostgresDatabase {
             id, reference, created_at, last_updated_at, direct,
             is_sale, is_short_term, is_long_term,
             property_type, province, city, suburb, urbanization, address,
-            geom, latitude, longitude, geohash,
+            latitude, longitude, geohash,
             plot_size, build_area, terrace_area, total_area,
             bedrooms, bathrooms, parking_spaces, floor_number,
             orientation, condition_rating, year_built, energy_rating,
             sale_price, monthly_price, weekly_price_from, weekly_price_to,
             features, feature_ids, descriptions, images, virtual_tour_url,
-            last_seen, is_active, raw_data
+            last_seen, is_active, raw_data,
+            geom
           ) VALUES ${placeholders.join(', ')}
         `;
 

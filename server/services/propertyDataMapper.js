@@ -84,10 +84,24 @@ class PropertyDataMapper {
       transformed.features = propertyData.feature_ids;
     }
 
+    // Map database field names to frontend expected names
+    if (propertyData.build_area) {
+      transformed.build_square_meters = propertyData.build_area;
+    }
+    if (propertyData.plot_size) {
+      transformed.plot_square_meters = propertyData.plot_size;
+    }
+    if (propertyData.terrace_area) {
+      transformed.terrace_square_meters = propertyData.terrace_area;
+    }
+    if (propertyData.sale_price) {
+      transformed.price = propertyData.sale_price;
+    }
+
     // Add derived fields for better analysis
     transformed.totalCost = this.calculateTotalCost(propertyData);
-    transformed.pricePerSqm = propertyData.price && propertyData.build_square_meters ? 
-      Math.round(propertyData.price / propertyData.build_square_meters) : null;
+    transformed.pricePerSqm = propertyData.price && (propertyData.build_square_meters || propertyData.build_area) ? 
+      Math.round(propertyData.price / (propertyData.build_square_meters || propertyData.build_area)) : null;
 
     // Log the transformation for debugging
     console.log('🔄 PropertyList.es data transformed:');
@@ -96,8 +110,10 @@ class PropertyDataMapper {
     console.log(`   Urbanization: "${propertyData.urbanization_name}" → "${transformed.urbanization}"`);
     console.log(`   Property Type: ${propertyData.property_type} → ${transformed.propertyTypeName}`);
     console.log(`   Features: ${propertyData.feature_ids?.length || 0} features`);
-    console.log(`   Build Area: ${propertyData.build_square_meters}m²`);
-    console.log(`   Price: €${propertyData.price?.toLocaleString()}`);
+    console.log(`   Build Area: ${transformed.build_square_meters || propertyData.build_area || 'N/A'}m²`);
+    console.log(`   Plot Size: ${transformed.plot_square_meters || propertyData.plot_size || 'N/A'}m²`);
+    console.log(`   Terrace: ${transformed.terrace_square_meters || propertyData.terrace_area || 'N/A'}m²`);
+    console.log(`   Price: €${propertyData.price?.toLocaleString() || 'N/A'}`);
 
     return transformed;
   }
