@@ -1,0 +1,30 @@
+{
+  "id": "59a369cf-eb08-48db-bb7a-f6c61601e2f8",
+  "propertyData": {
+    "property_type": 2,
+    "bedrooms": 4,
+    "features": [
+      104,
+      108,
+      115,
+      201,
+      301
+    ],
+    "reference": "TEST001",
+    "urbanization": "Nueva Andaluc�a",
+    "price": 850000,
+    "description": "Luxury villa in prestigious Nueva Andaluc�a with sea views",
+    "suburb": "Puerto Ban�s",
+    "is_sale": true,
+    "province": "M�laga",
+    "plot_square_meters": 1200,
+    "is_long_term": false,
+    "city": "Marbella",
+    "build_square_meters": 280,
+    "bathrooms": 3
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T17:50:07.951Z",
+  "updatedAt": "2025-07-22T17:50:07.951Z",
+  "analysisResults": null
+}

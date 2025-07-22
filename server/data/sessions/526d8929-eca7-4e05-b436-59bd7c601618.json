@@ -1,0 +1,40 @@
+{
+  "id": "526d8929-eca7-4e05-b436-59bd7c601618",
+  "propertyData": {
+    "reference": "PERSIST-TEST",
+    "latitude": 36.5123,
+    "longitude": -4.8857,
+    "build_square_meters": 120,
+    "bedrooms": 3,
+    "price": 425000,
+    "property_type": "apartment",
+    "city": "Marbella"
+  },
+  "status": "completed",
+  "createdAt": "2025-07-22T14:08:39.933Z",
+  "updatedAt": "2025-07-22T14:09:42.804Z",
+  "analysisResults": {
+    "market": {
+      "marketValue": 430000,
+      "pricePerSqm": 3583,
+      "trend": "up",
+      "confidence": 85
+    },
+    "comparables": {
+      "comparables": [
+        {
+          "price": 420000,
+          "distance": 0.2,
+          "similarity": 95
+        },
+        {
+          "price": 435000,
+          "distance": 0.3,
+          "similarity": 88
+        }
+      ],
+      "summary": "Found 2 comparable properties",
+      "averagePrice": 427500
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "b951b66c-b2d5-40f9-a06c-33b41d0444e1",
+  "propertyData": {
+    "reference": "TEST123",
+    "property_type": 2,
+    "price": 750000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "build_square_meters": 200,
+    "urbanization": "Nueva Andaluc�a",
+    "city": "Marbella",
+    "features": [
+      104,
+      108
+    ],
+    "is_sale": true
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T17:50:39.252Z",
+  "updatedAt": "2025-07-22T17:50:39.252Z",
+  "analysisResults": null
+}

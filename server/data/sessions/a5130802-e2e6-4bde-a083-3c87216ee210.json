@@ -1,0 +1,138 @@
+{
+  "id": "a5130802-e2e6-4bde-a083-3c87216ee210",
+  "propertyData": {
+    "id": 102,
+    "is_sale": true,
+    "reference": "PL0102",
+    "price": 450000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "build_square_meters": 108,
+    "plot_square_meters": null,
+    "terrace_square_meters": null,
+    "parking_spaces": 2,
+    "furnished": false,
+    "property_type": 0,
+    "city_id": 2,
+    "suburb_id": 120,
+    "urbanization_name": "",
+    "is_long_term": false,
+    "is_short_term": false,
+    "monthly_price": null,
+    "weekly_price_low": null,
+    "weekly_price_high": null,
+    "floor_number": 2,
+    "ibi": 1900,
+    "basura": 150,
+    "community_fees": 250,
+    "energy_rating": "B",
+    "feature_ids": [
+      27,
+      33,
+      36,
+      38,
+      39,
+      41,
+      42,
+      43,
+      47,
+      51,
+      58,
+      61,
+      62,
+      65,
+      76,
+      78,
+      83,
+      87,
+      91,
+      94,
+      98,
+      102,
+      103,
+      131,
+      134,
+      140,
+      155
+    ],
+    "images": [
+      {
+        "id": 1306,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/6ZjJ3sfPjmXChE4y7E4eCnX3",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/6ZjJ3sfPjmXChE4y7E4eCnX3"
+      },
+      {
+        "id": 1307,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/7CDBGGzW7xzkZqAsrRgKyLKu",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/7CDBGGzW7xzkZqAsrRgKyLKu"
+      },
+      {
+        "id": 1308,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/yQM1h8w9JD5KhKwSzgMsbzfv",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/yQM1h8w9JD5KhKwSzgMsbzfv"
+      },
+      {
+        "id": 1309,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/tELqMLB7hsi9Yw3Hx2UEAtJk",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/tELqMLB7hsi9Yw3Hx2UEAtJk"
+      },
+      {
+        "id": 1310,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/XV8MRmQ29tFSjyFXC1Z9Jzu4",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/XV8MRmQ29tFSjyFXC1Z9Jzu4"
+      },
+      {
+        "id": 1311,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/AqGAdNy3vygBBcZhoDmAiUCe",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/AqGAdNy3vygBBcZhoDmAiUCe"
+      }
+    ],
+    "city": "Marbella",
+    "suburb": "Puerto Banús",
+    "propertyTypeName": "Apartment",
+    "features": [
+      27,
+      33,
+      36,
+      38,
+      39,
+      41,
+      42,
+      43,
+      47,
+      51,
+      58,
+      61,
+      62,
+      65,
+      76,
+      78,
+      83,
+      87,
+      91,
+      94,
+      98,
+      102,
+      103,
+      131,
+      134,
+      140,
+      155
+    ],
+    "totalCost": {
+      "purchasePrice": 450000,
+      "annualCosts": 5050,
+      "totalFirstYear": 455050,
+      "breakdown": {
+        "ibi": 1900,
+        "basura": 150,
+        "communityFees": 250
+      }
+    },
+    "pricePerSqm": 4167
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T18:44:06.098Z",
+  "updatedAt": "2025-07-22T18:44:06.098Z",
+  "analysisResults": null
+}

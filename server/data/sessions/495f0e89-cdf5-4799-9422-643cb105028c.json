@@ -1,0 +1,14 @@
+{
+  "id": "495f0e89-cdf5-4799-9422-643cb105028c",
+  "propertyData": {
+    "price": 300000,
+    "property_type": 1,
+    "bedrooms": 2,
+    "build_square_meters": 80,
+    "city": "Madrid"
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T17:34:19.617Z",
+  "updatedAt": "2025-07-22T17:34:19.617Z",
+  "analysisResults": null
+}

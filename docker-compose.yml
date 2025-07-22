@@ -1,0 +1,101 @@
+version: '3.8'
+
+services:
+  # PostgreSQL + PostGIS Database
+  postgres:
+    image: postgis/postgis:15-3.3
+    container_name: propertylist_postgres
+    environment:
+      POSTGRES_DB: propertylist_db
+      POSTGRES_USER: propertylist
+      POSTGRES_PASSWORD: secure_password
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U propertylist -d propertylist_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: propertylist_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: propertylist_elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - network.host=0.0.0.0
+      - http.port=9200
+      - cluster.name=propertylist-cluster
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # AI Property Research Agent (Optional - for containerized deployment)
+  propertylist-agent:
+    build: .
+    container_name: propertylist_agent
+    environment:
+      - DATABASE_URL=postgres://propertylist:secure_password@postgres:5432/propertylist_db
+      - REDIS_URL=redis://redis:6379
+      - ELASTIC_URL=http://elasticsearch:9200
+      - NODE_ENV=production
+      - PORT=3004
+    ports:
+      - "3004:3004"
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    restart: unless-stopped
+    volumes:
+      - ./reports:/app/reports
+      - ./data:/app/data
+    profiles:
+      - app
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  elasticsearch_data:
+    driver: local
+
+networks:
+  default:
+    name: propertylist_network 

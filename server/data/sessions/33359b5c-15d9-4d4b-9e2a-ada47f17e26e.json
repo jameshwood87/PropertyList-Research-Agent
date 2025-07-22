@@ -1,0 +1,17 @@
+{
+  "id": "33359b5c-15d9-4d4b-9e2a-ada47f17e26e",
+  "propertyData": {
+    "reference": "PERSIST-TEST",
+    "latitude": 36.5123,
+    "longitude": -4.8857,
+    "build_square_meters": 120,
+    "bedrooms": 3,
+    "price": 425000,
+    "property_type": "apartment",
+    "city": "Marbella"
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T14:08:20.786Z",
+  "updatedAt": "2025-07-22T14:08:20.786Z",
+  "analysisResults": null
+}

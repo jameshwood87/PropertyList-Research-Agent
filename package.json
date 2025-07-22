@@ -1,0 +1,62 @@
+{
+  "name": "ai-property-research-agent",
+  "version": "1.0.0",
+  "description": "AI Property Research Agent for market analysis and comparables",
+  "main": "server/listener.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server/listener.js",
+    "client": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.21",
+    "axios": "^1.10.0",
+    "better-sqlite3": "^12.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fast-xml-parser": "^5.2.5",
+    "fs-extra": "^11.1.1",
+    "lucide-react": "^0.525.0",
+    "next": "^14.0.0",
+    "ngeohash": "^0.6.3",
+    "node-cache": "^5.1.2",
+    "node-cron": "^3.0.3",
+    "openai": "^4.104.0",
+    "path": "^0.12.7",
+    "puppeteer": "^24.14.0",
+    "rbush": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.17",
+    "uuid": "^9.0.1",
+    "pg": "^8.11.3",
+    "redis": "^4.6.10",
+    "@elastic/elasticsearch": "^8.11.0",
+    "ioredis": "^5.3.2",
+    "pg-pool": "^3.6.1",
+    "stream-json": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/uuid": "^9.0.6",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.52.0",
+    "eslint-config-next": "^14.0.0",
+    "typescript": "^5.2.2"
+  },
+  "keywords": [
+    "property",
+    "ai",
+    "market-analysis",
+    "comparables",
+    "real-estate"
+  ],
+  "author": "AI Property Research Agent",
+  "license": "MIT"
+}

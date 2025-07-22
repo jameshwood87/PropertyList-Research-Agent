@@ -1,0 +1,51 @@
+{
+  "id": "c61f0cee-c541-4603-a6ea-1ab68a7ce445",
+  "propertyData": {
+    "property_type": "2",
+    "lat": 36.4848,
+    "suburb": "Puerto Ban�s",
+    "lng": -4.9955,
+    "descriptions": {
+      "es": "Impresionante villa de 4 dormitorios en Nueva Andaluc�a con piscina privada, comodidades modernas y cerca de Puerto Ban�s.",
+      "en": "Stunning 4-bedroom villa in Nueva Andaluc�a with private pool, modern amenities, and close to Puerto Ban�s."
+    },
+    "features": [
+      104,
+      108,
+      112,
+      117,
+      125,
+      134,
+      147
+    ],
+    "reference": "R4920202",
+    "price": 1250000,
+    "images": [
+      {
+        "title": "Main facade",
+        "url": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/47/1735912844_1735912844_R4920202_000.jpg",
+        "order": 1
+      },
+      {
+        "title": "Living room",
+        "url": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/47/1735912844_1735912844_R4920202_001.jpg",
+        "order": 2
+      },
+      {
+        "title": "Kitchen",
+        "url": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/47/1735912844_1735912844_R4920202_002.jpg",
+        "order": 3
+      }
+    ],
+    "plot_square_meters": 800,
+    "bedrooms": 4,
+    "city": "Marbella",
+    "build_square_meters": 280,
+    "bathrooms": 3,
+    "urbanisation": "Nueva Andaluc�a"
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T18:26:30.528Z",
+  "updatedAt": "2025-07-22T18:26:30.528Z",
+  "analysisResults": null
+}

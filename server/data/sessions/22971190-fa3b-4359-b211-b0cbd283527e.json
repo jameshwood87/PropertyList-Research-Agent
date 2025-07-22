@@ -1,0 +1,130 @@
+{
+  "id": "22971190-fa3b-4359-b211-b0cbd283527e",
+  "propertyData": {
+    "id": 205,
+    "is_sale": true,
+    "reference": "VL0205",
+    "price": 875000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "build_square_meters": 185,
+    "plot_square_meters": 650,
+    "terrace_square_meters": 45,
+    "parking_spaces": 2,
+    "furnished": true,
+    "property_type": 1,
+    "city_id": 2,
+    "suburb_id": 115,
+    "urbanization_name": "La Quinta Golf",
+    "is_long_term": false,
+    "is_short_term": false,
+    "monthly_price": null,
+    "weekly_price_low": null,
+    "weekly_price_high": null,
+    "floor_number": null,
+    "ibi": 2850,
+    "basura": 180,
+    "community_fees": 420,
+    "energy_rating": "A",
+    "feature_ids": [
+      15,
+      22,
+      27,
+      33,
+      38,
+      41,
+      45,
+      47,
+      51,
+      58,
+      65,
+      72,
+      78,
+      83,
+      91,
+      98,
+      102,
+      125,
+      134,
+      140,
+      155,
+      168,
+      175
+    ],
+    "images": [
+      {
+        "id": 2001,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/B8C9D0E1F2G3H4I5J6K7L8M9",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/B8C9D0E1F2G3H4I5J6K7L8M9"
+      },
+      {
+        "id": 2002,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/N0O1P2Q3R4S5T6U7V8W9X0Y1",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/N0O1P2Q3R4S5T6U7V8W9X0Y1"
+      },
+      {
+        "id": 2003,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/Z2A3B4C5D6E7F8G9H0I1J2K3",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/Z2A3B4C5D6E7F8G9H0I1J2K3"
+      },
+      {
+        "id": 2004,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/L4M5N6O7P8Q9R0S1T2U3V4W5",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/L4M5N6O7P8Q9R0S1T2U3V4W5"
+      },
+      {
+        "id": 2005,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/X6Y7Z8A9B0C1D2E3F4G5H6I7",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/X6Y7Z8A9B0C1D2E3F4G5H6I7"
+      },
+      {
+        "id": 2006,
+        "small": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/J8K9L0M1N2O3P4Q5R6S7T8U9",
+        "medium": "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/J8K9L0M1N2O3P4Q5R6S7T8U9"
+      }
+    ],
+    "city": "Marbella",
+    "urbanization": "La Quinta Golf",
+    "propertyTypeName": "Villa",
+    "features": [
+      15,
+      22,
+      27,
+      33,
+      38,
+      41,
+      45,
+      47,
+      51,
+      58,
+      65,
+      72,
+      78,
+      83,
+      91,
+      98,
+      102,
+      125,
+      134,
+      140,
+      155,
+      168,
+      175
+    ],
+    "totalCost": {
+      "purchasePrice": 875000,
+      "annualCosts": 8070,
+      "totalFirstYear": 883070,
+      "breakdown": {
+        "ibi": 2850,
+        "basura": 180,
+        "communityFees": 420
+      }
+    },
+    "pricePerSqm": 4730
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T19:49:24.452Z",
+  "updatedAt": "2025-07-22T19:49:24.452Z",
+  "analysisResults": null
+}
