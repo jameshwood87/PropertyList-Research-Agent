@@ -57,7 +57,7 @@
       // Cache results
       this.addToCache(cacheKey, result);
       
-      console.log(Found  comparable properties for session );
+      console.log(`Found ${comparables.length} comparable properties for session ${sessionId}`);
       return result;
       
     } catch (error) {
@@ -274,5 +274,5 @@
       };
     })
     .sort((a, b) => a.similarityScore - b.similarityScore) // Sort by best match first
-    .slice(0, 10); // Limit to top 10 matches
+    .slice(0, 12); // Limit to top 12 matches
   }

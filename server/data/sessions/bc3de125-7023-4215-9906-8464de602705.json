@@ -1,0 +1,13 @@
+{
+  "id": "bc3de125-7023-4215-9906-8464de602705",
+  "propertyData": {
+    "reference": "TEST",
+    "sale_price": 500000,
+    "totalCost": null,
+    "pricePerSqm": null
+  },
+  "status": "created",
+  "createdAt": "2025-07-22T23:21:38.491Z",
+  "updatedAt": "2025-07-22T23:21:38.491Z",
+  "analysisResults": null
+}
