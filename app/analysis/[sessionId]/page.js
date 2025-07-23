@@ -505,29 +505,27 @@ export default function AnalysisPage() {
                   <div className="relative space-y-6">
                     {/* Property Image - Top Right Corner */}
                     <div className="absolute -top-16 right-0 z-10">
-                      {(() => {
-                        const processedImages = processPropertyImages(sessionData?.propertyData?.images);
-                        return processedImages && processedImages.length > 0 ? (
-                          <div className="relative w-52 h-36 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden shadow-lg group">
-                            <PropertyImage
-                              src={getBestImageUrl(processedImages[0])}
-                              alt="Property image"
-                              fill
-                              className="object-cover transition-transform duration-300 group-hover:scale-105"
-                              fallback={
-                                <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
-                                  <Camera className="w-12 h-12 text-primary-500 opacity-60" />
-                                </div>
-                              }
-                            />
-
+                      {sessionData?.propertyData?.images && sessionData.propertyData.images.length > 0 ? (
+                        <div className="relative w-52 h-36 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden shadow-lg group">
+                          <Image
+                            src={sessionData.propertyData.images[0]?.url || sessionData.propertyData.images[0]}
+                            alt="Property image"
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.nextSibling.style.display = 'flex';
+                            }}
+                          />
+                          <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 hidden items-center justify-center">
+                            <Building2 className="w-12 h-12 text-primary-500 opacity-60" />
                           </div>
-                        ) : (
-                          <div className="w-52 h-36 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center border border-primary-200 shadow-lg">
-                            <Camera className="w-12 h-12 text-primary-500 opacity-60" />
-                          </div>
-                        );
-                      })()}
+                        </div>
+                      ) : (
+                        <div className="w-52 h-36 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center border border-primary-200 shadow-lg">
+                          <Building2 className="w-12 h-12 text-primary-500 opacity-60" />
+                        </div>
+                      )}
                     </div>
 
                     {/* Price Display - No Box */}
