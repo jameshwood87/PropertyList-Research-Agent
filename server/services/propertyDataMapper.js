@@ -59,61 +59,86 @@ class PropertyDataMapper {
     // Create a copy to avoid modifying the original
     const transformed = { ...propertyData };
 
-    // Map city_id to city name
-    if (propertyData.city_id && this.cityMappings[propertyData.city_id]) {
+    // ENHANCED: Preserve original values if they exist and are valid
+    // Only do ID-based mapping if the original values are missing
+
+    // Map city_id to city name (only if city doesn't already exist)
+    if (!transformed.city && propertyData.city_id && this.cityMappings[propertyData.city_id]) {
       transformed.city = this.cityMappings[propertyData.city_id];
     }
 
-    // Map suburb_id to suburb name  
-    if (propertyData.suburb_id && this.suburbMappings[propertyData.suburb_id]) {
+    // Map suburb_id to suburb name (only if suburb doesn't already exist)
+    if (!transformed.suburb && propertyData.suburb_id && this.suburbMappings[propertyData.suburb_id]) {
       transformed.suburb = this.suburbMappings[propertyData.suburb_id];
     }
 
-    // Handle urbanization_name (already in correct format)
-    if (propertyData.urbanization_name) {
+    // Handle urbanization_name (preserve existing urbanization if present)
+    if (!transformed.urbanization && propertyData.urbanization_name) {
       transformed.urbanization = propertyData.urbanization_name;
     }
 
-    // Map property_type if it's numeric
+    // Map property_type if it's numeric (preserve existing string property_type)
     if (typeof propertyData.property_type === 'number' && this.propertyTypeMappings[propertyData.property_type]) {
       transformed.propertyTypeName = this.propertyTypeMappings[propertyData.property_type];
+      // Don't overwrite the original property_type if it's a string
+    } else if (typeof propertyData.property_type === 'string') {
+      // Keep the original string property_type
+      transformed.property_type = propertyData.property_type;
     }
 
-    // Ensure feature_ids is properly formatted
-    if (propertyData.feature_ids && Array.isArray(propertyData.feature_ids)) {
+    // Handle features - preserve existing features array or map from feature_ids
+    if (propertyData.features && Array.isArray(propertyData.features)) {
+      transformed.features = propertyData.features;
+    } else if (propertyData.feature_ids && Array.isArray(propertyData.feature_ids)) {
       transformed.features = propertyData.feature_ids;
     }
 
-    // Map database field names to frontend expected names
-    if (propertyData.build_area) {
-      transformed.build_square_meters = propertyData.build_area;
+    // Map XML field names to frontend compatibility (preserve existing values)
+    if (propertyData.build_size && !transformed.build_square_meters) {
+      transformed.build_square_meters = propertyData.build_size;        // XML field → frontend
     }
-    if (propertyData.plot_size) {
+    if (propertyData.plot_size && !transformed.plot_square_meters) {
       transformed.plot_square_meters = propertyData.plot_size;
     }
-    if (propertyData.terrace_area) {
-      transformed.terrace_square_meters = propertyData.terrace_area;
+    if (propertyData.terrace_size && !transformed.terrace_square_meters) {
+      transformed.terrace_square_meters = propertyData.terrace_size;    // XML field → frontend
     }
-    if (propertyData.sale_price) {
+    if (propertyData.sale_price && !transformed.price) {
       transformed.price = propertyData.sale_price;
     }
 
+    // ENHANCED: Ensure we don't lose any original data
+    // Preserve all original fields that might be needed
+    const preserveFields = [
+      'reference', 'price', 'bedrooms', 'bathrooms', 'build_area', 'plot_size', 
+      'terrace_area', 'city', 'suburb', 'urbanization', 'property_type', 
+      'latitude', 'longitude', 'images', 'features', 'userProvidedDetails'
+    ];
+    
+    preserveFields.forEach(field => {
+      if (propertyData[field] !== undefined && propertyData[field] !== null) {
+        transformed[field] = propertyData[field];
+      }
+    });
+
     // Add derived fields for better analysis
-    transformed.totalCost = this.calculateTotalCost(propertyData);
-    transformed.pricePerSqm = propertyData.price && (propertyData.build_square_meters || propertyData.build_area) ? 
-      Math.round(propertyData.price / (propertyData.build_square_meters || propertyData.build_area)) : null;
+    transformed.totalCost = this.calculateTotalCost(transformed);
+    transformed.pricePerSqm = transformed.price && (transformed.build_square_meters || transformed.build_area) ? 
+      Math.round(transformed.price / (transformed.build_square_meters || transformed.build_area)) : null;
 
     // Log the transformation for debugging
     console.log('🔄 PropertyList.es data transformed:');
-    console.log(`   City: ${propertyData.city_id} → ${transformed.city}`);
-    console.log(`   Suburb: ${propertyData.suburb_id} → ${transformed.suburb}`);
-    console.log(`   Urbanization: "${propertyData.urbanization_name}" → "${transformed.urbanization}"`);
-    console.log(`   Property Type: ${propertyData.property_type} → ${transformed.propertyTypeName}`);
-    console.log(`   Features: ${propertyData.feature_ids?.length || 0} features`);
-    console.log(`   Build Area: ${transformed.build_square_meters || propertyData.build_area || 'N/A'}m²`);
-    console.log(`   Plot Size: ${transformed.plot_square_meters || propertyData.plot_size || 'N/A'}m²`);
-    console.log(`   Terrace: ${transformed.terrace_square_meters || propertyData.terrace_area || 'N/A'}m²`);
-    console.log(`   Price: €${propertyData.price?.toLocaleString() || 'N/A'}`);
+    console.log(`   Input sale_price: ${propertyData.sale_price}`);
+    console.log(`   Transformed price: ${transformed.price}`);
+    console.log(`   City: ${propertyData.city_id || propertyData.city} → ${transformed.city}`);
+    console.log(`   Suburb: ${propertyData.suburb_id || propertyData.suburb} → ${transformed.suburb}`);
+    console.log(`   Urbanization: "${propertyData.urbanization_name || propertyData.urbanization}" → "${transformed.urbanization}"`);
+    console.log(`   Property Type: ${propertyData.property_type} → ${transformed.property_type || transformed.propertyTypeName}`);
+    console.log(`   Features: ${(propertyData.features || propertyData.feature_ids || []).length} features`);
+    console.log(`   Build Area: ${transformed.build_square_meters || transformed.build_area || 'N/A'}m²`);
+    console.log(`   Plot Size: ${transformed.plot_square_meters || transformed.plot_size || 'N/A'}m²`);
+    console.log(`   Terrace: ${transformed.terrace_square_meters || transformed.terrace_area || 'N/A'}m²`);
+    console.log(`   Price: €${transformed.price?.toLocaleString() || 'N/A'}`);
 
     return transformed;
   }

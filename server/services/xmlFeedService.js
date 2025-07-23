@@ -25,6 +25,7 @@ class XMLFeedService {
     
     this.feedUrl = process.env.XML_FEED_URL || 'https://propertylist.es/files/property_list_v1.xml';
     this.isProcessing = false;
+    this.debugCount = 0;
   }
 
   /**
@@ -242,11 +243,11 @@ class XMLFeedService {
         longitude: longitude,
         geohash: geoHash,
         
-        // Size and layout
+        // Size and layout (using actual XML field names only)
         plot_size: this.extractNumericValue(xmlProperty, ['plot_size']),
-        build_area: this.extractNumericValue(xmlProperty, ['build_area', 'built_area']),
-        terrace_area: this.extractNumericValue(xmlProperty, ['terrace_area']),
-        total_area: this.extractNumericValue(xmlProperty, ['total_area']),
+        build_size: this.extractNumericValue(xmlProperty, ['build_size']),  
+        terrace_size: this.extractNumericValue(xmlProperty, ['terrace_size']),
+        // Note: total_size doesn't exist in XML data
         bedrooms: this.extractNumericValue(xmlProperty, ['bedrooms']),
         bathrooms: this.extractNumericValue(xmlProperty, ['bathrooms']),
         parking_spaces: this.extractNumericValue(xmlProperty, ['parking_spaces', 'parking']),
@@ -392,6 +393,21 @@ class XMLFeedService {
    */
   extractImages(xmlProperty) {
     const images = [];
+    
+    // Debug: Log available fields for first few properties
+    if (!this.debugCount) this.debugCount = 0;
+    if (this.debugCount < 3) { // Log first 3 properties to see structure
+      this.debugCount++;
+      console.log(`🖼️ DEBUG Property ${this.debugCount}: Available fields:`, Object.keys(xmlProperty));
+      console.log(`🖼️ DEBUG Property ${this.debugCount}: Photo-related fields:`, {
+        photos: xmlProperty.photos,
+        photo: xmlProperty.photo,
+        image: xmlProperty.image,
+        images: xmlProperty.images,
+        picture: xmlProperty.picture,
+        pictures: xmlProperty.pictures
+      });
+    }
     
     if (xmlProperty.photos && xmlProperty.photos.photo) {
       const photoList = Array.isArray(xmlProperty.photos.photo) 

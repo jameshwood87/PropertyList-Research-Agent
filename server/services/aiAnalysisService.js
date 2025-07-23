@@ -1,7 +1,7 @@
 const OpenAI = require('openai');
 
 class AIAnalysisService {
-  constructor() {
+  constructor(propertyDatabase, learningService = null) {
     if (process.env.OPENAI_API_KEY) {
       this.openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
@@ -10,10 +10,12 @@ class AIAnalysisService {
       this.openai = null;
       console.log('OpenAI API key not found - AI analysis will be disabled');
     }
+    
+    this.learningService = learningService;
   }
 
   /**
-   * Generate comprehensive AI-powered property analysis
+   * Generate comprehensive AI-powered property analysis with learning enhancement
    */
   async generatePropertyAnalysis(propertyData, comparablesData, chartData) {
     try {
@@ -28,33 +30,48 @@ class AIAnalysisService {
         };
       }
 
-      const analysisPrompt = this.buildAnalysisPrompt(propertyData, comparablesData, chartData);
+      // Get enhanced prompt with learning insights
+      let analysisPrompt;
+      if (this.learningService) {
+        console.log('🧠 Using learning-enhanced prompt for analysis');
+        analysisPrompt = await this.learningService.getEnhancedPrompt(propertyData, comparablesData, chartData);
+      } else {
+        analysisPrompt = this.buildAnalysisPrompt(propertyData, comparablesData, chartData);
+      }
       
       const completion = await this.openai.chat.completions.create({
         model: "gpt-4",
         messages: [
           {
             role: "system",
-            content: "You are a professional real estate analyst specializing in Spanish property markets. Provide detailed, accurate, and actionable property analysis based on comparable sales data. Use British English throughout."
+            content: "You are a professional real estate analyst specializing in Spanish property markets. Provide detailed, accurate, and actionable property analysis based on comparable sales data. Use British English throughout. Pay special attention to any learning insights or feedback patterns provided."
           },
           {
             role: "user",
             content: analysisPrompt
           }
         ],
-        max_tokens: 2000,
+        max_tokens: 2500, // Increased for enhanced prompts
         temperature: 0.3
       });
 
       const analysis = completion.choices[0].message.content;
       
-      return {
+      const result = {
         analysis,
         confidence: this.calculateConfidenceScore(comparablesData),
         recommendations: this.extractRecommendations(analysis),
         marketTrends: this.extractMarketTrends(analysis),
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        learningEnhanced: !!this.learningService
       };
+
+      // If learning service is available, log this analysis for future learning
+      if (this.learningService) {
+        console.log('📊 Analysis completed with learning enhancement');
+      }
+
+      return result;
 
     } catch (error) {
       console.error('Error generating AI analysis:', error);
@@ -76,6 +93,9 @@ class AIAnalysisService {
     const { comparables, summary, criteria } = comparablesData;
     const { priceComparison, marketPosition, sizeComparison } = chartData;
 
+    // ENHANCED: Extract location intelligence data
+    const locationIntelligence = this.buildLocationIntelligenceSection(propertyData);
+
     return `
 Please provide a comprehensive property analysis for this Spanish property:
 
@@ -87,7 +107,7 @@ SUBJECT PROPERTY:
 - Size: ${propertyData.build_square_meters || propertyData.build_area}m²
 - Bedrooms: ${propertyData.bedrooms}
 - Bathrooms: ${propertyData.bathrooms}${propertyData.additionalInfo ? `
-- Additional Details: ${propertyData.additionalInfo}` : ''}
+- Additional Details: ${propertyData.additionalInfo}` : ''}${locationIntelligence}
 
 COMPARABLE PROPERTIES ANALYSIS:
 ${summary}
@@ -111,11 +131,74 @@ Please provide analysis covering:
 1. MARKET POSITIONING: How this property compares to the local market
 2. PRICING ANALYSIS: Is the property fairly priced, overpriced, or underpriced?
 3. INVESTMENT POTENTIAL: Rental yield potential, capital appreciation prospects
-4. LOCATION INSIGHTS: Neighbourhood characteristics and growth potential
+4. LOCATION ADVANTAGES: Highlight specific location benefits and nearby amenities
 5. RECOMMENDATIONS: Specific advice for buyers/sellers/investors
 
-Focus on actionable insights and professional market analysis. Be specific about the Spanish property market context.
+${locationIntelligence ? 'IMPORTANT: Pay special attention to the location intelligence data and specific landmarks/proximity details provided above.' : ''}
     `;
+  }
+
+  /**
+   * Build location intelligence section for AI analysis
+   */
+  buildLocationIntelligenceSection(propertyData) {
+    let locationSection = '';
+    
+    // Check for enhanced location data from user input
+    const enhancedLocation = propertyData.resolvedLocation?.enhancedLocation;
+    const locationContext = propertyData.resolvedLocation;
+    
+    if (enhancedLocation || locationContext) {
+      locationSection += `
+
+LOCATION INTELLIGENCE:`;
+      
+      // Add enhanced location details
+      if (enhancedLocation) {
+        locationSection += `
+- Enhanced Location: ${enhancedLocation.location || 'N/A'}
+- Location Method: ${enhancedLocation.method || 'N/A'} (${Math.round((enhancedLocation.confidence || 0) * 100)}% confidence)`;
+        
+        // Add proximity clues
+        if (enhancedLocation.proximityClues && enhancedLocation.proximityClues.length > 0) {
+          locationSection += `
+- Proximity Details:`;
+          enhancedLocation.proximityClues.forEach(clue => {
+            locationSection += `
+  • ${clue.distance ? clue.distance + ' meters from' : 'Close to'} ${clue.place}`;
+          });
+        }
+        
+        // Add landmarks
+        if (enhancedLocation.landmarks && enhancedLocation.landmarks.length > 0) {
+          locationSection += `
+- Nearby Landmarks:`;
+          enhancedLocation.landmarks.forEach(landmark => {
+            locationSection += `
+  • ${landmark.name} (${landmark.type})`;
+          });
+        }
+        
+        // Add user provided text
+        if (propertyData.resolvedLocation?.userProvidedEnhancement) {
+          locationSection += `
+- User Provided Details: "${propertyData.resolvedLocation.userProvidedEnhancement}"`;
+        }
+      }
+      
+      // Add general location context
+      if (locationContext && locationContext.location) {
+        locationSection += `
+- Resolved Location: ${locationContext.location} (${Math.round((locationContext.confidence || 0) * 100)}% confidence)`;
+        
+        if (locationContext.coordinates) {
+          locationSection += `
+- Precise Coordinates: ${locationContext.coordinates.lat.toFixed(6)}, ${locationContext.coordinates.lng.toFixed(6)}`;
+        }
+      }
+    }
+    
+    return locationSection;
   }
 
   /**

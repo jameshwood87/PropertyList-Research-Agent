@@ -54,7 +54,7 @@
   }
   
   .spec-value {
-    @apply text-lg font-bold text-gray-900;
+    @apply text-lg font-bold text-gray-900 text-right;
   }
   
   .feature-badge {
@@ -107,4 +107,32 @@
   .card-hover:hover {
     transform: translateY(-4px);
   }
+}
+
+/* Google Maps Control Customization - Smaller Controls */
+.gm-style .gmnoprint div[role="button"] {
+  width: 28px !important;
+  height: 28px !important;
+  margin: 2px !important;
+}
+
+.gm-style .gmnoprint div[role="button"] img {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.gm-style .gm-bundled-control {
+  margin: 8px !important;
+}
+
+.gm-style .gm-bundled-control > div {
+  width: 28px !important;
+  height: 28px !important;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px !important;
+}
+
+.gm-style .gm-bundled-control > div > div {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 6px !important;
 } 

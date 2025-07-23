@@ -11,19 +11,19 @@ class ComparableService {
   }
 
   /**
-   * Find comparable properties for a given property
+   * Find comparable properties for a given property with enhanced analysis
    */
   async findComparables(sessionId, propertyData) {
     // Check cache first
     const cacheKey = this.generateCacheKey(sessionId, propertyData);
     const cached = this.getFromCache(cacheKey);
     if (cached) {
-      console.log('Returning cached comparable results for session:', sessionId);
+      console.log('✅ Returning cached comparable results for session:', sessionId);
       return cached;
     }
 
     try {
-      console.log('Finding comparable properties for session:', sessionId);
+      console.log('🔍 Finding comparable properties for session:', sessionId);
       
       // Extract search criteria from property data
       const criteria = this.extractSearchCriteria(propertyData);
@@ -32,48 +32,56 @@ class ComparableService {
         return {
           comparables: [],
           summary: 'Insufficient property data for comparable analysis',
-          criteria: criteria
+          criteria: criteria,
+          marketContext: null
         };
       }
 
-      // Find similar properties using optimized database
+      // Find similar properties using optimized database with KNN
+      console.log('📍 Searching with enhanced KNN-optimized queries...');
       const similarProperties = await this.propertyDb.findSimilarProperties(criteria);
+      console.log(`📊 Found ${similarProperties.length} similar properties from database`);
       
-      // Format results for frontend
+      // Format results for frontend with 5-factor scoring
       const comparables = this.formatComparables(similarProperties, criteria);
+      console.log(`🎯 Formatted ${comparables.length} comparable properties with enhanced scoring`);
       
-      // Generate summary
-      const summary = this.generateSummary(comparables, criteria);
+      // Generate market intelligence analysis
+      const marketContext = this.generateMarketInsights(comparables, propertyData);
+      console.log(`💹 Generated market context: ${marketContext?.insights?.length || 0} insights`);
 
-      // Generate chart data
+      // Generate summary with market context
+      const summary = this.generateEnhancedSummary(comparables, criteria, marketContext);
+
+      // Generate enhanced chart data
       const chartData = this.generateChartData(criteria, comparables);
 
-      // Generate AI-powered analysis
+      // Generate AI-powered analysis with market context
       let aiInsights = null;
       try {
         if (process.env.OPENAI_API_KEY && comparables.length > 0) {
-          console.log('Generating AI analysis for session:', sessionId);
+          console.log('🤖 Generating AI analysis with market context...');
           aiInsights = await this.aiAnalysis.generatePropertyAnalysis(
             propertyData, 
-            { comparables, summary, criteria }, 
+            { comparables, summary, criteria, marketContext }, 
             chartData
           );
-          console.log(`AI analysis generated with ${aiInsights.confidence}% confidence`);
+          console.log(`🎯 AI analysis generated with ${aiInsights.confidence}% confidence`);
         }
       } catch (error) {
-        console.error('AI analysis failed:', error.message);
+        console.error('❌ AI analysis failed:', error.message);
       }
 
       // Generate market research insights
       let marketResearch = null;
       try {
         if (process.env.TAVILY_API_KEY && comparables.length > 0) {
-          console.log('Conducting market research for session:', sessionId);
+          console.log('📰 Conducting market research...');
           marketResearch = await this.tavilyResearch.generateAreaReport(propertyData);
-          console.log('Market research completed for:', marketResearch.location);
+          console.log('✅ Market research completed for:', marketResearch.location);
         }
       } catch (error) {
-        console.error('Market research failed:', error.message);
+        console.error('❌ Market research failed:', error.message);
       }
 
       const result = {
@@ -81,21 +89,28 @@ class ComparableService {
         summary,
         criteria,
         chartData,
+        marketContext, // NEW: Enhanced market intelligence
         aiInsights,
         marketResearch,
         searchRadius: criteria.radiusKm,
         totalFound: similarProperties.length,
+        performanceMetrics: {
+          databaseQueryTime: Date.now(),
+          scoringMethod: '5-factor_weighted',
+          knnOptimized: true,
+          flexibilityUsed: similarProperties.length < 12
+        },
         timestamp: new Date().toISOString()
       };
 
       // Cache results
       this.addToCache(cacheKey, result);
       
-      console.log(`Found ${comparables.length} comparable properties for session ${sessionId}`);
+      console.log(`✅ Comparable analysis complete: ${comparables.length} matches with ${marketContext?.stats?.sampleSize || 0} market insights`);
       return result;
       
     } catch (error) {
-      console.error('Error finding comparable properties:', {
+      console.error('❌ Error finding comparable properties:', {
         sessionId,
         error: error.message,
         stack: error.stack
@@ -105,6 +120,7 @@ class ComparableService {
         comparables: [],
         summary: 'Error occurred while finding comparable properties',
         criteria: {},
+        marketContext: null,
         searchRadius: 0,
         totalFound: 0,
         timestamp: new Date().toISOString()
@@ -113,18 +129,32 @@ class ComparableService {
   }
 
   /**
-   * Extract search criteria from property data
+   * Extract search criteria from property data with enhanced bathroom support
    */
   extractSearchCriteria(propertyData) {
     // Handle both current format and PropertyList.es format
-    const latitude = propertyData.latitude || propertyData.lat;
-    const longitude = propertyData.longitude || propertyData.lng;
-    const buildArea = propertyData.build_square_meters || 
-                     propertyData.build_area || 
+    let latitude = propertyData.latitude || propertyData.lat;
+    let longitude = propertyData.longitude || propertyData.lng;
+    
+    // ENHANCED: Check for enhanced location from user input
+    if (propertyData.resolvedLocation?.enhancedLocation?.coordinates) {
+      console.log(`🎯 Using enhanced location coordinates from user input`);
+      latitude = propertyData.resolvedLocation.enhancedLocation.coordinates.lat;
+      longitude = propertyData.resolvedLocation.enhancedLocation.coordinates.lng;
+    } else if (propertyData.resolvedLocation?.coordinates) {
+      console.log(`📍 Using resolved location coordinates`);
+      latitude = propertyData.resolvedLocation.coordinates.lat;
+      longitude = propertyData.resolvedLocation.coordinates.lng;
+    }
+    
+    const buildArea = propertyData.build_size ||          // XML field name (standardized)
+                     propertyData.build_square_meters ||   // Legacy frontend compatibility
+                     propertyData.build_area ||            // Legacy database compatibility  
                      propertyData.buildArea || 
                      propertyData.size;
     const price = propertyData.price || propertyData.sale_price;
     const bedrooms = propertyData.bedrooms;
+    const bathrooms = propertyData.bathrooms; // ENHANCED: Add bathroom support
     const propertyType = propertyData.property_type || propertyData.propertyType;
     const city = propertyData.city;
     const suburb = propertyData.suburb;
@@ -137,13 +167,15 @@ class ComparableService {
       buildArea,
       price,
       bedrooms,
+      bathrooms, // NEW: Include bathrooms in criteria
       propertyType,
       city,
       suburb,
       urbanization,
       features: Array.isArray(features) ? features : [],
       additionalInfo: propertyData.additionalInfo || propertyData.userProvidedDetails || '',
-      radiusKm: 10 // 10km search radius for 5000 properties
+      enhancedLocation: propertyData.resolvedLocation?.enhancedLocation || null, // NEW: Enhanced location data
+      radiusKm: 10 // 10km search radius for comprehensive coverage
     };
   }
 
@@ -151,19 +183,19 @@ class ComparableService {
    * Validate search criteria - supports both coordinate-based and location-based matching
    */
   isValidCriteria(criteria) {
-    // Coordinate-based validation (preferred)
-    const hasCoordinates = criteria.latitude && criteria.longitude;
+    // Coordinate-based validation (preferred) - ensure both exist
+    const hasCoordinates = !!(criteria.latitude && criteria.longitude);
     
     // Location-based validation (fallback) - following old system hierarchy
-    const hasLocationData = criteria.urbanization || criteria.suburb || criteria.city;
+    const hasLocationData = !!(criteria.urbanization || criteria.suburb || criteria.city);
     
-    // Property characteristics validation
-    const hasPropertyData = criteria.propertyType &&
-                           (criteria.buildArea || criteria.bedrooms || criteria.price);
+    // Property characteristics validation - require type and at least one size/price metric
+    const hasPropertyData = !!(criteria.propertyType &&
+                              (criteria.buildArea || criteria.bedrooms || criteria.price));
     
     // Debug logging
     console.log('=== VALIDATION DEBUG ===');
-    console.log('hasCoordinates:', hasCoordinates);
+    console.log('hasCoordinates:', hasCoordinates, '(AI will add coordinates later if missing)');
     console.log('hasLocationData:', hasLocationData);
     console.log('hasPropertyData:', hasPropertyData);
     console.log('urbanization:', criteria.urbanization);
@@ -173,6 +205,7 @@ class ComparableService {
     console.log('buildArea:', criteria.buildArea);
     console.log('bedrooms:', criteria.bedrooms);
     console.log('price:', criteria.price);
+    console.log('Validation strategy: Coordinates preferred but location-based search available');
     console.log('Final result:', (hasCoordinates || hasLocationData) && hasPropertyData);
     console.log('========================');
     
@@ -180,68 +213,111 @@ class ComparableService {
   }
 
   /**
-   * Calculate comprehensive similarity scores using weighted algorithm from old system
+   * Calculate comprehensive similarity scores using advanced 5-factor weighted algorithm
+   * Based on real estate industry best practices with distance as the primary factor
    */
   calculateEnhancedSimilarity(criteria, comparable) {
-    // Prepare location objects for distance calculation
-    const targetLocation = {
-      urbanization: criteria.urbanization,
-      suburb: criteria.suburb,
-      city: criteria.city
-    };
-    
-    const comparableLocation = {
-      urbanization: comparable.urbanization,
-      suburb: comparable.suburb,
-      city: comparable.city
-    };
+    // Extract distance from the optimized KNN query result
+    const distanceKm = comparable.distance_meters ? 
+      (comparable.distance_meters / 1000) : 
+      this.calculateFallbackDistance(criteria, comparable);
 
-    // Calculate distance using enhanced method
-    const distance = this.calculateDistance(
-      criteria.latitude, criteria.longitude,
-      comparable.latitude, comparable.longitude,
-      targetLocation, comparableLocation
-    );
+    // 1. DISTANCE SCORE (30% weight) - Primary factor in real estate
+    const maxReasonableDistance = 10; // km
+    const distanceScore = Math.min(distanceKm / maxReasonableDistance, 1);
+    const distancePercent = Math.max(0, 100 - (distanceScore * 100));
+
+    // 2. SIZE SCORE (25% weight) - Building area similarity
+    const targetSize = criteria.buildArea || criteria.build_size || criteria.build_area;  // XML field first
+    const propertySize = comparable.build_size || comparable.build_area;                 // XML field first
+    let sizeScore = 1;
+    let sizePercent = 0;
     
-    // Calculate size difference (percentage)
-    const sizeDiff = criteria.buildArea && comparable.build_area ? 
-      Math.abs(comparable.build_area - criteria.buildArea) / criteria.buildArea : 0;
+    if (targetSize && propertySize && targetSize > 0) {
+      const sizeDiff = Math.abs(targetSize - propertySize) / targetSize;
+      sizeScore = Math.min(sizeDiff, 1);
+      sizePercent = Math.max(0, 100 - (sizeScore * 100));
+    } else if (targetSize && propertySize) {
+      // Handle edge case where target size might be 0
+      sizePercent = targetSize === propertySize ? 100 : 0;
+    }
+
+    // 3. PRICE SCORE (25% weight) - Price similarity
+    const targetPrice = criteria.price;
+    const propertyPrice = comparable.sale_price;
+    let priceScore = 1;
+    let pricePercent = 0;
     
-    // Calculate price difference (percentage)
-    const price = comparable.sale_price || comparable.monthly_price;
-    const priceDiff = criteria.price && price ? 
-      Math.abs(price - criteria.price) / criteria.price : 0;
+    if (targetPrice && propertyPrice && targetPrice > 0) {
+      const priceDiff = Math.abs(targetPrice - propertyPrice) / targetPrice;
+      priceScore = Math.min(priceDiff, 1);
+      pricePercent = Math.max(0, 100 - (priceScore * 100));
+    } else if (targetPrice && propertyPrice) {
+      // Handle edge case
+      pricePercent = targetPrice === propertyPrice ? 100 : 0;
+    }
+
+    // 4. BEDROOM SCORE (10% weight) - Layout compatibility
+    const bedroomDiff = Math.abs((criteria.bedrooms || 0) - (comparable.bedrooms || 0));
+    const maxBedroomDiff = 2;
+    const bedroomScore = Math.min(bedroomDiff / maxBedroomDiff, 1);
+    const bedroomPercent = Math.max(0, 100 - (bedroomScore * 100));
+
+    // 5. BATHROOM SCORE (10% weight) - NEW: Important for buyers
+    const bathroomDiff = Math.abs((criteria.bathrooms || 0) - (comparable.bathrooms || 0));
+    const maxBathroomDiff = 2;
+    const bathroomScore = Math.min(bathroomDiff / maxBathroomDiff, 1);
+    const bathroomPercent = Math.max(0, 100 - (bathroomScore * 100));
+
+    // ENHANCED: Calculate feature similarity bonus (up to 5% boost)
+    const featureBonus = this.calculateFeatureSimilarity(criteria.features, comparable.features) / 20; // 0-5%
+
+    // WEIGHTED OVERALL SCORE (Real estate industry optimized weights)
+    const weights = { 
+      distance: 0.30,    // Location is king in real estate
+      size: 0.25,        // Size matters significantly
+      price: 0.25,       // Price is crucial for comparison
+      bedrooms: 0.10,    // Layout factor
+      bathrooms: 0.10    // Convenience factor
+    };
     
-    // Calculate bedroom difference (absolute)
-    const bedroomDiff = criteria.bedrooms && comparable.bedrooms ? 
-      Math.abs(comparable.bedrooms - criteria.bedrooms) : 0;
+    const totalScore = (distanceScore * weights.distance) + 
+                      (sizeScore * weights.size) + 
+                      (priceScore * weights.price) + 
+                      (bedroomScore * weights.bedrooms) + 
+                      (bathroomScore * weights.bathrooms);
     
-    // Calculate feature similarity
-    const featureScore = this.calculateFeatureSimilarity(criteria.features, comparable.features);
-    
-    // Weighted similarity score (lower is better) - using old system weights
-    const totalScore = (distance * 0.4) + (sizeDiff * 0.3) + (priceDiff * 0.2) + (bedroomDiff * 0.1);
+    // Calculate overall percentage with feature bonus
+    const baseOverallPercent = Math.max(0, 100 - (totalScore * 100));
+    const overallPercent = Math.min(100, baseOverallPercent + featureBonus);
     
     return {
-      totalScore: totalScore,
-      distanceScore: distance,
-      sizeScore: sizeDiff,
-      priceScore: priceDiff,
-      bedroomScore: bedroomDiff,
-      featureScore: featureScore,
-      // Convert to percentage scores for easier interpretation
-      distancePercent: Math.round((1 / (1 + distance)) * 100),
-      sizePercent: Math.round((1 / (1 + sizeDiff)) * 100),
-      pricePercent: Math.round((1 / (1 + priceDiff)) * 100),
-      bedroomPercent: bedroomDiff === 0 ? 100 : Math.round((1 / (1 + bedroomDiff)) * 100),
-      overallPercent: Math.round((1 / (1 + totalScore)) * 100)
+      totalScore,
+      overallPercent: Math.round(overallPercent),
+      distancePercent: Math.round(distancePercent),
+      sizePercent: Math.round(sizePercent),
+      pricePercent: Math.round(pricePercent),
+      bedroomPercent: Math.round(bedroomPercent),
+      bathroomPercent: Math.round(bathroomPercent), // NEW
+      distanceKm: parseFloat(distanceKm.toFixed(2)),
+      featureBonus: Math.round(featureBonus * 10) / 10, // NEW
+      
+      // Legacy compatibility
+      distanceScore: totalScore,
+      sizeScore: sizeScore,
+      priceScore: priceScore,
+      bedroomScore: bedroomScore,
+      featureScore: this.calculateFeatureSimilarity(criteria.features, comparable.features)
     };
   }
 
   /**
-   * Calculate distance using Haversine formula or location hierarchy scoring
+   * Fallback distance calculation for properties without KNN distance data
    */
-  calculateDistance(lat1, lon1, lat2, lon2, targetLocation = {}, comparableLocation = {}) {
+  calculateFallbackDistance(criteria, comparable) {
+    const { latitude: lat1, longitude: lon1 } = criteria;
+    const { latitude: lat2, longitude: lon2 } = comparable;
+    
     // If both properties have coordinates, use Haversine formula
     if (lat1 && lon1 && lat2 && lon2) {
       const R = 6371; // Earth's radius in km
@@ -256,7 +332,25 @@ class ComparableService {
     }
     
     // For location-based matching without coordinates, use hierarchy scoring
-    // Lower scores = better match (same as distance in km)
+    const targetLocation = {
+      urbanization: criteria.urbanization,
+      suburb: criteria.suburb,
+      city: criteria.city
+    };
+    
+    const comparableLocation = {
+      urbanization: comparable.urbanization,
+      suburb: comparable.suburb,
+      city: comparable.city
+    };
+    
+    return this.calculateLocationHierarchyDistance(targetLocation, comparableLocation);
+  }
+
+  /**
+   * Calculate distance using location hierarchy (urbanization > suburb > city)
+   */
+  calculateLocationHierarchyDistance(targetLocation, comparableLocation) {
     const { urbanization: targetUrb, suburb: targetSub, city: targetCity } = targetLocation;
     const { urbanization: compUrb, suburb: compSub, city: compCity } = comparableLocation;
     
@@ -405,7 +499,7 @@ class ComparableService {
   }
 
   /**
-   * Format properties for frontend display with enhanced scoring
+   * Format properties for frontend display with enhanced 5-factor scoring
    */
   formatComparables(properties, criteria) {
     return properties.map(property => {
@@ -414,7 +508,7 @@ class ComparableService {
       const images = this.safeParseJson(property.images, []);
       const descriptions = this.safeParseJson(property.descriptions, {});
 
-      // Calculate enhanced similarity scores
+      // Calculate enhanced 5-factor similarity scores
       const similarityScores = this.calculateEnhancedSimilarity(criteria, property);
 
       return {
@@ -423,9 +517,10 @@ class ComparableService {
         address: this.formatAddress(property),
         city: property.city,
         suburb: property.suburb,
+        urbanization: property.urbanization,
         propertyType: property.property_type,
         
-        // Pricing
+        // Pricing with enhanced calculations
         price: property.sale_price || property.monthly_price,
         pricePerSqm: this.calculatePricePerSqm(property),
         
@@ -445,33 +540,36 @@ class ComparableService {
         energyRating: property.energy_rating,
         yearBuilt: property.year_built,
         
-        // Location and similarity
+        // Location data
         latitude: property.latitude,
         longitude: property.longitude,
-        distance: similarityScores.distanceScore,
         
-        // Enhanced similarity scores
-        similarityScore: similarityScores.totalScore,
+        // ENHANCED: 5-Factor Similarity Scores
+        overallPercent: similarityScores.overallPercent,
+        distancePercent: similarityScores.distancePercent,
+        sizePercent: similarityScores.sizePercent,
+        pricePercent: similarityScores.pricePercent,
+        bedroomPercent: similarityScores.bedroomPercent,
+        bathroomPercent: similarityScores.bathroomPercent, // NEW
+        distanceKm: similarityScores.distanceKm,
+        featureBonus: similarityScores.featureBonus, // NEW
+        
+        // Legacy compatibility
+        similarityScore: 1 - similarityScores.totalScore, // Inverted for compatibility
         distanceScore: similarityScores.distanceScore,
         sizeScore: similarityScores.sizeScore,
         priceScore: similarityScores.priceScore,
         bedroomScore: similarityScores.bedroomScore,
         featureScore: similarityScores.featureScore,
-        
-        // Percentage scores for easy interpretation
-        distancePercent: similarityScores.distancePercent,
-        sizePercent: similarityScores.sizePercent,
-        pricePercent: similarityScores.pricePercent,
-        bedroomPercent: similarityScores.bedroomPercent,
-        overallPercent: similarityScores.overallPercent,
+        distance: similarityScores.distanceKm,
         
         // Metadata
         lastUpdated: property.last_updated_at,
         listingType: this.getListingType(property)
       };
     })
-    .sort((a, b) => a.similarityScore - b.similarityScore) // Sort by best match first
-    .slice(0, 10); // Limit to top 10 matches
+    .sort((a, b) => b.overallPercent - a.overallPercent) // Sort by best overall match first
+    .slice(0, 12); // Top 12 results for optimal user experience
   }
 
   /**
@@ -528,9 +626,9 @@ class ComparableService {
   }
 
   /**
-   * Generate summary of comparable analysis
+   * Generate enhanced summary with market context
    */
-  generateSummary(comparables, criteria) {
+  generateEnhancedSummary(comparables, criteria, marketContext) {
     if (comparables.length === 0) {
       return `No comparable properties found within ${criteria.radiusKm}km radius.`;
     }
@@ -543,10 +641,6 @@ class ComparableService {
     if (prices.length === 0) {
       return `Found ${comparables.length} properties but no pricing data available.`;
     }
-
-    const avgPrice = Math.round(prices.reduce((sum, p) => sum + p, 0) / prices.length);
-    const minPrice = prices[0];
-    const maxPrice = prices[prices.length - 1];
 
     const cities = [...new Set(comparables.map(c => c.city).filter(city => city))];
     const avgSimilarity = Math.round(
@@ -563,21 +657,167 @@ class ComparableService {
       summary += ` across ${cities.length} locations`;
     }
     
-    summary += `. Average price: €${avgPrice.toLocaleString()}, ranging from €${minPrice.toLocaleString()} to €${maxPrice.toLocaleString()}`;
+    // Use market context for better insights
+    if (marketContext) {
+      summary += `. Market median: €${marketContext.stats.medianPrice.toLocaleString()}`;
+      summary += `, ranging from €${marketContext.stats.minPrice.toLocaleString()} to €${marketContext.stats.maxPrice.toLocaleString()}`;
     summary += `. Average similarity: ${avgSimilarity}%`;
     
-    if (criteria.price) {
-      const position = this.calculatePercentile(criteria.price, prices);
-      if (position <= 25) {
-        summary += `. Property is priced in the lower quartile of the market.`;
-      } else if (position <= 75) {
-        summary += `. Property is priced in the middle range of the market.`;
+      // Add market positioning insight
+      if (marketContext.position.marketPosition === 'above_market') {
+        summary += `. Property positioned above market median`;
       } else {
-        summary += `. Property is priced in the upper quartile of the market.`;
+        summary += `. Property positioned below market median`;
       }
+    } else {
+      // Fallback to simple average
+      const avgPrice = Math.round(prices.reduce((sum, p) => sum + p, 0) / prices.length);
+      summary += `. Average price: €${avgPrice.toLocaleString()}`;
+      summary += `, ranging from €${prices[0].toLocaleString()} to €${prices[prices.length - 1].toLocaleString()}`;
+      summary += `. Average similarity: ${avgSimilarity}%`;
     }
 
     return summary;
+  }
+
+  /**
+   * Generate market intelligence insights with median-based analysis
+   */
+  generateMarketInsights(comparables, subjectProperty) {
+    if (!comparables || comparables.length === 0) return null;
+
+    // Price analysis
+    const prices = comparables.map(c => c.price).filter(p => p && p > 0);
+    const pricesPerSqm = comparables.map(c => c.pricePerSqm).filter(p => p && p > 0);
+    
+    if (prices.length === 0) return null;
+
+    // Market statistics (median-focused for outlier resistance)
+    const stats = {
+      avgPrice: Math.round(prices.reduce((sum, p) => sum + p, 0) / prices.length),
+      medianPrice: this.calculateMedian(prices),
+      avgPricePerSqm: pricesPerSqm.length > 0 ? 
+        Math.round(pricesPerSqm.reduce((sum, p) => sum + p, 0) / pricesPerSqm.length) : 0,
+      medianPricePerSqm: pricesPerSqm.length > 0 ? this.calculateMedian(pricesPerSqm) : 0,
+      minPrice: Math.min(...prices),
+      maxPrice: Math.max(...prices),
+      priceRange: Math.max(...prices) - Math.min(...prices),
+      sampleSize: comparables.length
+    };
+
+    // Subject property market position
+    const subjectPrice = subjectProperty.price || subjectProperty.sale_price;
+    const subjectPricePerSqm = subjectProperty.pricePerSqm || 
+      (subjectProperty.build_area ? Math.round(subjectPrice / subjectProperty.build_area) : null);
+    
+    const position = {
+      vsAverage: subjectPrice / stats.avgPrice,
+      vsMedian: subjectPrice / stats.medianPrice,
+      percentile: this.calculatePercentile(subjectPrice, prices),
+      marketPosition: subjectPrice > stats.medianPrice ? 'above_market' : 'below_market',
+      pricePerSqmVsMarket: subjectPricePerSqm && stats.medianPricePerSqm ? 
+        subjectPricePerSqm / stats.medianPricePerSqm : null
+    };
+
+    // Generate professional insights
+    const insights = [];
+    
+    // Price positioning insights
+    if (position.vsMedian > 1.2) {
+      insights.push(`Property is priced ${Math.round((position.vsMedian - 1) * 100)}% above market median, indicating premium positioning`);
+    } else if (position.vsMedian < 0.8) {
+      insights.push(`Property is priced ${Math.round((1 - position.vsMedian) * 100)}% below market median, representing potential value`);
+    } else {
+      insights.push('Property is competitively priced within the median market range');
+    }
+
+    // Percentile insights
+    if (position.percentile >= 80) {
+      insights.push(`Property ranks in the top ${100 - position.percentile}% of comparable properties by price`);
+    } else if (position.percentile <= 20) {
+      insights.push(`Property ranks in the bottom ${position.percentile}% of comparable properties by price`);
+    }
+
+    // Market coverage insights
+    if (comparables.length >= 10) {
+      insights.push(`Analysis based on robust sample of ${comparables.length} comparable properties`);
+    } else {
+      insights.push(`Limited market data: analysis based on ${comparables.length} properties`);
+    }
+
+    // Price per m² insights
+    if (position.pricePerSqmVsMarket) {
+      if (position.pricePerSqmVsMarket > 1.15) {
+        insights.push(`Price per m² is ${Math.round((position.pricePerSqmVsMarket - 1) * 100)}% above market average`);
+      } else if (position.pricePerSqmVsMarket < 0.85) {
+        insights.push(`Price per m² is ${Math.round((1 - position.pricePerSqmVsMarket) * 100)}% below market average`);
+      }
+    }
+
+    return {
+      stats,
+      position,
+      insights,
+      comparableCount: comparables.length,
+      priceDistribution: this.analyzePriceDistribution(prices, subjectPrice),
+      marketVolatility: this.calculateMarketVolatility(prices),
+      timestamp: new Date().toISOString()
+    };
+  }
+
+  /**
+   * Analyze price distribution for histogram visualization
+   */
+  analyzePriceDistribution(prices, subjectPrice) {
+    const sortedPrices = [...prices].sort((a, b) => a - b);
+    const min = sortedPrices[0];
+    const max = sortedPrices[sortedPrices.length - 1];
+    const range = max - min;
+    
+    // Create 8 buckets for distribution
+    const buckets = 8;
+    const bucketSize = range / buckets;
+    const histogram = Array(buckets).fill(0);
+    let subjectBucket = -1;
+    
+    prices.forEach(price => {
+      const bucket = Math.min(Math.floor((price - min) / bucketSize), buckets - 1);
+      histogram[bucket]++;
+    });
+    
+    // Find subject property bucket
+    if (subjectPrice) {
+      subjectBucket = Math.min(Math.floor((subjectPrice - min) / bucketSize), buckets - 1);
+    }
+    
+    return {
+      histogram,
+      subjectBucket,
+      bucketSize: Math.round(bucketSize),
+      min: Math.round(min),
+      max: Math.round(max),
+      labels: histogram.map((_, i) => {
+        const start = Math.round(min + (i * bucketSize));
+        const end = Math.round(min + ((i + 1) * bucketSize));
+        return `€${start.toLocaleString()}-${end.toLocaleString()}`;
+      })
+    };
+  }
+
+  /**
+   * Calculate market volatility score
+   */
+  calculateMarketVolatility(prices) {
+    if (prices.length < 3) return 'insufficient_data';
+    
+    const mean = prices.reduce((sum, p) => sum + p, 0) / prices.length;
+    const variance = prices.reduce((sum, p) => sum + Math.pow(p - mean, 2), 0) / prices.length;
+    const standardDeviation = Math.sqrt(variance);
+    const coefficientOfVariation = standardDeviation / mean;
+    
+    if (coefficientOfVariation < 0.15) return 'low';
+    if (coefficientOfVariation < 0.30) return 'moderate';
+    return 'high';
   }
 
   /**

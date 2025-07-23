@@ -10,7 +10,74 @@ const PropertyDatabase = require('./database/postgresDatabase');
 const XMLFeedService = require('./services/xmlFeedService');
 const ComparableService = require('./services/comparableService');
 const PropertyDataMapper = require('./services/propertyDataMapper');
+const AILearningService = require('./services/aiLearningService');
+const LocationIntelligenceService = require('./services/locationIntelligenceService');
 const imageProxyRouter = require('./routes/imageProxy');
+
+// Session manager with file persistence
+const sessionManager = {
+  sessions: new Map(),
+  sessionDir: path.join(__dirname, 'data', 'sessions'),
+  
+  // Ensure session directory exists
+  init() {
+    if (!fs.existsSync(this.sessionDir)) {
+      fs.mkdirSync(this.sessionDir, { recursive: true });
+    }
+  },
+  
+  createSession(sessionId, sessionData) {
+    this.sessions.set(sessionId, sessionData);
+    this.saveSessionToFile(sessionId, sessionData);
+    console.log(`✅ Session created and saved: ${sessionId}`);
+  },
+  
+  getSession(sessionId) {
+    // First try memory
+    let session = this.sessions.get(sessionId);
+    
+    // If not in memory, try loading from file
+    if (!session) {
+      session = this.loadSessionFromFile(sessionId);
+      if (session) {
+        this.sessions.set(sessionId, session);
+      }
+    }
+    
+    return session;
+  },
+  
+  updateSession(sessionId, updates) {
+    const session = this.sessions.get(sessionId) || this.loadSessionFromFile(sessionId);
+    if (session) {
+      Object.assign(session, updates);
+      this.sessions.set(sessionId, session);
+      this.saveSessionToFile(sessionId, session);
+    }
+  },
+  
+  saveSessionToFile(sessionId, sessionData) {
+    try {
+      const filePath = path.join(this.sessionDir, `${sessionId}.json`);
+      fs.writeFileSync(filePath, JSON.stringify(sessionData, null, 2));
+    } catch (error) {
+      console.error(`❌ Error saving session ${sessionId}:`, error);
+    }
+  },
+  
+  loadSessionFromFile(sessionId) {
+    try {
+      const filePath = path.join(this.sessionDir, `${sessionId}.json`);
+      if (fs.existsSync(filePath)) {
+        const data = fs.readFileSync(filePath, 'utf8');
+        return JSON.parse(data);
+      }
+    } catch (error) {
+      console.error(`❌ Error loading session ${sessionId}:`, error);
+    }
+    return null;
+  }
+};
 
 const app = express();
 const port = process.env.PORT || 3004;
@@ -20,6 +87,8 @@ let propertyDatabase;
 let xmlFeedService;
 let comparableService;
 let propertyDataMapper;
+let aiLearningService;
+let locationIntelligenceService;
 
 // Middleware
 app.use(cors());
@@ -35,17 +104,28 @@ async function initializeServices() {
     propertyDatabase = new PropertyDatabase();
     await propertyDatabase.init();
     
+    // Initialize AI learning service
+    aiLearningService = new AILearningService(propertyDatabase);
+    
+    // Initialize location intelligence service
+    locationIntelligenceService = new LocationIntelligenceService(propertyDatabase);
+    
     // Initialize XML feed service
     xmlFeedService = new XMLFeedService(propertyDatabase);
     xmlFeedService.startCronJob();
     
-    // Initialize comparable service
+    // Initialize comparable service with learning enhancement
     comparableService = new ComparableService(propertyDatabase);
+    
+    // Enhance AI analysis service with learning
+    const AIAnalysisService = require('./services/aiAnalysisService');
+    const originalAiAnalysis = comparableService.aiAnalysis;
+    comparableService.aiAnalysis = new AIAnalysisService(propertyDatabase, aiLearningService);
     
     // Initialize PropertyList.es data mapper
     propertyDataMapper = new PropertyDataMapper();
     
-    console.log('All services initialized successfully');
+    console.log('All services initialized successfully with AI learning enabled');
   } catch (error) {
     console.error('Failed to initialize services:', error);
     process.exit(1);
@@ -54,57 +134,13 @@ async function initializeServices() {
 
 // Data storage
 const dataDir = path.join(__dirname, 'data');
-const sessionsDir = path.join(dataDir, 'sessions');
 
 // Ensure data directories exist
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
-if (!fs.existsSync(sessionsDir)) {
-  fs.mkdirSync(sessionsDir, { recursive: true });
-}
 
-// Helper functions
-function saveSession(sessionId, sessionData) {
-  const filePath = path.join(sessionsDir, `${sessionId}.json`);
-  fs.writeFileSync(filePath, JSON.stringify(sessionData, null, 2));
-}
-
-function loadSession(sessionId) {
-  try {
-    const filePath = path.join(sessionsDir, `${sessionId}.json`);
-    if (fs.existsSync(filePath)) {
-      const data = fs.readFileSync(filePath, 'utf8');
-      return JSON.parse(data);
-    }
-  } catch (error) {
-    console.error('Error loading session:', error);
-  }
-  return null;
-}
-
-function cleanupOldSessions() {
-  try {
-    const files = fs.readdirSync(sessionsDir);
-    const cutoffTime = Date.now() - (7 * 24 * 60 * 60 * 1000); // 7 days ago
-    
-    files.forEach(file => {
-      if (file.endsWith('.json')) {
-        const filePath = path.join(sessionsDir, file);
-        const stats = fs.statSync(filePath);
-        
-        if (stats.mtime.getTime() < cutoffTime) {
-          fs.unlinkSync(filePath);
-          console.log(`Cleaned up old session: ${file}`);
-        }
-      }
-    });
-  } catch (error) {
-    console.error('Error cleaning up sessions:', error);
-  }
-}
-
-// API Routes
+// Routes
 app.get('/api/health', (req, res) => {
   const hasOpenAI = !!process.env.OPENAI_API_KEY;
   const hasTavily = !!process.env.TAVILY_API_KEY;
@@ -143,40 +179,70 @@ app.get('/api/health', (req, res) => {
   res.json(status);
 });
 
-app.post('/api/property', (req, res) => {
+app.post('/api/property', async (req, res) => {
   try {
-    const rawPropertyData = req.body;
+    const propertyData = req.body;
+    console.log('🏠 Property data received:', {
+      reference: propertyData.reference,
+      type: propertyData.property_type,
+      city: propertyData.city,
+      bedrooms: propertyData.bedrooms
+    });
+
+    // Transform using PropertyList.es format
+    const transformedData = propertyDataMapper.transformPropertyListData(propertyData);
     
-    // Validate required fields
-    if (!rawPropertyData || typeof rawPropertyData !== 'object') {
-      return res.status(400).json({
-        success: false,
-        error: 'Invalid property data'
-      });
+    // Enhance with location intelligence
+    let locationContext = null;
+    
+    // Check if we have specific location data (urbanization OR street address)
+    const hasUrbanization = transformedData.urbanization && transformedData.urbanization.trim().length > 0;
+    const hasStreetAddress = transformedData.address && 
+                           transformedData.address.includes(' ') && // Has street name + number
+                           /\d/.test(transformedData.address); // Contains numbers
+    
+    // AI location intelligence should only be triggered when we DON'T have specific location data
+    if (!hasUrbanization && !hasStreetAddress) {
+      console.log('🤖 No specific location data found - triggering AI location intelligence...');
+      console.log(`   - Urbanization: ${transformedData.urbanization || 'Not provided'}`);
+      console.log(`   - Street address: ${transformedData.address || 'Not provided'}`);
+      
+      // Use city or available location info for AI analysis
+      const locationInput = transformedData.suburb || transformedData.city || 'Unknown location';
+      
+      locationContext = await locationIntelligenceService.resolveLocationWithLogging(
+        locationInput,
+        { 
+          city: transformedData.city,
+          bedrooms: transformedData.bedrooms,
+          propertyType: transformedData.property_type,
+          propertyData: transformedData, // Pass full property data for description analysis
+          triggerReason: 'missing_specific_location_data'
+        }
+      );
+      
+      // Enhance property data with resolved location
+      transformedData.resolvedLocation = locationContext;
+      console.log(`✅ AI location resolved: ${locationContext.location} (${(locationContext.confidence * 100).toFixed(1)}% confidence)`);
+    } else {
+      console.log('✅ Specific location data found - skipping AI location intelligence');
+      console.log(`   - Using urbanization: ${transformedData.urbanization || 'N/A'}`);
+      console.log(`   - Using street address: ${transformedData.address || 'N/A'}`);
     }
-
-    // Transform PropertyList.es data to standard format
-    const propertyData = propertyDataMapper ? 
-      propertyDataMapper.transformPropertyListData(rawPropertyData) : 
-      rawPropertyData;
-
-    // Generate session ID
-    const sessionId = uuidv4();
     
-    // Create session data
-    const sessionData = {
+    const sessionId = uuidv4();
+    const session = {
       id: sessionId,
-      propertyData: propertyData,
-      status: 'created',
+      propertyData: transformedData,
+      locationContext: locationContext,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      analysisResults: null
+      status: 'ready'
     };
 
-    // Save session
-    saveSession(sessionId, sessionData);
-    
-    // Create session URL
+    // Store session
+    sessionManager.createSession(sessionId, session);
+
+    // Generate session URL for frontend
     const baseUrl = `${req.protocol}://${req.get('host').replace(':3004', ':3000')}`;
     const sessionUrl = `${baseUrl}/analysis/${sessionId}`;
 
@@ -190,10 +256,76 @@ app.post('/api/property', (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error processing property data:', error);
+    console.error('Error creating property session:', error);
     res.status(500).json({
       success: false,
-      error: 'Internal server error'
+      error: 'Failed to create property session'
+    });
+  }
+});
+
+app.post('/api/property/reference', async (req, res) => {
+  try {
+    const { reference } = req.body;
+    
+    if (!reference) {
+      return res.status(400).json({
+        success: false,
+        error: 'Property reference is required'
+      });
+    }
+
+    console.log('🔍 Fetching property by reference:', reference);
+
+    // Fetch property from database
+    const property = await propertyDatabase.getPropertyByReference(reference);
+    
+    if (!property) {
+      return res.status(404).json({
+        success: false,
+        error: 'Property not found'
+      });
+    }
+
+    console.log('🏠 Property found in database:', {
+      reference: property.reference,
+      type: property.property_type,
+      city: property.city,
+      bedrooms: property.bedrooms
+    });
+
+    // Transform using PropertyList.es format
+    const transformedData = propertyDataMapper.transformPropertyListData(property);
+    
+    const sessionId = uuidv4();
+    const session = {
+      id: sessionId,
+      propertyData: transformedData,
+      createdAt: new Date().toISOString(),
+      status: 'ready'
+    };
+
+    // Store session
+    sessionManager.createSession(sessionId, session);
+
+    // Generate session URL for frontend
+    const baseUrl = `${req.protocol}://${req.get('host').replace(':3004', ':3000')}`;
+    const sessionUrl = `${baseUrl}/analysis/${sessionId}`;
+
+    console.log('Property session created from database:', sessionId);
+
+    res.json({
+      success: true,
+      sessionId,
+      sessionUrl,
+      message: 'Property session created from database successfully'
+    });
+
+  } catch (error) {
+    console.error('Error fetching property by reference:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch property from database'
     });
   }
 });
@@ -201,7 +333,7 @@ app.post('/api/property', (req, res) => {
 app.get('/api/session/:sessionId', (req, res) => {
   try {
     const sessionId = req.params.sessionId;
-    const sessionData = loadSession(sessionId);
+    const sessionData = sessionManager.getSession(sessionId);
     
     if (!sessionData) {
       return res.status(404).json({
@@ -224,12 +356,12 @@ app.get('/api/session/:sessionId', (req, res) => {
   }
 });
 
-app.post('/api/session/:sessionId/status', (req, res) => {
+app.post('/api/session/:sessionId/status', async (req, res) => {
   try {
     const sessionId = req.params.sessionId;
     const { status, analysisResults, propertyData } = req.body;
     
-    const sessionData = loadSession(sessionId);
+    const sessionData = sessionManager.getSession(sessionId);
     if (!sessionData) {
       return res.status(404).json({
         success: false,
@@ -238,20 +370,70 @@ app.post('/api/session/:sessionId/status', (req, res) => {
     }
 
     // Update session
-    sessionData.status = status;
-    sessionData.updatedAt = new Date().toISOString();
+    const updates = {
+      status: status,
+      updatedAt: new Date().toISOString()
+    };
     
     if (analysisResults) {
-      sessionData.analysisResults = analysisResults;
+      updates.analysisResults = analysisResults;
     }
     
     // Update property data if provided (for additional user info)
     if (propertyData) {
-      sessionData.propertyData = propertyData;
+      // FIXED: Merge with existing property data instead of overwriting
+      updates.propertyData = {
+        ...sessionData.propertyData, // Preserve existing property data
+        ...propertyData             // Add new fields (like additionalInfo)
+      };
       console.log(`Session ${sessionId} property data updated with additional info:`, propertyData.additionalInfo || 'No additional info');
+      
+      // ENHANCED: Process user's additional text with AI location intelligence
+      if (propertyData.additionalInfo && propertyData.additionalInfo.trim().length > 0) {
+        try {
+          console.log(`🤖 Processing user's additional location details: "${propertyData.additionalInfo}"`);
+          
+          // Run AI extraction on user's additional text
+          const additionalLocationContext = await locationIntelligenceService.resolveLocationWithLogging(
+            propertyData.additionalInfo,
+            {
+              city: sessionData.propertyData?.city,
+              propertyData: sessionData.propertyData,
+              userInput: true // Flag to indicate this is user-provided text
+            }
+          );
+          
+          if (additionalLocationContext && additionalLocationContext.confidence > 0.6) {
+            console.log(`✅ Enhanced location found from user input: ${additionalLocationContext.location} (${(additionalLocationContext.confidence * 100).toFixed(1)}% confidence)`);
+            
+            // Update the session's location context with enhanced information
+            if (sessionData.locationContext) {
+              // Merge with existing location context, giving priority to user input
+              updates.locationContext = {
+                ...sessionData.locationContext,
+                enhancedLocation: additionalLocationContext,
+                userProvidedEnhancement: propertyData.additionalInfo,
+                coordinates: additionalLocationContext.coordinates || sessionData.locationContext.coordinates,
+                landmarks: additionalLocationContext.landmarks,
+                proximityClues: additionalLocationContext.proximityClues,
+                confidence: Math.max(sessionData.locationContext.confidence, additionalLocationContext.confidence),
+                method: `${sessionData.locationContext.method} + user_input_ai`
+              };
+            } else {
+              // Create new location context from user input
+              updates.locationContext = additionalLocationContext;
+            }
+            
+            console.log(`🎯 Session location context enhanced with user input`);
+          }
+        } catch (locationError) {
+          console.error('❌ Error processing additional location info:', locationError);
+          // Don't fail the entire request if location processing fails
+        }
+      }
     }
 
-    saveSession(sessionId, sessionData);
+    sessionManager.updateSession(sessionId, updates);
 
     res.json({
       success: true,
@@ -273,7 +455,7 @@ app.get('/api/comparables/:sessionId', async (req, res) => {
     const sessionId = req.params.sessionId;
     
     // Load session data
-    const sessionData = loadSession(sessionId);
+    const sessionData = sessionManager.getSession(sessionId);
     if (!sessionData) {
       return res.status(404).json({
         success: false,
@@ -463,6 +645,205 @@ app.post('/api/admin/cache/clean', (req, res) => {
   }
 });
 
+// Location intelligence metrics endpoint
+app.get('/api/admin/location/metrics', (req, res) => {
+  try {
+    if (!locationIntelligenceService) {
+      return res.status(503).json({
+        success: false,
+        error: 'Location intelligence service not available'
+      });
+    }
+
+    const metrics = locationIntelligenceService.getMetrics();
+    res.json({
+      success: true,
+      metrics: metrics,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Error getting location metrics:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Location resolution endpoint
+app.post('/api/resolve-location', async (req, res) => {
+  try {
+    const { location, propertyContext } = req.body;
+    
+    if (!location) {
+      return res.status(400).json({
+        success: false,
+        error: 'Location is required'
+      });
+    }
+
+    console.log(`🔍 Location resolution request: "${location}"`);
+    
+    const result = await locationIntelligenceService.resolveLocationWithLogging(location, propertyContext);
+    
+    console.log(`✅ Location resolved: ${result.location} (${result.confidence * 100}% confidence via ${result.method})`);
+    
+    res.json({
+      success: true,
+      result: result,
+      metrics: locationIntelligenceService.getMetrics()
+    });
+  } catch (error) {
+    console.error('❌ Location resolution error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Location learning analytics endpoint
+app.get('/api/admin/location/analytics', async (req, res) => {
+  try {
+    if (!locationIntelligenceService) {
+      return res.status(503).json({
+        success: false,
+        error: 'Location intelligence service not available'
+      });
+    }
+
+    const days = parseInt(req.query.days) || 30;
+    const analytics = await locationIntelligenceService.getLearningAnalytics(days);
+    
+    res.json({
+      success: true,
+      analytics: analytics,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Error getting location analytics:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Feedback endpoint for AI learning
+app.post('/api/feedback', async (req, res) => {
+  try {
+    const { sessionId, stepId, helpful, propertyReference } = req.body;
+    
+    // Validation
+    if (!sessionId || !stepId || helpful === undefined) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required fields: sessionId, stepId, helpful'
+      });
+    }
+
+    if (!['market', 'comparables', 'insights', 'report'].includes(stepId)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid stepId. Must be one of: market, comparables, insights, report'
+      });
+    }
+
+    // Get session data for property context
+    const sessionData = sessionManager.getSession(sessionId);
+    if (!sessionData) {
+      return res.status(404).json({
+        success: false,
+        error: 'Session not found'
+      });
+    }
+
+    // Process feedback through AI learning service
+    const result = await aiLearningService.processFeedback(
+      sessionId,
+      stepId,
+      helpful,
+      sessionData.propertyData
+    );
+    
+    console.log(`📊 Feedback processed: ${sessionId} - ${stepId} - ${helpful ? '👍' : '👎'}`);
+    
+    res.json({
+      success: true,
+      message: 'Feedback recorded and processed',
+      learningUpdate: result
+    });
+
+  } catch (error) {
+    console.error('Error processing feedback:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process feedback'
+    });
+  }
+});
+
+// Learning analytics endpoint for admin dashboard
+app.get('/api/admin/learning/stats', async (req, res) => {
+  try {
+    if (!aiLearningService) {
+      return res.status(503).json({
+        success: false,
+        error: 'AI learning service not available'
+      });
+    }
+
+    const stats = await aiLearningService.getLearningStats();
+    
+    res.json({
+      success: true,
+      ...stats,
+      timestamp: new Date().toISOString()
+    });
+
+  } catch (error) {
+    console.error('Error getting learning stats:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to get learning statistics'
+    });
+  }
+});
+
+// Learning insights endpoint for specific area
+app.get('/api/admin/learning/insights/:area', async (req, res) => {
+  try {
+    const { area } = req.params;
+    
+    if (!aiLearningService) {
+      return res.status(503).json({
+        success: false,
+        error: 'AI learning service not available'
+      });
+    }
+
+    const insights = await aiLearningService.getAreaLearningInsights(area);
+    const feedbackPatterns = await aiLearningService.getFeedbackPatterns(area);
+    const optimizedWeights = aiLearningService.getOptimizedWeights(area);
+    
+    res.json({
+      success: true,
+      area,
+      insights,
+      feedbackPatterns,
+      optimizedWeights,
+      timestamp: new Date().toISOString()
+    });
+
+  } catch (error) {
+    console.error('Error getting area insights:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to get area insights'
+    });
+  }
+});
+
 // Error handling middleware
 app.use((error, req, res, next) => {
   console.error('Unhandled error:', error);
@@ -471,20 +852,6 @@ app.use((error, req, res, next) => {
     error: 'Internal server error'
   });
 });
-
-// Cleanup old sessions on startup and periodically
-cleanupOldSessions();
-setInterval(cleanupOldSessions, 24 * 60 * 60 * 1000); // Daily cleanup
-
-// Clean cache periodically
-if (comparableService) {
-  setInterval(() => {
-    const cleaned = comparableService.cleanCache();
-    if (cleaned > 0) {
-      console.log(`Cleaned ${cleaned} expired cache entries`);
-    }
-  }, 60 * 60 * 1000); // Hourly cache cleanup
-}
 
 // Graceful shutdown
 process.on('SIGINT', () => {
@@ -499,6 +866,9 @@ process.on('SIGINT', () => {
 
 // Start server
 async function startServer() {
+  // Initialize session manager
+  sessionManager.init();
+  
   await initializeServices();
   
   app.listen(port, () => {
