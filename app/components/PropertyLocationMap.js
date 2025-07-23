@@ -131,7 +131,7 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
     try {
                       const map = new window.google.maps.Map(mapRef.current, {
         center: coordinates,
-        zoom: 18,
+        zoom: 15,
         mapTypeId: 'hybrid',
         tilt: 45, // Enable 3D view by default
         heading: 0, // Set initial heading for 3D view
