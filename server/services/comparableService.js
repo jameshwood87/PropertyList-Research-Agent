@@ -106,7 +106,7 @@ class ComparableService {
       // Cache results
       this.addToCache(cacheKey, result);
       
-      console.log(`✅ Comparable analysis complete: ${comparables.length} matches with ${marketContext?.stats?.sampleSize || 0} market insights`);
+      console.log(`✅ Comparable analysis complete: ${result.comparables.length} matches with ${marketContext?.stats?.sampleSize || 0} market insights`);
       return result;
       
     } catch (error) {
