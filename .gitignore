@@ -19,6 +19,11 @@ build/
 # Session data
 data/sessions/
 
+# XML data files (downloaded daily, don't commit)
+*.xml
+latest_propertylist.xml
+propertylist*.xml
+
 # Logs
 logs
 *.log
