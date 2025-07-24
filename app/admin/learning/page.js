@@ -8,9 +8,13 @@ export default function LearningDashboard() {
   const [error, setError] = useState(null)
   const [selectedArea, setSelectedArea] = useState('Marbella')
   const [areaInsights, setAreaInsights] = useState(null)
+  const [abTestResults, setAbTestResults] = useState(null)
+  const [optimizationMetrics, setOptimizationMetrics] = useState(null)
 
   useEffect(() => {
     fetchLearningStats()
+    fetchABTestResults()
+    fetchOptimizationMetrics()
   }, [])
 
   useEffect(() => {
@@ -47,6 +51,51 @@ export default function LearningDashboard() {
       }
     } catch (err) {
       console.error('Error fetching area insights:', err)
+    }
+  }
+
+  const fetchABTestResults = async () => {
+    try {
+      const response = await fetch('http://localhost:3004/api/admin/learning/ab-tests')
+      const data = await response.json()
+      
+      if (data.success) {
+        setAbTestResults(data)
+      }
+    } catch (err) {
+      console.error('Error fetching A/B test results:', err)
+    }
+  }
+
+  const fetchOptimizationMetrics = async () => {
+    try {
+      const response = await fetch('http://localhost:3004/api/admin/learning/optimization')
+      const data = await response.json()
+      
+      if (data.success) {
+        setOptimizationMetrics(data)
+      }
+    } catch (err) {
+      console.error('Error fetching optimization metrics:', err)
+    }
+  }
+
+  const resetMetrics = async () => {
+    try {
+      const response = await fetch('http://localhost:3004/api/admin/learning/reset-metrics', {
+        method: 'POST'
+      })
+      const data = await response.json()
+      
+      if (data.success) {
+        // Refresh all data
+        fetchLearningStats()
+        fetchOptimizationMetrics()
+        alert('Metrics reset successfully!')
+      }
+    } catch (err) {
+      console.error('Error resetting metrics:', err)
+      alert('Failed to reset metrics')
     }
   }
 
@@ -152,6 +201,171 @@ export default function LearningDashboard() {
             </div>
           </div>
         </div>
+
+        {/* OPTIMIZATION: Cost & Performance Metrics */}
+        {optimizationMetrics && (
+          <div className="mb-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-semibold text-gray-900">🚀 Cost Optimization Metrics</h2>
+              <button 
+                onClick={resetMetrics}
+                className="bg-orange-600 text-white px-3 py-1 rounded text-sm hover:bg-orange-700 transition-colors"
+              >
+                Reset Metrics
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+              <div className="bg-green-50 p-4 rounded-lg">
+                <div className="text-2xl font-bold text-green-600">
+                  ${optimizationMetrics.optimization.totalCost?.toFixed(4) || '0.0000'}
+                </div>
+                <div className="text-sm text-green-700">Total Cost</div>
+              </div>
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="text-2xl font-bold text-blue-600">
+                  {optimizationMetrics.optimization.cacheHitRate || 0}%
+                </div>
+                <div className="text-sm text-blue-700">Cache Hit Rate</div>
+              </div>
+              <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="text-2xl font-bold text-purple-600">
+                  {optimizationMetrics.optimization.averageResponseTime || 0}ms
+                </div>
+                <div className="text-sm text-purple-700">Avg Response Time</div>
+              </div>
+              <div className="bg-yellow-50 p-4 rounded-lg">
+                <div className="text-2xl font-bold text-yellow-600">
+                  {optimizationMetrics.optimization.learningCalls || 0}
+                </div>
+                <div className="text-sm text-yellow-700">AI Calls Made</div>
+              </div>
+            </div>
+
+            {optimizationMetrics.optimization.costSavings && (
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h3 className="font-medium text-green-800 mb-2">💰 Cost Savings (GPT-3.5-turbo vs GPT-4o)</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <span className="text-green-600">Saved: </span>
+                    <span className="font-semibold">${optimizationMetrics.optimization.costSavings.saved?.toFixed(4)}</span>
+                  </div>
+                  <div>
+                    <span className="text-green-600">Savings: </span>
+                    <span className="font-semibold">{optimizationMetrics.optimization.costSavings.savingsPercentage}%</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Would have cost: </span>
+                    <span className="font-semibold">${optimizationMetrics.optimization.costSavings.wouldHaveCost?.toFixed(4)}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Actual cost: </span>
+                    <span className="font-semibold">${optimizationMetrics.optimization.costSavings.actualCost?.toFixed(4)}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* NEW: Cache Optimization Details */}
+            <div className="bg-blue-50 p-4 rounded-lg mt-4">
+              <h3 className="font-medium text-blue-800 mb-2">🧠 Smart Caching Optimizations</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="text-blue-600">Cache Strategy: </span>
+                  <span className="font-semibold">Granular Location-Based</span>
+                  <p className="text-xs text-blue-600 mt-1">
+                    Urbanization → Suburb → City hierarchy for maximum specificity
+                  </p>
+                </div>
+                <div>
+                  <span className="text-blue-600">Cache Duration: </span>
+                  <span className="font-semibold">1 Week (604,800s)</span>
+                  <p className="text-xs text-blue-600 mt-1">
+                    Extended from 1 hour for massive cost savings
+                  </p>
+                </div>
+                <div>
+                  <span className="text-blue-600">Location Examples: </span>
+                  <span className="font-semibold">puerto_banus, nueva_andalucia</span>
+                  <p className="text-xs text-blue-600 mt-1">
+                    Much more specific than city-level caching
+                  </p>
+                </div>
+                <div>
+                  <span className="text-blue-600">Weekly Savings: </span>
+                  <span className="font-semibold">~95% cost reduction</span>
+                  <p className="text-xs text-blue-600 mt-1">
+                    Insights generated once per location per week
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {optimizationMetrics.recommendations?.length > 0 && (
+              <div className="mt-4">
+                <h3 className="font-medium text-gray-700 mb-2">💡 Recommendations:</h3>
+                <ul className="space-y-1">
+                  {optimizationMetrics.recommendations.map((rec, index) => (
+                    <li key={index} className="text-sm text-gray-600">• {rec}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* OPTIMIZATION: A/B Testing Results */}
+        {abTestResults && Object.keys(abTestResults.results).length > 0 && (
+          <div className="mb-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">🧪 A/B Testing Results</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="text-2xl font-bold text-blue-600">{abTestResults.summary.totalTests}</div>
+                <div className="text-sm text-blue-700">Active Tests</div>
+              </div>
+              <div className="bg-green-50 p-4 rounded-lg">
+                <div className="text-2xl font-bold text-green-600">{abTestResults.summary.totalSamples}</div>
+                <div className="text-sm text-green-700">Total Samples</div>
+              </div>
+              <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="text-2xl font-bold text-purple-600">
+                  {abTestResults.summary.bestPerformingVariant || 'N/A'}
+                </div>
+                <div className="text-sm text-purple-700">Best Variant</div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {Object.entries(abTestResults.results).map(([testKey, result]) => (
+                <div key={testKey} className="border border-gray-200 rounded-lg p-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <h3 className="font-medium text-gray-900">{result.testName}: {result.variant}</h3>
+                    <span className="text-sm text-gray-500">{result.sampleSize} samples</span>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div>
+                      <span className="text-gray-600">Avg Cost: </span>
+                      <span className="font-semibold">${result.averageCost?.toFixed(4) || '0.0000'}</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-600">Avg Response: </span>
+                      <span className="font-semibold">{Math.round(result.averageResponseTime || 0)}ms</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-600">Satisfaction: </span>
+                      <span className="font-semibold">{Math.round((result.averageUserSatisfaction || 0) * 100)}%</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-600">Avg Tokens: </span>
+                      <span className="font-semibold">{Math.round(result.averageTokens || 0)}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Area Insights */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

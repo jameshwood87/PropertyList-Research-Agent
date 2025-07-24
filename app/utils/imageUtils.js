@@ -1,22 +1,19 @@
 // Utility functions for handling property images
 
 /**
- * Convert S3 URL to proxied URL through our backend
+ * Convert S3 key to proxied URL through our backend
+ * Database now stores S3 keys (like "mmQ3QNSwaLg8pFjLyQ5vwWn3") instead of full URLs
  */
-export function getProxiedImageUrl(imageUrl) {
-  if (!imageUrl) return null;
+export function getProxiedImageUrl(imageKey) {
+  if (!imageKey) return null;
   
-  // Check if it's an S3 URL that needs proxying
-  const s3Pattern = /https:\/\/propertylist-staging-assets-west\.s3\.eu-west-1\.amazonaws\.com\/(.+)/;
-  const match = imageUrl.match(s3Pattern);
-  
-  if (match) {
-    const imageId = match[1];
-    return `http://localhost:3004/api/proxy-image/${imageId}`;
+  // If it's already a full URL (backwards compatibility), use directly
+  if (imageKey.startsWith('http')) {
+    return imageKey;
   }
   
-  // Return original URL if it's not an S3 URL
-  return imageUrl;
+  // Convert S3 key to proxy URL
+  return `http://localhost:3004/api/proxy-image/${imageKey}`;
 }
 
 /**

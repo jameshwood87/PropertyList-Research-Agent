@@ -57,7 +57,7 @@ export default function PropertyDisplay({ propertyData }) {
           <div className="space-y-4">
             <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden">
               <Image
-                src={propertyData.images[selectedImage]?.medium || propertyData.images[selectedImage]?.small}
+                src={typeof propertyData.images[selectedImage] === 'string' ? propertyData.images[selectedImage] : (propertyData.images[selectedImage]?.medium || propertyData.images[selectedImage]?.small)}
                 alt={`Property image ${selectedImage + 1}`}
                 fill
                 className="object-cover"
@@ -74,7 +74,7 @@ export default function PropertyDisplay({ propertyData }) {
                     }`}
                   >
                     <Image
-                      src={image.small}
+                      src={typeof image === 'string' ? image : (image.small || image.medium)}
                       alt={`Property thumbnail ${index + 1}`}
                       fill
                       className="object-cover"

@@ -51,8 +51,14 @@ class PostgresDatabase {
     // PostGIS for geospatial features
     await client.query('CREATE EXTENSION IF NOT EXISTS postgis;');
     
-    // pg_trgm for fuzzy text search
+    // pg_trgm for fuzzy text search and trigram similarity
     await client.query('CREATE EXTENSION IF NOT EXISTS pg_trgm;');
+    
+    // fuzzystrmatch for Levenshtein distance calculations
+    await client.query('CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;');
+    
+    // unaccent for accent-insensitive text matching
+    await client.query('CREATE EXTENSION IF NOT EXISTS unaccent;');
     
     // uuid-ossp for UUID generation
     await client.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
@@ -354,9 +360,9 @@ class PostgresDatabase {
           flexibility: flexibility
         });
         
-        results = await this.queryWithFlexibility(criteria, flexibility, targetCount * 2);
+        results = await this.queryWithFlexibility(criteria, flexibility, 200);
         
-        console.log(`📊 Attempt ${attempt}: Found ${results.length} properties`);
+        console.log(`📊 Attempt ${attempt}: Found ${results.length} properties from database (up to 200 candidates)`);
         
         // Add debugging for empty results
         if (results.length === 0 && attempt === 1) {
@@ -401,37 +407,80 @@ class PostgresDatabase {
       radiusKm = 5,
       propertyType,
       bedrooms,
+      price,
       minPrice,
       maxPrice,
       minArea,
       maxArea,
       urbanization,
       suburb,
-      city
+      city,
+      reference,
+      // CRITICAL: Listing type filtering
+      listingType,
+      priceField,
+      is_sale,
+      is_long_term,
+      is_short_term
       } = criteria;
+
+      // ENHANCED: Dynamic price column selection based on listing type
+      const priceColumn = priceField || 'sale_price';
+      const priceCondition = `${priceColumn} > 0`;
 
       let query;
       let params;
 
-      if (latitude && longitude) {
-      // COORDINATE-BASED SEARCH: Use PostGIS KNN operator for maximum performance
-      // Note: Properties from XML will be enriched with coordinates by AI over time
+      // CRITICAL FIX: Check if database actually has properties with coordinates
+      // If database has no coordinates, always use location-based search
+      const hasCoordinateData = await this.checkIfDatabaseHasCoordinates();
+      
+      if (latitude && longitude && hasCoordinateData) {
+      // HYBRID SEARCH: Coordinate-based with location fallback
+      // PRIORITY: Same urbanization/suburb > coordinates > other criteria
         query = `
           SELECT 
             id, reference, address, urbanization, suburb, city,
             latitude, longitude, bedrooms, bathrooms, build_size,
-            sale_price, property_type, features, images,
-          geom <-> ST_SetSRID(ST_Point($1, $2), 4326) AS distance_sort,
-          ST_Distance(geom, ST_SetSRID(ST_Point($1, $2), 4326)) AS distance_meters
+            sale_price, monthly_price, weekly_price_from, weekly_price_to,
+            property_type, features, images, is_sale, is_long_term, is_short_term,
+            -- Distance calculation: favor exact location matches over coordinates
+            CASE 
+              WHEN LOWER(COALESCE(urbanization, '')) = LOWER(COALESCE($3, '')) AND urbanization IS NOT NULL AND $3 IS NOT NULL THEN 0.1
+              WHEN LOWER(COALESCE(suburb, '')) = LOWER(COALESCE($4, '')) AND suburb IS NOT NULL AND $4 IS NOT NULL THEN 0.5
+              WHEN latitude IS NOT NULL AND longitude IS NOT NULL THEN
+                CASE 
+                  WHEN geom IS NOT NULL THEN geom <-> ST_SetSRID(ST_Point($1, $2), 4326)
+                  ELSE ST_Distance(
+                    ST_SetSRID(ST_MakePoint(longitude, latitude), 4326),
+                    ST_SetSRID(ST_Point($1, $2), 4326)
+                  ) / 111000
+                END
+              ELSE 50 -- Large distance for properties without coordinates or location match
+            END AS distance_sort,
+            CASE 
+              WHEN LOWER(COALESCE(urbanization, '')) = LOWER(COALESCE($3, '')) AND urbanization IS NOT NULL AND $3 IS NOT NULL THEN 100
+              WHEN LOWER(COALESCE(suburb, '')) = LOWER(COALESCE($4, '')) AND suburb IS NOT NULL AND $4 IS NOT NULL THEN 500
+              WHEN latitude IS NOT NULL AND longitude IS NOT NULL THEN
+                CASE 
+                  WHEN geom IS NOT NULL THEN ST_Distance(geom, ST_SetSRID(ST_Point($1, $2), 4326))
+                  ELSE ST_Distance(
+                    ST_SetSRID(ST_MakePoint(longitude, latitude), 4326),
+                    ST_SetSRID(ST_Point($1, $2), 4326)
+                  )
+                END
+              ELSE 50000 -- 50km for properties without coordinates or location match
+            END AS distance_meters
           FROM properties 
           WHERE is_active = true
-            AND geom IS NOT NULL
-          AND sale_price > 0
-          AND build_size > 0
+            AND ${priceCondition}
+            AND build_size > 0
+            AND reference != $5
+            AND is_sale = $6 AND is_long_term = $7 AND is_short_term = $8
         `;
         
-      params = [longitude, latitude]; // Note: PostGIS expects longitude first
-      let paramIndex = 3;
+      params = [longitude, latitude, urbanization, suburb, reference, is_sale, is_long_term, is_short_term]; // Note: PostGIS expects longitude first
+      let paramIndex = 9;
         
       // Enhanced flexible filters
         if (propertyType) {
@@ -441,25 +490,47 @@ class PostgresDatabase {
         }
         
         if (bedrooms) {
-        // FLEXIBLE: Allow ±1 bedroom with progressive relaxation
-        const bedroomRange = Math.max(1, Math.floor(flexibility * 2)); // 0, 0, 1 bedrooms flexibility
+        // ENHANCED: Much more flexible bedroom matching for large properties
+        let bedroomRange;
+        if (bedrooms <= 3) {
+          bedroomRange = Math.max(1, Math.floor(flexibility * 2)); // Small: ±1 bedroom
+        } else if (bedrooms <= 6) {
+          bedroomRange = Math.max(2, 2 + Math.floor(flexibility * 2)); // Medium: ±2-3 bedrooms  
+        } else {
+          bedroomRange = Math.max(3, 3 + Math.floor(flexibility * 3)); // Large: ±4-5 bedrooms
+        }
+        
         const minBedrooms = Math.max(1, bedrooms - bedroomRange);
         const maxBedrooms = bedrooms + bedroomRange;
         query += ` AND bedrooms BETWEEN $${paramIndex} AND $${paramIndex + 1}`;
         params.push(minBedrooms, maxBedrooms);
         paramIndex += 2;
-      }
-      
+        }
+        
       if (minPrice || maxPrice) {
-        // FLEXIBLE: Expand price range based on flexibility
-        const priceFlexibility = 0.3 + flexibility; // 30%, 50%, 70% tolerance
+        // ENHANCED: Much more aggressive price flexibility for real estate markets
+        let priceFlexibility;
+        if (flexibility >= 0.6) {
+          // Final attempt: Very aggressive price range (e.g., for luxury markets)
+          priceFlexibility = 3.0; // ±300% range to capture different market segments
+        } else if (price && price > 1000000) {
+          // Luxury market: ±80% is normal due to quality, condition, views differences
+          priceFlexibility = 0.8 + (flexibility * 0.2); // 80%, 90%, 100% tolerance
+        } else {
+          // Standard market: More price-sensitive but still flexible
+          priceFlexibility = 0.5 + (flexibility * 1.0); // 50%, 90%, 150% tolerance  
+        }
         const flexibleMin = minPrice ? minPrice * (1 - priceFlexibility) : 0;
         const flexibleMax = maxPrice ? maxPrice * (1 + priceFlexibility) : 999999999;
-        query += ` AND sale_price BETWEEN $${paramIndex} AND $${paramIndex + 1}`;
+        
+        console.log(`💰 Price flexibility: ${Math.round(priceFlexibility * 100)}% (attempt ${Math.round(flexibility * 5 + 1)})`);
+        console.log(`💰 Price range: €${Math.round(flexibleMin).toLocaleString()} - €${Math.round(flexibleMax).toLocaleString()}`);
+        
+        query += ` AND ${priceColumn} BETWEEN $${paramIndex} AND $${paramIndex + 1}`;
         params.push(flexibleMin, flexibleMax);
         paramIndex += 2;
-      }
-      
+        }
+        
       if (minArea || maxArea) {
         // FLEXIBLE: Size tolerance with progressive relaxation
         const sizeFlexibility = 0.4 + flexibility; // 40%, 60%, 80% tolerance
@@ -468,46 +539,99 @@ class PostgresDatabase {
         query += ` AND build_size BETWEEN $${paramIndex} AND $${paramIndex + 1}`;
         params.push(flexibleMinArea, flexibleMaxArea);
         paramIndex += 2;
-      }
-
-      // ENHANCED: Expand search radius progressively
+        }
+        
+      // ENHANCED: Expand search radius progressively with location hierarchy fallback
       const expandedRadius = radiusKm + (flexibility * radiusKm * 2); // 5km → 7km → 9km → 11km
-      query += ` AND ST_DWithin(geom, ST_SetSRID(ST_Point($1, $2), 4326), $${paramIndex})`;
+      query += ` AND (
+        -- Exact location matches (urbanization/suburb) always included regardless of distance
+        (LOWER(COALESCE(urbanization, '')) = LOWER(COALESCE($3, '')) AND urbanization IS NOT NULL AND $3 IS NOT NULL) OR
+        (LOWER(COALESCE(suburb, '')) = LOWER(COALESCE($4, '')) AND suburb IS NOT NULL AND $4 IS NOT NULL) OR
+        -- Coordinate-based distance filtering for properties with coordinates
+        (latitude IS NOT NULL AND longitude IS NOT NULL AND (
+          (geom IS NOT NULL AND ST_DWithin(geom, ST_SetSRID(ST_Point($1, $2), 4326), $${paramIndex})) OR
+          (geom IS NULL AND ST_DWithin(
+            ST_SetSRID(ST_MakePoint(longitude, latitude), 4326),
+            ST_SetSRID(ST_Point($1, $2), 4326),
+            $${paramIndex}
+          ))
+        ))
+      )`;
       params.push(expandedRadius * 1000); // Convert to meters
           paramIndex++;
       
-      // CRITICAL: Order by KNN distance for optimal performance
-      query += ` ORDER BY geom <-> ST_SetSRID(ST_Point($1, $2), 4326) LIMIT $${paramIndex}`;
+      // CRITICAL: Order by distance (with fallback) for optimal performance
+      query += ` ORDER BY distance_sort LIMIT $${paramIndex}`;
         params.push(limit);
         
       } else {
       // Location-based query without coordinates (fallback)
+      console.log(`📍 Using location-based search (no coordinates in database or search criteria)`);
         query = `
           SELECT 
             id, reference, address, urbanization, suburb, city,
             latitude, longitude, bedrooms, bathrooms, build_size,
-            sale_price, property_type, features, images,
+            sale_price, monthly_price, weekly_price_from, weekly_price_to,
+            property_type, features, images, is_sale, is_long_term, is_short_term,
           0 as distance_sort,
             0 as distance_meters
           FROM properties 
           WHERE is_active = true
-          AND sale_price > 0
+          AND ${priceCondition}
+          AND reference != $1
+          AND is_sale = $2 AND is_long_term = $3 AND is_short_term = $4
         `;
         
-        params = [];
-        let paramIndex = 1;
+        params = [reference, is_sale, is_long_term, is_short_term];
+        let paramIndex = 5;
         
-      // Prioritize location matching with flexible criteria
+            // Prioritize location matching with flexible criteria (accent-tolerant)
         if (urbanization) {
-          query += ` AND urbanization = $${paramIndex}`;
+        query += ` AND (urbanization = $${paramIndex} OR LOWER(UNACCENT(urbanization)) = LOWER(UNACCENT($${paramIndex})))`;
           params.push(urbanization);
           paramIndex++;
         } else if (suburb) {
-          query += ` AND suburb = $${paramIndex}`;
+        // ENHANCED: Precise location matching - no more broad fuzzy matching
+        if (suburb.toLowerCase().includes('golden mile') && !suburb.toLowerCase().includes('new')) {
+          // Searching for "Golden Mile" (Marbella) - exclude "New Golden Mile"
+          query += ` AND (
+            (suburb = $${paramIndex} 
+            OR LOWER(UNACCENT(suburb)) = LOWER(UNACCENT($${paramIndex}))
+            OR LOWER(suburb) = 'marbella golden mile'
+            OR suburb = 'Marbella Golden Mile')
+            AND LOWER(suburb) NOT LIKE '%new golden mile%'
+            AND LOWER(suburb) NOT LIKE '%nuevo golden mile%'
+          )`;
+        } else if (suburb.toLowerCase().includes('new golden mile')) {
+          // Searching for "New Golden Mile" (Estepona) - be specific
+          query += ` AND (
+            suburb = $${paramIndex} 
+            OR LOWER(UNACCENT(suburb)) = LOWER(UNACCENT($${paramIndex}))
+            OR LOWER(suburb) LIKE '%new golden mile%'
+            OR LOWER(suburb) LIKE '%nuevo golden mile%'
+          )`;
+        } else {
+          // Standard precise matching for other areas - no broad fuzzy matching
+          query += ` AND (
+            suburb = $${paramIndex} 
+            OR LOWER(UNACCENT(suburb)) = LOWER(UNACCENT($${paramIndex}))
+          )`;
+        }
           params.push(suburb);
           paramIndex++;
         } else if (city) {
-          query += ` AND city = $${paramIndex}`;
+        // ENHANCED: Expand city search to include nearby areas in final attempts
+        if (flexibility >= 0.4) {
+          // High flexibility: include nearby cities
+          query += ` AND (
+            city = $${paramIndex} 
+            OR LOWER(UNACCENT(city)) = LOWER(UNACCENT($${paramIndex}))
+            OR (city = 'Benahavis' AND $${paramIndex} = 'Marbella')  -- La Quinta is actually in Benahavis
+            OR (city = 'Marbella' AND $${paramIndex} = 'Benahavis')  -- Allow reverse lookup
+          )`;
+        } else {
+          query += ` AND (city = $${paramIndex} OR LOWER(UNACCENT(city)) = LOWER(UNACCENT($${paramIndex})))`;
+        }
           params.push(city);
           paramIndex++;
         }
@@ -520,7 +644,16 @@ class PostgresDatabase {
         }
         
         if (bedrooms) {
-        const bedroomRange = Math.max(1, Math.floor(flexibility * 2));
+        // ENHANCED: Much more flexible bedroom matching for large properties (same as coordinate-based)
+        let bedroomRange;
+        if (bedrooms <= 3) {
+          bedroomRange = Math.max(1, Math.floor(flexibility * 2)); // Small: ±1 bedroom
+        } else if (bedrooms <= 6) {
+          bedroomRange = Math.max(2, 2 + Math.floor(flexibility * 2)); // Medium: ±2-3 bedrooms  
+        } else {
+          bedroomRange = Math.max(3, 3 + Math.floor(flexibility * 3)); // Large: ±4-5 bedrooms
+        }
+        
         const minBedrooms = Math.max(1, bedrooms - bedroomRange);
         const maxBedrooms = bedrooms + bedroomRange;
         query += ` AND bedrooms BETWEEN $${paramIndex} AND $${paramIndex + 1}`;
@@ -528,7 +661,32 @@ class PostgresDatabase {
         paramIndex += 2;
         }
         
-        query += ` ORDER BY sale_price ASC, bedrooms ASC LIMIT $${paramIndex}`;
+        // ENHANCED: Add same aggressive price flexibility as coordinate-based query
+        if (minPrice || maxPrice) {
+        // ENHANCED: Much more aggressive price flexibility for real estate markets
+        let priceFlexibility;
+        if (flexibility >= 0.6) {
+          // Final attempt: Very aggressive price range (e.g., for luxury markets)
+          priceFlexibility = 3.0; // ±300% range to capture different market segments
+        } else if (price && price > 1000000) {
+          // Luxury market: ±80% is normal due to quality, condition, views differences
+          priceFlexibility = 0.8 + (flexibility * 0.2); // 80%, 90%, 100% tolerance
+        } else {
+          // Standard market: More price-sensitive but still flexible
+          priceFlexibility = 0.5 + (flexibility * 1.0); // 50%, 90%, 150% tolerance  
+        }
+        const flexibleMin = minPrice ? minPrice * (1 - priceFlexibility) : 0;
+        const flexibleMax = maxPrice ? maxPrice * (1 + priceFlexibility) : 999999999;
+        
+        console.log(`💰 Price flexibility: ${Math.round(priceFlexibility * 100)}% (attempt ${Math.round(flexibility * 5 + 1)})`);
+        console.log(`💰 Price range: €${Math.round(flexibleMin).toLocaleString()} - €${Math.round(flexibleMax).toLocaleString()}`);
+        
+        query += ` AND ${priceColumn} BETWEEN $${paramIndex} AND $${paramIndex + 1}`;
+        params.push(flexibleMin, flexibleMax);
+        paramIndex += 2;
+        }
+        
+        query += ` ORDER BY ${priceColumn} ASC, bedrooms ASC LIMIT $${paramIndex}`;
         params.push(limit);
       }
 
@@ -536,6 +694,31 @@ class PostgresDatabase {
       const result = await this.pool.query(query, params);
     
       return result.rows;
+  }
+
+  /**
+   * Check if database has properties with coordinates
+   */
+  async checkIfDatabaseHasCoordinates() {
+    try {
+      const result = await this.pool.query(`
+        SELECT COUNT(*) as coord_count 
+        FROM properties 
+        WHERE latitude IS NOT NULL 
+          AND longitude IS NOT NULL 
+          AND is_active = true 
+        LIMIT 1
+      `);
+      
+      const hasCoords = parseInt(result.rows[0]?.coord_count || 0) > 0;
+      if (!hasCoords) {
+        console.log(`📍 Database has no properties with coordinates - forcing location-based search`);
+      }
+      return hasCoords;
+    } catch (error) {
+      console.error('Error checking coordinate availability:', error);
+      return false; // Default to location-based search on error
+    }
   }
 
   /**
@@ -788,193 +971,6 @@ class PostgresDatabase {
       throw error;
     }
   }
-
-  /**
-   * Get recent feedback for learning analysis
-   */
-  async getRecentFeedback(stepId = null, area = null, days = 30) {
-    try {
-      let query = `
-        SELECT 
-          session_id,
-          property_data->>'city' as city,
-          user_feedback->>'stepId' as step_id,
-          (user_feedback->>'helpful')::boolean as helpful,
-          user_feedback->>'timestamp' as timestamp
-        FROM analysis_history
-        WHERE created_at >= NOW() - INTERVAL '${days} days'
-      `;
-      
-      const params = [];
-      let paramCount = 0;
-      
-      if (stepId) {
-        paramCount++;
-        query += ` AND user_feedback->>'stepId' = $${paramCount}`;
-        params.push(stepId);
-      }
-      
-      if (area) {
-        paramCount++;
-        query += ` AND property_data->>'city' = $${paramCount}`;
-        params.push(area);
-      }
-      
-      query += ` ORDER BY created_at DESC`;
-      
-      const result = await this.pool.query(query, params);
-      return result.rows;
-    } catch (error) {
-      console.error('Error getting recent feedback:', error);
-      return [];
-    }
-  }
-
-  /**
-   * Get area-specific insights for AI learning
-   */
-  async getAreaInsights(area) {
-    try {
-      const query = `
-        SELECT 
-          'pricing_pattern' as type,
-          'stable' as trend,
-          5.2 as percentage
-        UNION ALL
-        SELECT 
-          'location_preference' as type,
-          'highly' as importance,
-          0.42 as weight
-        UNION ALL
-        SELECT 
-          'size_correlation' as type,
-          'strong' as correlation,
-          0.85 as value
-      `;
-      
-      const result = await this.pool.query(query);
-      return result.rows;
-    } catch (error) {
-      console.error('Error getting area insights:', error);
-      return [];
-    }
-  }
-
-  /**
-   * Store improvement trigger
-   */
-  async storeImprovementTrigger(improvement) {
-    try {
-      const query = `
-        INSERT INTO analysis_history (
-          session_id, 
-          property_data, 
-          analysis_results, 
-          user_feedback
-        ) VALUES ($1, $2, $3, $4)
-        RETURNING id
-      `;
-      
-      const result = await this.pool.query(query, [
-        `improvement_${Date.now()}`,
-        JSON.stringify({ area: improvement.area }),
-        JSON.stringify({ type: 'improvement_trigger', ...improvement }),
-        JSON.stringify({ type: 'system_improvement', ...improvement })
-      ]);
-      
-      return result.rows[0].id;
-    } catch (error) {
-      console.error('Error storing improvement trigger:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Get learning analytics for dashboard
-   */
-  async getLearningAnalytics() {
-    try {
-      // Get total feedback count
-      const totalFeedbackQuery = `
-        SELECT COUNT(*) as total_feedback
-        FROM analysis_history 
-        WHERE user_feedback IS NOT NULL 
-        AND user_feedback->>'helpful' IS NOT NULL
-      `;
-      
-      // Get helpfulness rate
-      const helpfulnessQuery = `
-        SELECT 
-          COUNT(CASE WHEN (user_feedback->>'helpful')::boolean = true THEN 1 END) as helpful_count,
-          COUNT(*) as total_count
-        FROM analysis_history 
-        WHERE user_feedback IS NOT NULL 
-        AND user_feedback->>'helpful' IS NOT NULL
-      `;
-      
-      // Get weekly accuracy comparison
-      const weeklyAccuracyQuery = `
-        SELECT 
-          date_part('week', created_at) as week,
-          COUNT(CASE WHEN (user_feedback->>'helpful')::boolean = true THEN 1 END)::float / 
-          COUNT(*)::float as accuracy
-        FROM analysis_history 
-        WHERE user_feedback IS NOT NULL 
-        AND user_feedback->>'helpful' IS NOT NULL
-        AND created_at >= NOW() - INTERVAL '2 weeks'
-        GROUP BY date_part('week', created_at)
-        ORDER BY week DESC
-        LIMIT 2
-      `;
-      
-      const [totalResult, helpfulnessResult, weeklyResult] = await Promise.all([
-        this.pool.query(totalFeedbackQuery),
-        this.pool.query(helpfulnessQuery),
-        this.pool.query(weeklyAccuracyQuery)
-      ]);
-      
-      const totalFeedback = parseInt(totalResult.rows[0]?.total_feedback || 0);
-      const helpfulCount = parseInt(helpfulnessResult.rows[0]?.helpful_count || 0);
-      const totalCount = parseInt(helpfulnessResult.rows[0]?.total_count || 0);
-      const helpfulnessRate = totalCount > 0 ? helpfulCount / totalCount : 0;
-      
-      // Calculate weekly improvement
-      const weeklyAccuracy = weeklyResult.rows;
-      let thisWeekAccuracy = 0;
-      let lastWeekAccuracy = 0;
-      let weeklyImprovement = 0;
-      
-      if (weeklyAccuracy.length >= 2) {
-        thisWeekAccuracy = parseFloat(weeklyAccuracy[0].accuracy);
-        lastWeekAccuracy = parseFloat(weeklyAccuracy[1].accuracy);
-        weeklyImprovement = thisWeekAccuracy - lastWeekAccuracy;
-      } else if (weeklyAccuracy.length === 1) {
-        thisWeekAccuracy = parseFloat(weeklyAccuracy[0].accuracy);
-      }
-      
-      return {
-        totalFeedback,
-        helpfulnessRate,
-        thisWeekAccuracy,
-        lastWeekAccuracy,
-        weeklyImprovement,
-        topPerformingSteps: ['market', 'comparables'], // TODO: Calculate from data
-        improvementAreas: ['insights', 'report'] // TODO: Calculate from data
-      };
-      
-    } catch (error) {
-      console.error('Error getting learning analytics:', error);
-      return {
-        totalFeedback: 0,
-        helpfulnessRate: 0,
-        thisWeekAccuracy: 0,
-        lastWeekAccuracy: 0,
-        weeklyImprovement: 0,
-        topPerformingSteps: [],
-        improvementAreas: []
-      };
-    }
-  }
 }
 
-module.exports = PostgresDatabase; 
+module.exports = PostgresDatabase;

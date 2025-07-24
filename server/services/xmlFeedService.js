@@ -390,6 +390,7 @@ class XMLFeedService {
 
   /**
    * Extract images from PropertyList.es format
+   * ENHANCED: Store full original URLs for fallback when API is down
    */
   extractImages(xmlProperty) {
     const images = [];
@@ -424,13 +425,20 @@ class XMLFeedService {
         }
         
         if (imageUrl && typeof imageUrl === 'string') {
-          images.push(imageUrl.trim());
+          // ENHANCED: Store the full original URL from XML for fallback use
+          const cleanUrl = imageUrl.trim();
+          if (cleanUrl && cleanUrl.length > 0) {
+            console.log(`📸 Storing full image URL: ${cleanUrl.substring(0, 80)}...`);
+            images.push(cleanUrl); // Store the complete URL as it appears in XML
+          }
         }
       }
     }
     
     return images;
   }
+
+
 
   /**
    * Extract descriptions from PropertyList.es format

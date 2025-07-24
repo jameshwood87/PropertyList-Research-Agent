@@ -44,49 +44,83 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
       enhancedLocation: locationContext?.enhancedLocation?.coordinates,
       propertyLatitude: propertyData?.latitude,
       propertyLongitude: propertyData?.longitude,
-      propertyCity: propertyData?.city
+      propertyCity: propertyData?.city,
+      propertyAddress: propertyData?.street_address,
+      propertyUrbanization: propertyData?.urbanization
     });
 
-    // HIGHEST PRIORITY: Use enhanced location coordinates from user input AI processing
-    if (locationContext?.enhancedLocation?.coordinates?.lat && locationContext?.enhancedLocation?.coordinates?.lng) {
-      console.log('🎯 Using ENHANCED location coordinates from user input:', locationContext.enhancedLocation.coordinates);
-      console.log('🏛️ Enhanced method:', locationContext.enhancedLocation.method);
-      console.log('📍 User provided:', locationContext.userProvidedEnhancement);
-      return locationContext.enhancedLocation.coordinates;
-    }
+    console.log('🔍 ENHANCED LOCATION ANALYSIS:');
+    console.log('   enhancedLocation exists:', !!locationContext?.enhancedLocation);
+    console.log('   enhancedLocation.coordinates:', locationContext?.enhancedLocation?.coordinates);
+    console.log('   enhancedLocation.method:', locationContext?.enhancedLocation?.method);
+    console.log('   enhancedLocation.userProvidedText:', locationContext?.enhancedLocation?.userProvidedText);
+    console.log('   locationContext.userProvidedEnhancement:', locationContext?.userProvidedEnhancement);
 
-    // First priority: Use coordinates from location intelligence
-    if (locationContext?.coordinates?.lat && locationContext?.coordinates?.lng) {
-      console.log('🗺️ Using location intelligence coordinates:', locationContext.coordinates);
-      return locationContext.coordinates;
-    }
-    
-    // Second priority: Use lat/lng from location intelligence
-    if (locationContext?.lat && locationContext?.lng) {
-      console.log('🗺️ Using location intelligence lat/lng:', { lat: locationContext.lat, lng: locationContext.lng });
-      return { lat: locationContext.lat, lng: locationContext.lng };
-    }
-    
-    // Third priority: Use coordinates directly from property data
+    // FIRST PRIORITY: Use property's actual coordinates if available
     if (propertyData?.latitude && propertyData?.longitude) {
       const propertyCoords = {
         lat: parseFloat(propertyData.latitude),
         lng: parseFloat(propertyData.longitude)
       };
-      console.log('🗺️ Using property data coordinates:', propertyCoords);
+      console.log('🏠 Using property data coordinates (HIGHEST PRIORITY):', propertyCoords);
       return propertyCoords;
     }
+
+    // SECOND PRIORITY: Use enhanced location coordinates from user input AI processing
+    if (locationContext?.enhancedLocation?.coordinates?.lat && locationContext?.enhancedLocation?.coordinates?.lng) {
+      console.log('🎯 Using ENHANCED location coordinates from user input:', locationContext.enhancedLocation.coordinates);
+      console.log('🏛️ Enhanced method:', locationContext.enhancedLocation.method);
+      console.log('📍 User provided text:', locationContext.enhancedLocation.userProvidedText);
+      console.log('📍 User enhancement:', locationContext.userProvidedEnhancement);
+      console.log('✅ FINAL DECISION: Using bull ring coordinates!');
+      return locationContext.enhancedLocation.coordinates;
+    } else {
+      console.log('❌ Enhanced location coordinates NOT available or invalid');
+      console.log('   Checking conditions:');
+      console.log('   - locationContext?.enhancedLocation exists:', !!locationContext?.enhancedLocation);
+      console.log('   - coordinates exist:', !!locationContext?.enhancedLocation?.coordinates);
+      console.log('   - lat exists:', locationContext?.enhancedLocation?.coordinates?.lat);
+      console.log('   - lng exists:', locationContext?.enhancedLocation?.coordinates?.lng);
+    }
+
+    // THIRD PRIORITY: Use coordinates from location intelligence
+    if (locationContext?.coordinates?.lat && locationContext?.coordinates?.lng) {
+      console.log('🗺️ Using location intelligence coordinates:', locationContext.coordinates);
+      return locationContext.coordinates;
+    }
     
-    // Fourth priority: Try to get city coordinates for known cities
+    // FOURTH PRIORITY: Use lat/lng from location intelligence
+    if (locationContext?.lat && locationContext?.lng) {
+      console.log('🗺️ Using location intelligence lat/lng:', { lat: locationContext.lat, lng: locationContext.lng });
+      return { lat: locationContext.lat, lng: locationContext.lng };
+    }
+    
+    // FIFTH PRIORITY: Try direct geocoding of street address if available
+    if (propertyData?.street_address || propertyData?.urbanization) {
+      const addressToGeocode = propertyData.street_address || propertyData.urbanization;
+      console.log('🏢 Should directly geocode address (not implemented in frontend):', addressToGeocode);
+      // Note: This would need to be handled in the backend during property creation
+    }
+    
+    // SIXTH PRIORITY: Try to get coordinates for known cities/suburbs
+    if (propertyData?.suburb) {
+      const suburbCoords = getCityCoordinates(propertyData.suburb);
+      if (suburbCoords) {
+        console.log('🏘️ Using known suburb coordinates for:', propertyData.suburb, suburbCoords);
+        return suburbCoords;
+      }
+    }
+    
+    // SEVENTH PRIORITY: Try to get city coordinates for known cities
     if (propertyData?.city) {
       const cityCoords = getCityCoordinates(propertyData.city);
       if (cityCoords) {
-        console.log('🗺️ Using known city coordinates for:', propertyData.city, cityCoords);
+        console.log('🏙️ Using known city coordinates for:', propertyData.city, cityCoords);
         return cityCoords;
       }
     }
     
-    // Fifth priority: Try to get coordinates for resolved location
+    // EIGHTH PRIORITY: Try to get coordinates for resolved location
     if (locationContext?.location) {
       const locationCoords = getCityCoordinates(locationContext.location);
       if (locationCoords) {
@@ -96,8 +130,8 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
       console.log('🗺️ Location intelligence found but no coordinates for:', locationContext.location);
     }
     
-    // Fallback: Use default Marbella coordinates
-    console.log('🗺️ Using default coordinates for:', propertyData?.city || 'Unknown location');
+    // FALLBACK: Use default Marbella coordinates
+    console.log('❌ Using default coordinates (NO SPECIFIC LOCATION FOUND) for:', propertyData?.city || 'Unknown location');
     return defaultCoords;
   })();
   
@@ -131,7 +165,7 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
     try {
                       const map = new window.google.maps.Map(mapRef.current, {
         center: coordinates,
-        zoom: 18,
+        zoom: 15,
         mapTypeId: 'hybrid',
         tilt: 45, // Enable 3D view by default
         heading: 0, // Set initial heading for 3D view
@@ -392,10 +426,9 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
               <h4 className="font-semibold text-gray-900 text-sm leading-tight">
                 {locationName}
               </h4>
-              {locationContext?.method && (
+              {confidence > 0 && (
                 <p className="text-xs text-gray-600 mt-1">
-                  Via {locationContext.method.replace('user_input_ai', 'User Input AI').replace('_', ' ')}
-                  {confidence > 0 && `• ${(confidence * 100).toFixed(0)}% confidence`}
+                  {(confidence * 100).toFixed(0)}% confidence
                 </p>
               )}
               {locationContext?.urbanization && locationContext.urbanization !== locationName && (

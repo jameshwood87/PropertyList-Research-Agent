@@ -7,14 +7,19 @@ router.get('/proxy-test', (req, res) => {
   res.json({ status: 'Image proxy routing is working!', timestamp: new Date().toISOString() });
 });
 
-// Image proxy endpoint to handle restricted S3 URLs
-router.get('/proxy-image/:imageId', async (req, res) => {
+// Image proxy endpoint to handle S3 keys
+router.get('/proxy-image/*', async (req, res) => {
   try {
-    const imageId = req.params.imageId;
-    const s3BaseUrl = 'https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/';
-    const imageUrl = s3BaseUrl + imageId;
+    // Get the S3 key from the path
+    const s3Key = req.params[0];
     
-    console.log(`Proxying image: ${imageUrl}`);
+    console.log(`🖼️ Image proxy request for S3 key: ${s3Key}`);
+    
+    // Construct full S3 URL from key
+    const s3BaseUrl = 'https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/';
+    const imageUrl = s3BaseUrl + s3Key;
+    
+    console.log(`📡 Fetching image: ${imageUrl}`);
     
     // Fetch the image with appropriate headers
     const response = await axios.get(imageUrl, {
@@ -39,13 +44,15 @@ router.get('/proxy-image/:imageId', async (req, res) => {
     response.data.pipe(res);
     
   } catch (error) {
-    console.error('Image proxy error:', error.message);
+    console.error('❌ Image proxy error:', error.message);
+    console.error('   S3 key:', req.params[0]);
     
-    // Return a default property image placeholder
+    // Return a helpful error response
     res.status(404).json({
       error: 'Image not available',
-      imageId: req.params.imageId,
-      message: 'Using fallback placeholder'
+      s3Key: req.params[0],
+      message: 'Image could not be loaded from S3. The image may not exist or access may be restricted.',
+      suggestion: 'Try refreshing the page to get updated image data'
     });
   }
 });

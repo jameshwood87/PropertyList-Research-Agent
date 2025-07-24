@@ -1,0 +1,46 @@
+{
+  "id": "7b9a9e5a-77c4-4cff-8901-ea46482be981",
+  "propertyData": {
+    "property_type": "Villa",
+    "bedrooms": 3,
+    "descriptions": "Fresh test property after server restart",
+    "sale_price": 750000,
+    "reference": "RESTART_TEST_001",
+    "city": "Marbella",
+    "build_size": 250,
+    "bathrooms": 3,
+    "build_square_meters": 250,
+    "price": 750000,
+    "totalCost": {
+      "purchasePrice": 750000,
+      "annualCosts": 0,
+      "totalFirstYear": 750000,
+      "breakdown": {
+        "ibi": 0,
+        "basura": 0,
+        "communityFees": 0
+      }
+    },
+    "pricePerSqm": 3000,
+    "resolvedLocation": {
+      "location": "Marbella",
+      "coordinates": null,
+      "confidence": 0.3,
+      "method": "basic_fallback",
+      "landmarks": [],
+      "proximityClues": [],
+      "enhancementReason": "Description too short"
+    }
+  },
+  "locationContext": {
+    "location": "Marbella",
+    "coordinates": null,
+    "confidence": 0.3,
+    "method": "basic_fallback",
+    "landmarks": [],
+    "proximityClues": [],
+    "enhancementReason": "Description too short"
+  },
+  "createdAt": "2025-07-24T22:21:49.116Z",
+  "status": "ready"
+}
