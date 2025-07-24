@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import PropertyDisplay from './components/PropertyDisplay'
 import AnalysisPanel from './components/AnalysisPanel'
 import LoadingSpinner from './components/LoadingSpinner'
 
-export default function Home() {
+// Separate component for content that uses useSearchParams
+function HomeContent() {
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session')
   
@@ -106,5 +107,18 @@ export default function Home() {
         </div>
       </main>
     </div>
+  )
+}
+
+// Main component with Suspense boundary
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   )
 } 

@@ -30,7 +30,9 @@
       "landmarks": [],
       "proximityClues": [],
       "enhancementReason": "Description too short"
-    }
+    },
+    "additionalInfo": "in el caprichio",
+    "userProvidedDetails": "in el caprichio"
   },
   "locationContext": {
     "location": "Marbella",
@@ -42,5 +44,86 @@
     "enhancementReason": "Description too short"
   },
   "createdAt": "2025-07-24T22:21:49.116Z",
-  "status": "ready"
+  "status": "completed",
+  "updatedAt": "2025-07-24T22:51:09.900Z",
+  "analysisResults": {
+    "market": {
+      "marketValue": 780866,
+      "pricePerSqm": 3000,
+      "trend": "down",
+      "confidence": 82
+    },
+    "comparables": {
+      "comparables": [],
+      "allComparables": [],
+      "summary": "No comparable properties found within 10km radius.",
+      "marketContext": null,
+      "chartData": {
+        "priceComparison": {
+          "subject": 750000,
+          "comparables": [],
+          "average": 0
+        },
+        "pricePerSqm": {
+          "subject": 0,
+          "comparables": []
+        },
+        "sizeComparison": {
+          "subject": 250,
+          "comparables": []
+        },
+        "marketPosition": {
+          "subject": 750000,
+          "marketRange": {
+            "min": 0,
+            "max": 0,
+            "median": 0
+          }
+        }
+      },
+      "averagePrice": null
+    },
+    "insights": {
+      "recommendations": [
+        "Consider this property as a good investment opportunity",
+        "Monitor local market developments closely",
+        "Factor in potential renovation costs if needed"
+      ],
+      "risks": [
+        "Market volatility in the current economic climate",
+        "Potential interest rate changes affecting affordability"
+      ]
+    },
+    "developments": {
+      "projects": [
+        {
+          "name": "Costa del Sol Metro Extension",
+          "type": "Transportation",
+          "distance": "2.5km",
+          "completion": "2027",
+          "impact": "High"
+        },
+        {
+          "name": "Nueva Andalucía Marina Expansion",
+          "type": "Infrastructure",
+          "distance": "1.8km",
+          "completion": "2026",
+          "impact": "Medium"
+        },
+        {
+          "name": "Golf Valley Shopping Centre",
+          "type": "Commercial",
+          "distance": "1.2km",
+          "completion": "2025",
+          "impact": "Medium"
+        }
+      ],
+      "summary": "Several major infrastructure projects are planned near this property, which could positively impact property values and lifestyle amenities.",
+      "overallImpact": "Positive"
+    },
+    "report": {
+      "reportId": "REP_1753397468811",
+      "generatedAt": "2025-07-24T22:51:08.811Z"
+    }
+  }
 }
