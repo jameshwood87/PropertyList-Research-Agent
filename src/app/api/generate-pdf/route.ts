@@ -4284,6 +4284,62 @@ function generatePDFHTML(report: CMAReport, logoBase64: string, reportType?: str
           </div>
         </div>
       </div>
+      
+      <!-- Property Condition -->
+      ${(function() {
+        const desc = report.propertyData.descriptions?.en || report.propertyData.descriptions?.es || '';
+        const descLower = desc.toLowerCase();
+        
+        // Check for renovation keywords  
+        let condition = null;
+        let conditionColor = '#059669'; // Default green
+        
+        if (descLower.includes('renovation villa project') || 
+            descLower.includes('renovation project') || 
+            descLower.includes('restoration project') ||
+            descLower.includes('needs renovation') ||
+            descLower.includes('investment opportunity') ||
+            descLower.includes('has potential')) {
+          condition = 'Renovation Project';
+          conditionColor = '#dc2626'; // Red for needs work
+        } else if (descLower.includes('newly renovated') || 
+                   descLower.includes('recently renovated') ||
+                   descLower.includes('renovated') ||
+                   descLower.includes('newly built') ||
+                   descLower.includes('brand new') ||
+                   descLower.includes('immaculate')) {
+          condition = 'Excellent Condition';
+          conditionColor = '#059669'; // Green for excellent
+        } else if (descLower.includes('good condition') ||
+                   descLower.includes('well maintained') ||
+                   descLower.includes('updated')) {
+          condition = 'Good Condition';
+          conditionColor = '#3b82f6'; // Blue for good
+        }
+        
+        if (condition) {
+          return `
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e7eb;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="font-size: 13px; color: #6b7280; font-weight: 500;">Property Condition</div>
+              <div style="
+                display: inline-block;
+                padding: 6px 16px;
+                background-color: ${conditionColor}15;
+                color: ${conditionColor};
+                border-radius: 20px;
+                font-size: 13px;
+                font-weight: 600;
+                border: 1px solid ${conditionColor}30;
+              ">${condition}</div>
+            </div>
+            ${descLower.includes('renovation') ? 
+              '<div style="font-size: 10px; color: #9ca3af; text-align: right; margin-top: 4px;">Based on property description analysis</div>' 
+              : ''}
+          </div>`;
+        }
+        return '';
+      })()}
     </div>
     
     <!-- Market Data Section -->
