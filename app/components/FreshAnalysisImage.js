@@ -7,6 +7,7 @@ export default function FreshAnalysisImage({
   src, 
   alt, 
   className, 
+  containerClassName = "h-full", // New prop for container styling, defaults to h-full for fill images
   fallback, 
   showSource = false,
   imageData = null,
@@ -36,7 +37,7 @@ export default function FreshAnalysisImage({
   // If there's no src or image failed to load, show fallback
   if (!src || imageError) {
     return (
-      <div className={`${className} flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 rounded-lg`}>
+      <div className={`${containerClassName} flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 rounded-lg`}>
         {fallback || (
           <div className="text-center text-gray-500">
             <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mx-auto mb-2">
@@ -55,9 +56,9 @@ export default function FreshAnalysisImage({
   }
 
   return (
-    <div className="relative">
+    <div className={`relative ${containerClassName}`}>
       {isLoading && (
-        <div className={`${className} absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center rounded-lg z-10`}>
+        <div className={`absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center rounded-lg z-10`}>
           <div className="w-8 h-8 border-4 border-emerald-200 border-t-emerald-500 rounded-full animate-spin"></div>
         </div>
       )}
@@ -69,6 +70,7 @@ export default function FreshAnalysisImage({
         onError={handleError}
         onLoad={handleLoad}
         unoptimized={true} // Skip Next.js optimization for Base64 and external images
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         {...props}
       />
       

@@ -535,8 +535,8 @@ class ComparableService {
     const distancePercent = Math.max(0, 100 - (distanceScore * 100));
 
     // 2. SIZE SCORE (25% weight) - Building area similarity
-    const targetSize = criteria.buildArea || criteria.build_size || criteria.build_area;  // XML field first
-    const propertySize = comparable.build_size || comparable.build_area;                 // XML field first
+    const targetSize = criteria.buildArea || criteria.build_size;  // XML field name
+    const propertySize = comparable.build_size;                    // XML field name
     let sizeScore = 1;
     let sizePercent = 0;
     
@@ -909,9 +909,9 @@ class ComparableService {
         pricePerSqm: this.calculatePricePerSqm(property),
         
         // Size and layout
-        buildArea: property.build_area,
+        buildArea: property.build_size,
         plotArea: property.plot_size,
-        terraceArea: property.terrace_area,
+        terraceArea: property.terrace_size,
         bedrooms: property.bedrooms,
         bathrooms: property.bathrooms,
         
@@ -1010,9 +1010,9 @@ class ComparableService {
         pricePerSqm: this.calculatePricePerSqm(property),
         
         // Size and layout
-        buildArea: property.build_area,
+        buildArea: property.build_size,
         plotArea: property.plot_size,
-        terraceArea: property.terrace_area,
+        terraceArea: property.terrace_size,
         bedrooms: property.bedrooms,
         bathrooms: property.bathrooms,
         

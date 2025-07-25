@@ -1,0 +1,62 @@
+{
+  "id": "419b3d41-6d32-438b-a27a-4029708eaa50",
+  "propertyData": {
+    "property_type": "Villa",
+    "suburb": "Nueva Andalucía",
+    "latitude": 36.5108,
+    "sale_price": 1250000,
+    "reference": "MLS-2024-001",
+    "features": [
+      "Private Pool",
+      "Sea Views",
+      "Garden",
+      "Parking",
+      "Air Conditioning"
+    ],
+    "plot_size": 800,
+    "photos": [
+      "https://via.placeholder.com/800x600/4F46E5/FFFFFF?text=Luxury+Villa",
+      "https://via.placeholder.com/800x600/06B6D4/FFFFFF?text=Pool+Area"
+    ],
+    "description": "Stunning 4-bedroom villa in Nueva Andalucía with private pool, sea views, and modern finishes",
+    "bedrooms": 4,
+    "city": "Marbella",
+    "build_size": 280,
+    "bathrooms": 3,
+    "longitude": -4.9917,
+    "build_square_meters": 280,
+    "plot_square_meters": 800,
+    "price": 1250000,
+    "totalCost": {
+      "purchasePrice": 1250000,
+      "annualCosts": 0,
+      "totalFirstYear": 1250000,
+      "breakdown": {
+        "ibi": 0,
+        "basura": 0,
+        "communityFees": 0
+      }
+    },
+    "pricePerSqm": 4464,
+    "resolvedLocation": {
+      "location": "Nueva Andalucía",
+      "coordinates": null,
+      "confidence": 0.3,
+      "method": "basic_fallback",
+      "landmarks": [],
+      "proximityClues": [],
+      "enhancementReason": "Description too short"
+    }
+  },
+  "locationContext": {
+    "location": "Nueva Andalucía",
+    "coordinates": null,
+    "confidence": 0.3,
+    "method": "basic_fallback",
+    "landmarks": [],
+    "proximityClues": [],
+    "enhancementReason": "Description too short"
+  },
+  "createdAt": "2025-07-24T23:15:31.261Z",
+  "status": "ready"
+}

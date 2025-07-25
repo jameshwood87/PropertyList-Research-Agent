@@ -1,0 +1,43 @@
+{
+  "id": "e2acdade-70d0-40fa-ba3b-f96b90922669",
+  "propertyData": {
+    "city": "Málaga",
+    "reference": "VIL-2024-002",
+    "bedrooms": 5,
+    "bathrooms": 4,
+    "property_type": "Villa",
+    "sale_price": 950000,
+    "price": 950000,
+    "totalCost": {
+      "purchasePrice": 950000,
+      "annualCosts": 0,
+      "totalFirstYear": 950000,
+      "breakdown": {
+        "ibi": 0,
+        "basura": 0,
+        "communityFees": 0
+      }
+    },
+    "pricePerSqm": null,
+    "resolvedLocation": {
+      "location": "Málaga",
+      "coordinates": null,
+      "confidence": 0.3,
+      "method": "basic_fallback",
+      "landmarks": [],
+      "proximityClues": [],
+      "enhancementReason": "Description too short"
+    }
+  },
+  "locationContext": {
+    "location": "Málaga",
+    "coordinates": null,
+    "confidence": 0.3,
+    "method": "basic_fallback",
+    "landmarks": [],
+    "proximityClues": [],
+    "enhancementReason": "Description too short"
+  },
+  "createdAt": "2025-07-24T23:18:26.663Z",
+  "status": "ready"
+}

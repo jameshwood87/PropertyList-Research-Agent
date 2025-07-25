@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Dashboard - AI Property Research Agent</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .status-healthy { color: #10B981; }
+        .status-warning { color: #F59E0B; }
+        .status-error { color: #EF4444; }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 1rem 0;
+        }
+        .metric-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        .metric-card:hover {
+            transform: translateY(-2px);
+        }
+        .refresh-animation {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Header -->
+    <nav class="gradient-bg shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-chart-line text-2xl mr-3"></i>
+                    <h1 class="text-xl font-semibold">Enterprise Dashboard</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="refreshBtn" class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded-lg transition-colors">
+                        <i id="refreshIcon" class="fas fa-sync-alt mr-2"></i>Refresh
+                    </button>
+                    <div id="lastUpdated" class="text-sm opacity-75"></div>
+                    <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-lg transition-colors">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- System Status Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="metric-card bg-gray-800 rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-400 text-sm">System Status</p>
+                        <p id="systemStatus" class="text-2xl font-bold status-healthy">Healthy</p>
+                    </div>
+                    <i class="fas fa-heartbeat text-3xl text-green-500"></i>
+                </div>
+            </div>
+            
+            <div class="metric-card bg-gray-800 rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-400 text-sm">Total Analyses</p>
+                        <p id="totalAnalyses" class="text-2xl font-bold text-blue-400">0</p>
+                    </div>
+                    <i class="fas fa-analytics text-3xl text-blue-500"></i>
+                </div>
+            </div>
+            
+            <div class="metric-card bg-gray-800 rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-400 text-sm">Avg Response Time</p>
+                        <p id="avgResponseTime" class="text-2xl font-bold text-yellow-400">0ms</p>
+                    </div>
+                    <i class="fas fa-tachometer-alt text-3xl text-yellow-500"></i>
+                </div>
+            </div>
+            
+            <div class="metric-card bg-gray-800 rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-400 text-sm">Cache Hit Rate</p>
+                        <p id="cacheHitRate" class="text-2xl font-bold text-green-400">0%</p>
+                    </div>
+                    <i class="fas fa-database text-3xl text-green-500"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                    <i class="fas fa-chart-line mr-2 text-blue-500"></i>Response Time Trends
+                </h3>
+                <div class="chart-container">
+                    <canvas id="responseTimeChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                    <i class="fas fa-chart-area mr-2 text-green-500"></i>Cache Performance
+                </h3>
+                <div class="chart-container">
+                    <canvas id="cacheChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Resources & Cost Analysis -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                    <i class="fas fa-server mr-2 text-purple-500"></i>System Resources
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-sm">
+                            <span>Memory Usage</span>
+                            <span id="memoryUsage">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2 mt-1">
+                            <div id="memoryBar" class="bg-purple-500 h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm">
+                            <span>Uptime</span>
+                            <span id="systemUptime">0min</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm">
+                            <span>Active Connections</span>
+                            <span id="activeConnections">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                    <i class="fas fa-euro-sign mr-2 text-yellow-500"></i>Cost Analysis
+                </h3>
+                <div class="space-y-4">
+                    <div class="text-center">
+                        <p class="text-3xl font-bold text-yellow-400" id="totalCost">€0.00</p>
+                        <p class="text-gray-400 text-sm">Total Cost</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>AI Costs</span>
+                            <span id="aiCosts">€0.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>System Costs</span>
+                            <span id="systemCosts">€0.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Infrastructure</span>
+                            <span id="infraCosts">€0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                    <i class="fas fa-cogs mr-2 text-blue-500"></i>System vs AI Usage
+                </h3>
+                <div class="chart-container">
+                    <canvas id="systemAiChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predictive Analytics & A/B Testing -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                    <i class="fas fa-crystal-ball mr-2 text-indigo-500"></i>Predictive Analytics
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-gray-400 text-sm">Total Predictions</p>
+                        <p id="totalPredictions" class="text-xl font-bold text-indigo-400">0</p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-gray-400 text-sm">Active Models</p>
+                        <p id="activeModels" class="text-xl font-bold text-indigo-400">0</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="chart-container">
+                        <canvas id="predictiveChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                    <i class="fas fa-flask mr-2 text-pink-500"></i>A/B Testing Results
+                </h3>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-gray-400 text-sm">Active Tests</p>
+                        <p id="activeTests" class="text-xl font-bold text-pink-400">0</p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-gray-400 text-sm">Significant Results</p>
+                        <p id="significantResults" class="text-xl font-bold text-pink-400">0</p>
+                    </div>
+                </div>
+                <div id="abTestsList" class="space-y-2">
+                    <!-- A/B test results will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerts & Recent Activity -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                    <i class="fas fa-bell mr-2 text-red-500"></i>System Alerts
+                </h3>
+                <div id="alertsList" class="space-y-2">
+                    <div class="text-gray-400 text-sm text-center py-4">No active alerts</div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                    <i class="fas fa-stream mr-2 text-cyan-500"></i>Streaming Performance
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-gray-400 text-sm">Active Sessions</p>
+                        <p id="activeSessions" class="text-xl font-bold text-cyan-400">0</p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-gray-400 text-sm">Avg Latency</p>
+                        <p id="avgLatency" class="text-xl font-bold text-cyan-400">0ms</p>
+                    </div>
+                </div>
+                <div class="mt-4 space-y-2">
+                    <div class="flex justify-between text-sm">
+                        <span>Throughput</span>
+                        <span id="throughput">0/sec</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Error Rate</span>
+                        <span id="errorRate">0%</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Connection Stability</span>
+                        <span id="connectionStability">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gray-800 rounded-lg p-4 text-center text-gray-400 text-sm">
+            <p>Enterprise Dashboard v1.0.0 | Last updated: <span id="lastUpdatedFooter"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let charts = {};
+        let refreshInterval;
+        let dashboardData = {};
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+            startAutoRefresh();
+        });
+
+        // Initialize dashboard
+        async function initializeDashboard() {
+            try {
+                await loadDashboardData();
+                initializeCharts();
+                updateDashboard();
+            } catch (error) {
+                console.error('Failed to initialize dashboard:', error);
+                showError('Failed to load dashboard data');
+            }
+        }
+
+        // Load dashboard data from API
+        async function loadDashboardData() {
+            const response = await fetch('/api/admin/dashboard-data', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+                }
+            });
+            
+            if (!response.ok) {
+                if (response.status === 401) {
+                    logout();
+                    return;
+                }
+                throw new Error('Failed to load dashboard data');
+            }
+            
+            dashboardData = await response.json();
+        }
+
+        // Initialize all charts
+        function initializeCharts() {
+            // Response Time Chart
+            const responseTimeCtx = document.getElementById('responseTimeChart').getContext('2d');
+            charts.responseTime = new Chart(responseTimeCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Response Time (ms)',
+                        data: [],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: getChartOptions('ms')
+            });
+
+            // Cache Chart
+            const cacheCtx = document.getElementById('cacheChart').getContext('2d');
+            charts.cache = new Chart(cacheCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Cache Hit Rate (%)',
+                        data: [],
+                        borderColor: '#10B981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: getChartOptions('%')
+            });
+
+            // System vs AI Usage Chart
+            const systemAiCtx = document.getElementById('systemAiChart').getContext('2d');
+            charts.systemAi = new Chart(systemAiCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['System', 'AI'],
+                    datasets: [{
+                        data: [0, 0],
+                        backgroundColor: ['#10B981', '#3B82F6'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#9CA3AF' }
+                        }
+                    }
+                }
+            });
+
+            // Predictive Analytics Chart
+            const predictiveCtx = document.getElementById('predictiveChart').getContext('2d');
+            charts.predictive = new Chart(predictiveCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Predictions', 'Cache Hits'],
+                    datasets: [{
+                        label: 'Count',
+                        data: [0, 0],
+                        backgroundColor: ['#6366F1', '#10B981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: getChartOptions('count')
+            });
+        }
+
+        // Get chart options
+        function getChartOptions(unit) {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#9CA3AF' },
+                        grid: { color: '#374151' }
+                    },
+                    y: {
+                        ticks: { 
+                            color: '#9CA3AF',
+                            callback: function(value) {
+                                return value + unit;
+                            }
+                        },
+                        grid: { color: '#374151' }
+                    }
+                }
+            };
+        }
+
+        // Update dashboard with latest data
+        function updateDashboard() {
+            if (!dashboardData.overview) return;
+
+            // Update overview metrics
+            document.getElementById('systemStatus').textContent = dashboardData.overview.status || 'Unknown';
+            document.getElementById('systemStatus').className = `text-2xl font-bold status-${getStatusClass(dashboardData.overview.status)}`;
+            
+            document.getElementById('totalAnalyses').textContent = (dashboardData.overview.totalAnalyses || 0).toLocaleString();
+            document.getElementById('avgResponseTime').textContent = `${Math.round(dashboardData.overview.avgResponseTime || 0)}ms`;
+            document.getElementById('cacheHitRate').textContent = `${Math.round((dashboardData.overview.currentCacheHitRate || 0) * 100)}%`;
+
+            // Update system resources
+            if (dashboardData.system?.health) {
+                const memory = dashboardData.system.health.memory || {};
+                document.getElementById('memoryUsage').textContent = `${memory.usage || 0}%`;
+                document.getElementById('memoryBar').style.width = `${memory.usage || 0}%`;
+                document.getElementById('systemUptime').textContent = formatUptime(dashboardData.system.health.uptime || 0);
+            }
+
+            document.getElementById('activeConnections').textContent = dashboardData.overview.activeConnections || 0;
+
+            // Update cost analysis
+            if (dashboardData.cost?.analysis) {
+                const cost = dashboardData.cost.analysis;
+                document.getElementById('totalCost').textContent = `€${(cost.totalCost || 0).toFixed(4)}`;
+                document.getElementById('aiCosts').textContent = `€${(cost.breakdown?.ai || 0).toFixed(4)}`;
+                document.getElementById('systemCosts').textContent = `€${(cost.breakdown?.system || 0).toFixed(4)}`;
+                document.getElementById('infraCosts').textContent = `€${(cost.breakdown?.infrastructure || 0).toFixed(4)}`;
+            }
+
+            // Update predictive analytics
+            if (dashboardData.analytics?.predictive) {
+                const predictive = dashboardData.analytics.predictive;
+                document.getElementById('totalPredictions').textContent = (predictive.summary?.totalPredictions || 0).toLocaleString();
+                document.getElementById('activeModels').textContent = predictive.summary?.modelsActive || 0;
+            }
+
+            // Update A/B testing
+            if (dashboardData.analytics?.abTesting) {
+                const abTesting = dashboardData.analytics.abTesting;
+                document.getElementById('activeTests').textContent = abTesting.summary?.activeTests || 0;
+                document.getElementById('significantResults').textContent = abTesting.summary?.significantResults || 0;
+            }
+
+            // Update streaming metrics
+            if (dashboardData.streaming?.metrics) {
+                const streaming = dashboardData.streaming.metrics;
+                document.getElementById('activeSessions').textContent = streaming.activeConnections || 0;
+                document.getElementById('avgLatency').textContent = `${Math.round(streaming.avgSessionDuration || 0)}ms`;
+                document.getElementById('throughput').textContent = `${Math.round(streaming.throughput || 0)}/sec`;
+                document.getElementById('errorRate').textContent = `${((streaming.errorRate || 0) * 100).toFixed(1)}%`;
+                document.getElementById('connectionStability').textContent = `${((dashboardData.streaming.performance?.connectionStability || 1) * 100).toFixed(1)}%`;
+            }
+
+            // Update charts
+            updateCharts();
+
+            // Update timestamps
+            const now = new Date().toLocaleString();
+            document.getElementById('lastUpdated').textContent = `Updated: ${now}`;
+            document.getElementById('lastUpdatedFooter').textContent = now;
+        }
+
+        // Update all charts
+        function updateCharts() {
+            if (!dashboardData.performance?.charts) return;
+
+            const charts_data = dashboardData.performance.charts;
+
+            // Update Response Time Chart
+            if (charts_data.responseTime && charts.responseTime) {
+                charts.responseTime.data.labels = formatTimeLabels(charts_data.responseTime.labels || []);
+                charts.responseTime.data.datasets[0].data = charts_data.responseTime.data || [];
+                charts.responseTime.update();
+            }
+
+            // Update Cache Chart
+            if (charts_data.cacheHitRate && charts.cache) {
+                charts.cache.data.labels = formatTimeLabels(charts_data.cacheHitRate.labels || []);
+                charts.cache.data.datasets[0].data = charts_data.cacheHitRate.data?.map(d => d * 100) || [];
+                charts.cache.update();
+            }
+
+            // Update System vs AI Chart
+            if (dashboardData.overview) {
+                const systemUsage = dashboardData.overview.systemUsageAvg || 0;
+                const aiUsage = 100 - systemUsage;
+                charts.systemAi.data.datasets[0].data = [systemUsage, aiUsage];
+                charts.systemAi.update();
+            }
+
+            // Update Predictive Chart
+            if (dashboardData.analytics?.predictive?.summary) {
+                const summary = dashboardData.analytics.predictive.summary;
+                charts.predictive.data.datasets[0].data = [
+                    summary.totalPredictions || 0,
+                    summary.cacheSize || 0
+                ];
+                charts.predictive.update();
+            }
+        }
+
+        // Helper functions
+        function getStatusClass(status) {
+            switch (status?.toLowerCase()) {
+                case 'healthy': return 'healthy';
+                case 'degraded': case 'warning': return 'warning';
+                case 'error': case 'critical': return 'error';
+                default: return 'warning';
+            }
+        }
+
+        function formatUptime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            return hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+        }
+
+        function formatTimeLabels(labels) {
+            return labels.map(label => {
+                const date = new Date(label);
+                return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            });
+        }
+
+        function showError(message) {
+            // Create and show error notification
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50';
+            errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle mr-2"></i>${message}`;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                document.body.removeChild(errorDiv);
+            }, 5000);
+        }
+
+        // Auto-refresh functionality
+        function startAutoRefresh() {
+            refreshInterval = setInterval(async () => {
+                try {
+                    await loadDashboardData();
+                    updateDashboard();
+                } catch (error) {
+                    console.error('Auto-refresh failed:', error);
+                }
+            }, 30000); // Refresh every 30 seconds
+        }
+
+        function stopAutoRefresh() {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+            }
+        }
+
+        // Manual refresh
+        document.getElementById('refreshBtn').addEventListener('click', async function() {
+            const icon = document.getElementById('refreshIcon');
+            icon.classList.add('refresh-animation');
+            
+            try {
+                await loadDashboardData();
+                updateDashboard();
+            } catch (error) {
+                showError('Failed to refresh dashboard');
+            } finally {
+                icon.classList.remove('refresh-animation');
+            }
+        });
+
+        // Logout functionality
+        function logout() {
+            localStorage.removeItem('adminToken');
+            window.location.href = '/admin';
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            stopAutoRefresh();
+        });
+    </script>
+</body>
+</html> 

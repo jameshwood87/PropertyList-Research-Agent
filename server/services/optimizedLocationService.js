@@ -288,7 +288,7 @@ Extract ONLY actual place names (urbanizations, streets, landmarks), NOT marketi
             messages: [
               {
                 role: "system", 
-                content: "Extract specific place names from Spanish property descriptions. Ignore marketing language."
+                content: "Extract specific place names from Spanish property descriptions. Ignore marketing language.\n\nCONDITION ANALYSIS RULES:\n- 'RENOVATION PROJECT', 'RESTORATION PROJECT', 'NEEDS RENOVATION' = needs-renovation\n- 'NEWLY RENOVATED', 'RECENTLY RENOVATED', 'RENOVATED' (completed) = excellent\n- 'INVESTMENT OPPORTUNITY', 'HAS POTENTIAL' = needs-renovation\n- Focus on whether renovation is NEEDED vs COMPLETED."
               },
               {
                 role: "user",
@@ -504,13 +504,48 @@ Extract ONLY actual place names (urbanizations, streets, landmarks), NOT marketi
    * BASIC RESULT: For properties without sufficient description data
    */
   createBasicResult(property, reason) {
+    const enhancedLocation = property.suburb || property.city || 'Unknown location';
+    
+    // Provide coordinates for known locations
+    let coordinates = null;
+    let confidence = 3; // Default low confidence
+    
+    // Enhanced confidence and coordinates for known locations
+    if (property.suburb || property.city) {
+      confidence = 7; // Higher confidence when we have valid location data
+      
+      // Known coordinates for common Costa del Sol locations
+      const knownCoordinates = {
+        'nueva andalucia': { lat: 36.4979, lng: -4.9545 },
+        'nueva andalucía': { lat: 36.4979, lng: -4.9545 },
+        'puerto banus': { lat: 36.4827, lng: -4.9531 },
+        'puerto banús': { lat: 36.4827, lng: -4.9531 },
+        'golden mile': { lat: 36.5065, lng: -4.9052 },
+        'marbella': { lat: 36.5125, lng: -4.8884 },
+        'estepona': { lat: 36.4283, lng: -5.1467 },
+        'las chapas': { lat: 36.4858, lng: -4.8047 },
+        'elviria': { lat: 36.4858, lng: -4.8047 },
+        'calahonda': { lat: 36.4656, lng: -4.7103 },
+        'benavista': { lat: 36.4711, lng: -4.9947 },
+        'benahavis': { lat: 36.4711, lng: -4.9947 },
+        'benahavís': { lat: 36.4711, lng: -4.9947 }
+      };
+      
+      const locationKey = enhancedLocation.toLowerCase();
+      if (knownCoordinates[locationKey]) {
+        coordinates = knownCoordinates[locationKey];
+        confidence = 8; // High confidence for known coordinates
+      }
+    }
+    
     return {
       ...property,
       aiEnhanced: false,
-      enhancedLocation: property.suburb || property.city || 'Unknown location',
+      enhancedLocation,
       landmarks: [],
       proximityClues: [],
-      aiConfidence: 3,
+      coordinates,
+      aiConfidence: confidence,
       enhancementReason: reason,
       method: 'basic_fallback'
     };

@@ -1,0 +1,28 @@
+{
+  "id": "111b7105-be8e-4615-926f-f543f6363b0b",
+  "propertyData": {
+    "propertyInput": "Villa in Marbella, 3 bedrooms, 2 bathrooms, 450000 EUR",
+    "totalCost": null,
+    "pricePerSqm": null,
+    "resolvedLocation": {
+      "location": "Unknown location",
+      "coordinates": null,
+      "confidence": 0.3,
+      "method": "basic_fallback",
+      "landmarks": [],
+      "proximityClues": [],
+      "enhancementReason": "Description too short"
+    }
+  },
+  "locationContext": {
+    "location": "Unknown location",
+    "coordinates": null,
+    "confidence": 0.3,
+    "method": "basic_fallback",
+    "landmarks": [],
+    "proximityClues": [],
+    "enhancementReason": "Description too short"
+  },
+  "createdAt": "2025-07-25T00:43:00.267Z",
+  "status": "ready"
+}

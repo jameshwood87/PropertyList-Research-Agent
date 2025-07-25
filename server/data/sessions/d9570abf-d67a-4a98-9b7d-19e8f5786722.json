@@ -1,0 +1,54 @@
+{
+  "id": "d9570abf-d67a-4a98-9b7d-19e8f5786722",
+  "propertyData": {
+    "features": [
+      "Private Pool",
+      "Sea Views",
+      "Garden",
+      "Garage"
+    ],
+    "property_type": "Villa",
+    "bedrooms": 6,
+    "build_size": 400,
+    "city": "Marbella",
+    "plot_size": 1500,
+    "bathrooms": 5,
+    "sale_price": 1500000,
+    "suburb": "Golden Mile",
+    "reference": "VIL-2024-003",
+    "build_square_meters": 400,
+    "plot_square_meters": 1500,
+    "price": 1500000,
+    "totalCost": {
+      "purchasePrice": 1500000,
+      "annualCosts": 0,
+      "totalFirstYear": 1500000,
+      "breakdown": {
+        "ibi": 0,
+        "basura": 0,
+        "communityFees": 0
+      }
+    },
+    "pricePerSqm": 3750,
+    "resolvedLocation": {
+      "location": "Golden Mile",
+      "coordinates": null,
+      "confidence": 0.3,
+      "method": "basic_fallback",
+      "landmarks": [],
+      "proximityClues": [],
+      "enhancementReason": "Description too short"
+    }
+  },
+  "locationContext": {
+    "location": "Golden Mile",
+    "coordinates": null,
+    "confidence": 0.3,
+    "method": "basic_fallback",
+    "landmarks": [],
+    "proximityClues": [],
+    "enhancementReason": "Description too short"
+  },
+  "createdAt": "2025-07-24T23:20:36.104Z",
+  "status": "ready"
+}

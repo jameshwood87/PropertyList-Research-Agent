@@ -10,8 +10,8 @@ async function sendTestProperty() {
     
     console.log(`🏠 Property: ${propertyData.reference} - €${propertyData.price.toLocaleString()}`);
     console.log(`📍 Location: ${propertyData.address}, ${propertyData.suburb}, ${propertyData.city}`);
-    console.log(`🏡 Details: ${propertyData.bedrooms}br/${propertyData.bathrooms}ba, ${propertyData.build_square_meters}sqm`);
-    console.log(`📸 Images: ${propertyData.images.length} available`);
+    console.log(`🏡 Details: ${propertyData.bedrooms}br/${propertyData.bathrooms}ba, ${propertyData.build_square_meters}sqm build, ${propertyData.plot_square_meters}sqm plot`);
+    console.log(`📸 Images: ${propertyData.images.length} available (Real Unsplash URLs)`);
     
     // Send to listener endpoint
     const response = await axios.post('http://localhost:3004/api/property', propertyData, {
@@ -24,14 +24,15 @@ async function sendTestProperty() {
     console.log('📊 Response:', response.data);
     
     if (response.data.sessionId) {
-      const sessionUrl = `http://localhost:3001/analysis/${response.data.sessionId}`;
+      const sessionUrl = `http://localhost:3000/analysis/${response.data.sessionId}`;
       console.log('\n🎯 ANALYSIS URL:');
       console.log(`🔗 ${sessionUrl}`);
       console.log('\n📋 Copy this URL to start the analysis!');
     }
     
   } catch (error) {
-    console.error('❌ Error sending property:', error.response?.data || error.message);
+    console.error('❌ Error sending property:', error.message);
+    console.error('Full error:', error);
   }
 }
 

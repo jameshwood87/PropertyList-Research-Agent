@@ -1,0 +1,39 @@
+{
+  "id": "a5cfba16-231c-461f-8f02-84119d5e0faa",
+  "propertyData": {
+    "reference": "MDL4453627",
+    "source": "PropertyList.es",
+    "property_type": "villa",
+    "city": "Marbella",
+    "suburb": "Nueva Andalucia",
+    "userProvidedDetails": "Marbella villa for testing field mappings - should show build size, terrace area, plot area, and condition",
+    "totalCost": null,
+    "pricePerSqm": null,
+    "resolvedLocation": {
+      "location": "Nueva Andalucia",
+      "coordinates": {
+        "lat": 36.4979,
+        "lng": -4.9545
+      },
+      "confidence": 0.8,
+      "method": "basic_fallback",
+      "landmarks": [],
+      "proximityClues": [],
+      "enhancementReason": "Description too short"
+    }
+  },
+  "locationContext": {
+    "location": "Nueva Andalucia",
+    "coordinates": {
+      "lat": 36.4979,
+      "lng": -4.9545
+    },
+    "confidence": 0.8,
+    "method": "basic_fallback",
+    "landmarks": [],
+    "proximityClues": [],
+    "enhancementReason": "Description too short"
+  },
+  "createdAt": "2025-07-25T17:52:35.197Z",
+  "status": "ready"
+}

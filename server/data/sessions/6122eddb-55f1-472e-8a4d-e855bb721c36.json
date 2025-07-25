@@ -1,0 +1,29 @@
+{
+  "id": "6122eddb-55f1-472e-8a4d-e855bb721c36",
+  "propertyData": {
+    "userInput": "Villa in Puerto Banús, 4 bedrooms, €2.5M",
+    "expectedLocation": "Puerto Banús",
+    "totalCost": null,
+    "pricePerSqm": null,
+    "resolvedLocation": {
+      "location": "Unknown location",
+      "coordinates": null,
+      "confidence": 0.3,
+      "method": "basic_fallback",
+      "landmarks": [],
+      "proximityClues": [],
+      "enhancementReason": "Description too short"
+    }
+  },
+  "locationContext": {
+    "location": "Unknown location",
+    "coordinates": null,
+    "confidence": 0.3,
+    "method": "basic_fallback",
+    "landmarks": [],
+    "proximityClues": [],
+    "enhancementReason": "Description too short"
+  },
+  "createdAt": "2025-07-25T13:40:44.682Z",
+  "status": "ready"
+}

@@ -509,12 +509,24 @@ class PDFGenerationService {
               </div>
               <div class="metric">
                   <div class="value">${comp.buildArea || 'N/A'}m²</div>
-                  <div class="label">Size</div>
+                  <div class="label">Build Size</div>
               </div>
+              ${comp.terraceArea ? `<div class="metric">
+                  <div class="value">${comp.terraceArea}m²</div>
+                  <div class="label">Terrace</div>
+              </div>` : ''}
+              ${comp.plotArea ? `<div class="metric">
+                  <div class="value">${comp.plotArea}m²</div>
+                  <div class="label">Plot</div>
+              </div>` : ''}
               <div class="metric">
                   <div class="value">${comp.bedrooms || 'N/A'}</div>
                   <div class="label">Bedrooms</div>
               </div>
+              ${comp.condition ? `<div class="metric">
+                  <div class="value" style="text-transform: capitalize;">${comp.condition}</div>
+                  <div class="label">Condition</div>
+              </div>` : ''}
               <div class="metric">
                   <div class="value">${comp.distancePercent || 0}%</div>
                   <div class="label">Location Match</div>

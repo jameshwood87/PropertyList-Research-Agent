@@ -201,6 +201,80 @@ class PostgresDatabase {
     `;
     
     await client.query(createAlgorithmPerformanceTable);
+
+    // Analysis sections table for System/AI performance tracking
+    const createAnalysisSectionsTable = `
+      CREATE TABLE IF NOT EXISTS analysis_sections (
+        id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+        session_id TEXT NOT NULL,
+        section_name VARCHAR(100) NOT NULL,
+        approach_used VARCHAR(20) NOT NULL, -- 'system' or 'ai'
+        response_time_ms INTEGER,
+        cost_usd DECIMAL(10, 4),
+        confidence_score DECIMAL(5, 2),
+        user_satisfaction INTEGER, -- 1-5 rating
+        quality_metrics JSONB DEFAULT '{}',
+        threshold_config JSONB DEFAULT '{}',
+        created_at TIMESTAMPTZ DEFAULT NOW()
+      );
+    `;
+    
+    await client.query(createAnalysisSectionsTable);
+
+    // Create indexes for analysis_sections table
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_analysis_sections_session_id ON analysis_sections (session_id);`);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_analysis_sections_section_approach ON analysis_sections (section_name, approach_used);`);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_analysis_sections_created_at ON analysis_sections (created_at);`);
+
+    // Optimization history table for auto-tuning results
+    const createOptimizationHistoryTable = `
+      CREATE TABLE IF NOT EXISTS optimization_history (
+        id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+        section_name VARCHAR(100) NOT NULL,
+        old_thresholds JSONB NOT NULL,
+        new_thresholds JSONB NOT NULL,
+        improvement_metrics JSONB DEFAULT '{}',
+        confidence DECIMAL(5, 2),
+        optimization_type VARCHAR(50),
+        performance_before JSONB DEFAULT '{}',
+        performance_after JSONB DEFAULT '{}',
+        rollback_reason TEXT,
+        applied_at TIMESTAMPTZ DEFAULT NOW(),
+        rolled_back_at TIMESTAMPTZ
+      );
+    `;
+    
+    await client.query(createOptimizationHistoryTable);
+
+    // Create indexes for optimization_history table
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_optimization_history_section_name ON optimization_history (section_name);`);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_optimization_history_applied_at ON optimization_history (applied_at);`);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_optimization_history_type ON optimization_history (optimization_type);`);
+
+    // Threshold performance tracking table
+    const createThresholdPerformanceTable = `
+      CREATE TABLE IF NOT EXISTS threshold_performance (
+        id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+        section_name VARCHAR(100) NOT NULL,
+        threshold_config JSONB NOT NULL,
+        performance_period TSTZRANGE NOT NULL,
+        sample_count INTEGER DEFAULT 0,
+        avg_cost DECIMAL(10, 4),
+        avg_quality DECIMAL(5, 2),
+        avg_response_time INTEGER,
+        success_rate DECIMAL(5, 2),
+        user_satisfaction_avg DECIMAL(3, 1),
+        cost_efficiency_score DECIMAL(5, 2), -- cost vs quality ratio
+        created_at TIMESTAMPTZ DEFAULT NOW()
+      );
+    `;
+    
+    await client.query(createThresholdPerformanceTable);
+
+    // Create indexes for threshold_performance table
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_threshold_performance_section_name ON threshold_performance (section_name);`);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_threshold_performance_period ON threshold_performance USING gist (performance_period);`);
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_threshold_performance_efficiency ON threshold_performance (cost_efficiency_score);`);
     
     // Location intelligence tables
     const createUrbanizationKnowledgeTable = `
@@ -238,6 +312,25 @@ class PostgresDatabase {
     `;
     
     await client.query(createLocationResolutionLogTable);
+    
+    // Progressive data maturity tracking for System/AI decision logic
+    const createDataMaturityTable = `
+      CREATE TABLE IF NOT EXISTS area_data_maturity (
+        id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+        area_key TEXT NOT NULL UNIQUE,
+        area_type TEXT NOT NULL, -- 'urbanization', 'suburb', 'city'
+        area_name TEXT NOT NULL,
+        n_comparables INTEGER DEFAULT 0,
+        n_analyses INTEGER DEFAULT 0,
+        last_comparable_added TIMESTAMPTZ,
+        last_analysis_run TIMESTAMPTZ,
+        quality_metrics JSONB DEFAULT '{}',
+        created_at TIMESTAMPTZ DEFAULT NOW(),
+        updated_at TIMESTAMPTZ DEFAULT NOW()
+      );
+    `;
+    
+    await client.query(createDataMaturityTable);
     
     console.log('Database schema created successfully');
   }
@@ -298,6 +391,11 @@ class PostgresDatabase {
       
       // Location intelligence indexes
       'CREATE INDEX IF NOT EXISTS idx_urbanization_knowledge_normalized ON urbanization_knowledge (name_normalized);',
+      
+      // Progressive data maturity indexes
+      'CREATE INDEX IF NOT EXISTS idx_area_data_maturity_key ON area_data_maturity (area_key);',
+      'CREATE INDEX IF NOT EXISTS idx_area_data_maturity_type ON area_data_maturity (area_type, area_name);',
+      'CREATE INDEX IF NOT EXISTS idx_area_data_maturity_counters ON area_data_maturity (n_comparables, n_analyses);',
       'CREATE INDEX IF NOT EXISTS idx_urbanization_knowledge_city ON urbanization_knowledge (city);',
       'CREATE INDEX IF NOT EXISTS idx_urbanization_knowledge_aliases ON urbanization_knowledge USING GIN (aliases);',
       'CREATE INDEX IF NOT EXISTS idx_location_resolution_log_method ON location_resolution_log (method, created_at);',
@@ -787,7 +885,14 @@ class PostgresDatabase {
         inserted += batch.length;
       }
 
-      // Upsert from staging to main table
+      // 1. Mark all existing properties as potentially inactive
+      await client.query(`
+        UPDATE properties 
+        SET is_active = false 
+        WHERE last_seen < NOW() - INTERVAL '2 days'
+      `);
+
+      // 2. Upsert from staging to main table (this will reactivate current properties)
       const upsertQuery = `
         INSERT INTO properties SELECT * FROM properties_staging
         ON CONFLICT (id) DO UPDATE SET
@@ -808,8 +913,8 @@ class PostgresDatabase {
           longitude = EXCLUDED.longitude,
           geohash = EXCLUDED.geohash,
           plot_size = EXCLUDED.plot_size,
-                  build_size = EXCLUDED.build_size,
-        terrace_size = EXCLUDED.terrace_size,
+          build_size = EXCLUDED.build_size,
+          terrace_size = EXCLUDED.terrace_size,
           bedrooms = EXCLUDED.bedrooms,
           bathrooms = EXCLUDED.bathrooms,
           parking_spaces = EXCLUDED.parking_spaces,
@@ -834,12 +939,31 @@ class PostgresDatabase {
       `;
 
       const upsertResult = await client.query(upsertQuery);
+
+      // 3. Get statistics about the import
+      const statsQuery = `
+        SELECT 
+          COUNT(*) as total_properties,
+          COUNT(*) FILTER (WHERE is_active = true) as active_properties,
+          COUNT(*) FILTER (WHERE is_active = false) as inactive_properties,
+          COUNT(*) FILTER (WHERE updated_timestamp >= NOW() - INTERVAL '1 hour') as recently_updated
+        FROM properties
+      `;
+      
+      const statsResult = await client.query(statsQuery);
+      const stats = statsResult.rows[0];
       
       await client.query('COMMIT');
       
       return {
-        inserted: inserted,
-        updated: upsertResult.rowCount
+        processed: inserted,
+        upserted: upsertResult.rowCount,
+        statistics: {
+          totalProperties: parseInt(stats.total_properties),
+          activeProperties: parseInt(stats.active_properties), 
+          inactiveProperties: parseInt(stats.inactive_properties),
+          recentlyUpdated: parseInt(stats.recently_updated)
+        }
       };
       
     } catch (error) {

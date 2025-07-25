@@ -32,7 +32,7 @@ export default function Home() {
       }
       
       const data = await response.json()
-      setSessionData(data.session)
+      setSessionData(data.sessionData)
     } catch (err) {
       setError(err.message)
     } finally {

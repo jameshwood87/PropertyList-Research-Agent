@@ -1,0 +1,165 @@
+{
+  "id": "fb1b4105-bcf8-42ce-b39c-a50a155232e7",
+  "propertyData": {
+    "id": "R5018605-76F1WK8VV",
+    "reference": "R5018605",
+    "created_at": "2025-07-21T23:03:31.000Z",
+    "last_updated_at": "2025-07-21T23:11:40.000Z",
+    "direct": false,
+    "is_sale": true,
+    "is_short_term": false,
+    "is_long_term": false,
+    "property_type": "villa",
+    "province": "MA",
+    "city": "Marbella",
+    "suburb": "Los Monteros",
+    "urbanization": null,
+    "address": "Los Monteros, Marbella",
+    "latitude": null,
+    "longitude": null,
+    "geohash": null,
+    "plot_size": "1000.00",
+    "build_size": "450.00",
+    "terrace_size": "100.00",
+    "bedrooms": 6,
+    "bathrooms": 5,
+    "parking_spaces": 2,
+    "floor_number": null,
+    "orientation": "south-east",
+    "condition_rating": null,
+    "year_built": null,
+    "energy_rating": null,
+    "sale_price": "4500000.00",
+    "monthly_price": null,
+    "weekly_price_from": null,
+    "weekly_price_to": null,
+    "features": [
+      "close-to-schools",
+      "fireplace",
+      "garden-private",
+      "gym",
+      "pool-private",
+      "storage-room"
+    ],
+    "feature_ids": [],
+    "descriptions": {
+      "en": "\" RENOVATION VILLA PROJECT ONLY 5 MINUTS WALKING FROM THE BEACH \"\n\nVilla in Los Monteros 5 minutes walk from the beach\n\nPrivately situated villa in the prestigious Los Monteros offering 6 bedrooms with 5 bathrooms and a total constructed area 450 square meters on a plot of 1.000 square meters. \n\nJust a 5 minute walk to Marbella´s sandy beaches and the famous La Cabana beach club.",
+      "es": "Villa en Los Monteros a 5 minutos a pie de la playa\n\nVilla en una ubicación privilegiada en la prestigiosa urbanización Los Monteros. Ofrece 6 dormitorios, 5 baños y una superficie construida de 450 m² en una parcela de 1.000 m².\n\nA solo 5 minutos a pie de las playas de arena de Marbella y del famoso club de playa La Cabaña."
+    },
+    "images": [
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/DBZjvuKfJ8Am8vXm8CfH1vY3?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-1bwegws%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-1bwegws&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=6a3719019770da12fe52a2c7a5d96e267b764d9417a15e82a035068856a13472",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/qAPtb4aviy67HGojKMkS8C61?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-p3aijr%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-p3aijr&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=6fdbb1c722e501e099c258ae6cf87520eec337ae2bfefb4b3c3c57ab27ff1741",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/ARXkFqig534zBYMyjDj6fHWN?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-h9seh%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-h9seh&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=54e6b6d0fc7b50a088cdd56ea7c916bb8448d17a0525c834e8ea3bcfd1e0b79c",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/dS8XRgMGqLP5bNWKwAdTXxUv?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-1oaxsgu%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-1oaxsgu&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=4b2ab8a49ed4dfc25e4dca01688a4faa35979752df2a1536033901050a8d061d",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/ZiVkAfgjmcBPMvQFApE1pXs6?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-3y1cen%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-3y1cen&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=5338735222cf4da1020b3286c489e0b98f4dd08ebc7eb2122aad0e5abe8b01b3",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/fQHGbMF8SZokK5ZQtwR7d48g?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-ys08j2%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-ys08j2&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=7d34c8f02d4aac26b949149f7f155a5888155c2557e90bd2db3109b96a4c67f9",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/iiRJdUYuHoApD9QBkGgzPQLe?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-8ndmj6%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-8ndmj6&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=f845849c331399ebd2cee34e3d9f11a754468960867a31cb7859af2170988f62",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/iksHbZxwdk1BUDKhiCtCD5rL?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-1pdmn5f%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-1pdmn5f&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=e16ac6ec8a9b64c0dcba24406a2299245fdc23f7e564eee33caefcfdff676ecf",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/WbC2YQFuVZrmLnFwTfnqY84M?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-12zmnst%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-12zmnst&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=54588c48caaa6c33a8616adaee015bbe98b8d315bceec9c43a2c817f6fee83b3",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/aCu6AFsgWdrGrBU7KxqLtybN?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-8710oy%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-8710oy&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=db4cb946348130b1fcdc9cc772ec4e41cd2b6eea6ec0435e2e6a1dca8b702941",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/Fvx3C1qTbykx5Xfs7Z2cBdor?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-t5357j%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-t5357j&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=5508913e3651496faf0250477e2b087c95adfd0af05c74e566d705be822a9864",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/WUzcgS2GHRUVbfGnmCzbX89u?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-7f6eea%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-7f6eea&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=981179a984c254b28bb87bb113fa03b415a7a8eec7cc3dad58e12c1fcf74d736",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/1pdWFwx6bHrM5oyJPphyECw8?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-18l9miq%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-18l9miq&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=0370c68cdcbb3027fb8e5ac84e9c3e13ba28ae5b9090e3830fe56851a541b1e0",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/Co3PxE7g87uxUW3qAupwkrYC?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-1qpwpne%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-1qpwpne&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=b0d545d70ae78e9b4e27dd6d82fab7fa5477cbd9cdbcde43382be35ab5638377",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/n27s8xwWEmhoaCVRHeeBZaNX?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-8sdkoe%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-8sdkoe&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=838afe33db478b85b5526d164cf56a8b0a64d227676f6ec44a9fac831e7e19ac",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/W6Typ9d9Te6VbjTqiKBGcxJz?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-8og06p%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-8og06p&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=1bd0b3a4e5a138f9a67a741422a9c15cc1571897805bd6495c3f633b8f9f9b52",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/c75wCeFLrX7kW6mrxGPFDBXY?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-fbalbj%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-fbalbj&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=63044397f2d591abdb945a5ccd26a6d29b5c3147215fa7d16b44305ea3b176ab",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/95f6kaqrYc6PwAQfHT4VLhRQ?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-bsibem%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-bsibem&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=d423fb3bd5640481b88022c7297e7d866eb9bcc2f18408e0e134dd0674a209a7",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/Fds8dk6Fq6CXrjJ3M5pStxhk?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-74p7x4%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-74p7x4&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=a2bc5d962ef80754560ed4472256434d9b2c8da134f4cc349ffd45ecbbacbf43",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/wES9nupnYfaBrrSrFBQJGXRW?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-k6129m%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-k6129m&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=67daff4d51db16125f848d103f96f364d72a4d667a2de6f3bb067fd80e8b9904",
+      "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/7L88osFgUw8PUWHogV4hNwZh?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-v08sa7%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-v08sa7&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=7a2e4cc2fa3426de7a22546081c195a16ce30138930e09f97bf823c9537cf74d"
+    ],
+    "virtual_tour_url": null,
+    "last_seen": "2025-07-25T00:42:02.532Z",
+    "is_active": true,
+    "raw_data": {
+      "city": "Marbella",
+      "photos": {
+        "photo": [
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/DBZjvuKfJ8Am8vXm8CfH1vY3?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-1bwegws%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-1bwegws&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=6a3719019770da12fe52a2c7a5d96e267b764d9417a15e82a035068856a13472",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/qAPtb4aviy67HGojKMkS8C61?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-p3aijr%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-p3aijr&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=6fdbb1c722e501e099c258ae6cf87520eec337ae2bfefb4b3c3c57ab27ff1741",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/ARXkFqig534zBYMyjDj6fHWN?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-h9seh%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-h9seh&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=54e6b6d0fc7b50a088cdd56ea7c916bb8448d17a0525c834e8ea3bcfd1e0b79c",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/dS8XRgMGqLP5bNWKwAdTXxUv?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-1oaxsgu%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-1oaxsgu&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=4b2ab8a49ed4dfc25e4dca01688a4faa35979752df2a1536033901050a8d061d",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/ZiVkAfgjmcBPMvQFApE1pXs6?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-3y1cen%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-3y1cen&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=5338735222cf4da1020b3286c489e0b98f4dd08ebc7eb2122aad0e5abe8b01b3",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/fQHGbMF8SZokK5ZQtwR7d48g?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-ys08j2%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-ys08j2&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=7d34c8f02d4aac26b949149f7f155a5888155c2557e90bd2db3109b96a4c67f9",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/iiRJdUYuHoApD9QBkGgzPQLe?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-8ndmj6%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-8ndmj6&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=f845849c331399ebd2cee34e3d9f11a754468960867a31cb7859af2170988f62",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/iksHbZxwdk1BUDKhiCtCD5rL?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-1pdmn5f%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-1pdmn5f&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=e16ac6ec8a9b64c0dcba24406a2299245fdc23f7e564eee33caefcfdff676ecf",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/WbC2YQFuVZrmLnFwTfnqY84M?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-12zmnst%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-12zmnst&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=54588c48caaa6c33a8616adaee015bbe98b8d315bceec9c43a2c817f6fee83b3",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/aCu6AFsgWdrGrBU7KxqLtybN?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-8710oy%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-8710oy&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=db4cb946348130b1fcdc9cc772ec4e41cd2b6eea6ec0435e2e6a1dca8b702941",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/Fvx3C1qTbykx5Xfs7Z2cBdor?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-t5357j%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-t5357j&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=5508913e3651496faf0250477e2b087c95adfd0af05c74e566d705be822a9864",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/WUzcgS2GHRUVbfGnmCzbX89u?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-7f6eea%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-7f6eea&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=981179a984c254b28bb87bb113fa03b415a7a8eec7cc3dad58e12c1fcf74d736",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/1pdWFwx6bHrM5oyJPphyECw8?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-18l9miq%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-18l9miq&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=0370c68cdcbb3027fb8e5ac84e9c3e13ba28ae5b9090e3830fe56851a541b1e0",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/Co3PxE7g87uxUW3qAupwkrYC?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-1qpwpne%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-1qpwpne&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=b0d545d70ae78e9b4e27dd6d82fab7fa5477cbd9cdbcde43382be35ab5638377",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/n27s8xwWEmhoaCVRHeeBZaNX?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-8sdkoe%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-8sdkoe&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=838afe33db478b85b5526d164cf56a8b0a64d227676f6ec44a9fac831e7e19ac",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/W6Typ9d9Te6VbjTqiKBGcxJz?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-8og06p%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-8og06p&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=1bd0b3a4e5a138f9a67a741422a9c15cc1571897805bd6495c3f633b8f9f9b52",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/c75wCeFLrX7kW6mrxGPFDBXY?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-fbalbj%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-fbalbj&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=63044397f2d591abdb945a5ccd26a6d29b5c3147215fa7d16b44305ea3b176ab",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/95f6kaqrYc6PwAQfHT4VLhRQ?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-bsibem%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-bsibem&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=d423fb3bd5640481b88022c7297e7d866eb9bcc2f18408e0e134dd0674a209a7",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/Fds8dk6Fq6CXrjJ3M5pStxhk?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-74p7x4%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-74p7x4&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=a2bc5d962ef80754560ed4472256434d9b2c8da134f4cc349ffd45ecbbacbf43",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/wES9nupnYfaBrrSrFBQJGXRW?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-k6129m%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-k6129m&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=67daff4d51db16125f848d103f96f364d72a4d667a2de6f3bb067fd80e8b9904",
+          "https://propertylist-staging-assets-west.s3.eu-west-1.amazonaws.com/7L88osFgUw8PUWHogV4hNwZh?response-content-disposition=inline%3B%20filename%3D%22open-uri20250721-13-v08sa7%22%3B%20filename%2A%3DUTF-8%27%27open-uri20250721-13-v08sa7&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS7DVVMGJGYJ7YKGY%2F20250724%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250724T151520Z&X-Amz-Expires=432200&X-Amz-SignedHeaders=host&X-Amz-Signature=7a2e4cc2fa3426de7a22546081c195a16ce30138930e09f97bf823c9537cf74d"
+        ]
+      },
+      "suburb": "Los Monteros",
+      "is_sale": true,
+      "@_direct": false,
+      "bedrooms": 6,
+      "features": {
+        "feature": [
+          "close-to-schools",
+          "fireplace",
+          "garden-private",
+          "gym",
+          "pool-private",
+          "storage-room"
+        ]
+      },
+      "province": "MA",
+      "bathrooms": 5,
+      "plot_size": 1000,
+      "reference": "R5018605",
+      "build_size": 450,
+      "sale_price": 4500000,
+      "orientation": "south-east",
+      "@_created_at": "2025-07-21T23:03:31Z",
+      "descriptions": {
+        "description": [
+          {
+            "text": "\" RENOVATION VILLA PROJECT ONLY 5 MINUTS WALKING FROM THE BEACH \"\n\nVilla in Los Monteros 5 minutes walk from the beach\n\nPrivately situated villa in the prestigious Los Monteros offering 6 bedrooms with 5 bathrooms and a total constructed area 450 square meters on a plot of 1.000 square meters. \n\nJust a 5 minute walk to Marbella´s sandy beaches and the famous La Cabana beach club.",
+            "@_language": "en"
+          },
+          {
+            "text": "Villa en Los Monteros a 5 minutos a pie de la playa\n\nVilla en una ubicación privilegiada en la prestigiosa urbanización Los Monteros. Ofrece 6 dormitorios, 5 baños y una superficie construida de 450 m² en una parcela de 1.000 m².\n\nA solo 5 minutos a pie de las playas de arena de Marbella y del famoso club de playa La Cabaña.",
+            "@_language": "es"
+          }
+        ]
+      },
+      "terrace_size": 100,
+      "property_type": "villa",
+      "parking_spaces": 2,
+      "@_last_updated_at": "2025-07-21T23:11:40Z"
+    },
+    "created_timestamp": "2025-07-22T22:49:03.035Z",
+    "updated_timestamp": "2025-07-25T00:42:04.329Z",
+    "geom": null,
+    "last_analysis_timestamp": "2025-07-23T19:01:09.542Z",
+    "street_address": "Los Monteros, Marbella",
+    "build_square_meters": "450.00",
+    "plot_square_meters": "1000.00",
+    "terrace_square_meters": "100.00",
+    "price": "4500000.00",
+    "totalCost": {
+      "purchasePrice": "4500000.00",
+      "annualCosts": 0,
+      "totalFirstYear": "4500000.000",
+      "breakdown": {
+        "ibi": 0,
+        "basura": 0,
+        "communityFees": 0
+      }
+    },
+    "pricePerSqm": 10000
+  },
+  "locationContext": null,
+  "createdAt": "2025-07-25T00:52:35.649Z",
+  "status": "ready"
+}

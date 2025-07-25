@@ -1,0 +1,154 @@
+[33mcommit cf2eb2ebc5af96272c1567bdcab3c324faf74bd8[m
+Author: PropertyList <jameshwood87@gmail.com>
+Date:   Fri Jul 25 00:27:03 2025 +0200
+
+     Major AI Property Research Agent Upgrade
+    
+     New Features:
+    - PropertyList API integration with fresh image processing
+    - Enhanced PDF generation with embedded images
+    - Future developments AI analysis
+    - Auto-reanalysis monitoring system
+    - Intelligent coordinate validation
+    - Smart location grouping services
+    
+     Technical Improvements:
+    - Fixed DNS/network connectivity issues
+    - Optimized image processing (3 images max, Sharp optimization)
+    - Rate limiting for API calls (30/min listings, 40/min details)
+    - Enhanced geocoding with AI-powered location analysis
+    - Database schema optimizations with indexes
+    - Session management improvements
+    
+     Bug Fixes:
+    - Fixed PropertyList API authentication
+    - Resolved image URL extraction issues
+    - Fixed field name mismatches in data processing
+    - Corrected environment variable loading
+    - Improved error handling throughout
+    
+     Performance:
+    - Implemented caching strategies
+    - Optimized database queries
+    - Enhanced batch processing
+    - Improved concurrent image processing
+    
+    Ready for production with full PropertyList API integration!
+
+INTELLIGENT-COORDINATE-SYSTEM.md
+app/admin/learning/page.js
+app/analysis/[sessionId]/page.js
+app/components/FreshAnalysisImage.js
+app/components/FreshAnalysisProgress.js
+app/components/PropertyDisplay.js
+app/components/PropertyLocationMap.js
+app/utils/imageUtils.js
+batch-geocode-all-properties.js
+batch-geocode.js
+check-database-geocoding.js
+check-golden-mile-properties.js
+check-opencage-quota.js
+complete-database-enhancement.js
+config/geocoding.config.js
+debug-comparable.js
+e.js
+end-test-property.js
+enhanced-batch-geocoding.js
+fix-incorrect-cached-data.js
+next.config.js
+optimized-comparable-search.js
+package-lock.json
+package.json
+scripts/add-normalized-text-columns.sql
+scripts/add-partial-gist-indexes.sql
+send-test-property.js
+server/data/reports/PropertyAnalysis_MAR2024001_2025-07-24.pdf
+server/data/reports/PropertyAnalysis_unknown_2025-07-24.pdf
+server/data/sessions/0ed415ea-76f5-416c-a510-b88cb0f9e125.json
+server/data/sessions/1ce805c4-c512-4e69-b3d8-60215ce8afd3.json
+server/data/sessions/22621815-9dd6-4c21-9126-52fbe1bc7a15.json
+server/data/sessions/22971190-fa3b-4359-b211-b0cbd283527e.json
+server/data/sessions/23db5941-e864-4840-8bbb-44cccecd1545.json
+server/data/sessions/33359b5c-15d9-4d4b-9e2a-ada47f17e26e.json
+server/data/sessions/3951eab0-440d-49dd-89cb-d5c958f41b5d.json
+server/data/sessions/3da24399-670b-48f2-adba-7f4395ee7d35.json
+server/data/sessions/3e87fbbe-9676-4d13-a82e-fda88ef514f2.json
+server/data/sessions/43b226ad-3af8-45b4-a99d-0872a41dd290.json
+server/data/sessions/4639a292-c615-4879-b40a-c3a24cb10dbe.json
+server/data/sessions/46bbc65f-9ba4-47b7-8be3-c60c29425933.json
+server/data/sessions/494f23c5-ddba-4f89-a7d8-9b04226eeefb.json
+server/data/sessions/495f0e89-cdf5-4799-9422-643cb105028c.json
+server/data/sessions/4ad24c76-a355-4e49-9bf0-4457902ec3c6.json
+server/data/sessions/4fc7346c-774d-4500-98bf-263b66cf1791.json
+server/data/sessions/526d8929-eca7-4e05-b436-59bd7c601618.json
+server/data/sessions/529a218c-65ef-444c-bfd4-fa5cd2a5d39e.json
+server/data/sessions/52b58a69-0344-4af3-b4dd-af9243daead9.json
+server/data/sessions/540a2d66-c4c5-4cbd-a685-63f76651bd46.json
+server/data/sessions/570375a7-eb7b-48ba-b4d6-b35c666f82b1.json
+server/data/sessions/59a369cf-eb08-48db-bb7a-f6c61601e2f8.json
+server/data/sessions/5fb4ea2f-89e9-4290-b0df-cd0175c5483f.json
+server/data/sessions/6fec74a2-daf2-4ced-861e-91c379ff021d.json
+server/data/sessions/70c1bb8f-698f-4889-8bf4-f492890bdfa7.json
+server/data/sessions/71dc3d57-3f1a-4bd2-a943-bedaeb8b1471.json
+server/data/sessions/73ae06a0-d047-48ec-a92e-fab74aea945e.json
+server/data/sessions/79b8901b-bff2-43b0-888c-2ab04f8682ac.json
+server/data/sessions/7b8b263b-c212-492a-8f66-551c7f8d7fcb.json
+server/data/sessions/7b9a9e5a-77c4-4cff-8901-ea46482be981.json
+server/data/sessions/7e1b6a88-3673-4579-89be-12a0d2740627.json
+server/data/sessions/86846bcd-fe88-4b07-ad09-471d09f3171e.json
+server/data/sessions/8a4fed7e-2b6d-420d-9678-17411798de61.json
+server/data/sessions/8ed3344d-e923-41b4-8c82-6d42ada4a51e.json
+server/data/sessions/91ad6bcc-1c3e-42a7-ab6d-291c50d731d0.json
+server/data/sessions/9747cab5-bc7c-43e2-900b-1f88827870e8.json
+server/data/sessions/9d46c4f3-bc67-4b13-a2e3-07e2b99eef4e.json
+server/data/sessions/9fcb930c-4586-41d7-8e63-81a510bf8d2f.json
+server/data/sessions/a02bab5f-ac27-42f6-a73c-3080bb533ad8.json
+server/data/sessions/a14b4826-1820-4313-9466-a39fac8aa7d7.json
+server/data/sessions/a5130802-e2e6-4bde-a083-3c87216ee210.json
+server/data/sessions/b2c107aa-c72f-4ac9-bcc3-1fe1e8436403.json
+server/data/sessions/b951b66c-b2d5-40f9-a06c-33b41d0444e1.json
+server/data/sessions/b9aad484-e263-404d-bdda-115d6a9ccb11.json
+server/data/sessions/bc3de125-7023-4215-9906-8464de602705.json
+server/data/sessions/c49ea1f3-542c-4bb9-8422-3e82d45ec89f.json
+server/data/sessions/c61f0cee-c541-4603-a6ea-1ab68a7ce445.json
+server/data/sessions/cf613dcd-a78d-480a-af7e-45694ef14bdf.json
+server/data/sessions/d990d808-e820-4230-81e2-5fd167c412c1.json
+server/data/sessions/de239e0f-2500-4c55-8bc7-9a8060df09ba.json
+server/data/sessions/e00a3183-e8f8-4ef2-a85f-2ed28e47f2db.json
+server/data/sessions/e0a7a996-1e9e-43da-af23-a2f218262df1.json
+server/data/sessions/e0b4a804-0b09-41c5-a1bb-1a5ca2f2171c.json
+server/data/sessions/e5f41764-b2ed-46c4-81e3-2edbf2e98c41.json
+server/data/sessions/f1add6c4-c210-4417-b465-e5a74101ef6f.json
+server/data/sessions/f4a300ca-5127-49be-b629-7d2a34033db1.json
+server/data/sessions/fbc4dc99-3320-4f20-ba22-a0d9658f3578.json
+server/database/postgresDatabase.js
+server/listener.js
+server/routes/imageProxy.js
+server/services/aiAnalysisService.js
+server/services/aiLearningService.js
+server/services/autoReanalysisService.js
+server/services/batchGeocodingService.js
+server/services/comparableService.js
+server/services/enhancedPdfGenerationService.js
+server/services/freshImageService.js
+server/services/futureDevelopmentsService.js
+server/services/geocodingCacheService.js
+server/services/intelligentCoordinateService.js
+server/services/locationIntelligenceService.js
+server/services/optimizedLocationService.js
+server/services/propertyDataMapper.js
+server/services/propertyListApiService.js
+server/services/smartLocationGroupingService.js
+server/services/xmlFeedService.js
+t-location-precision-check.js
+test-bull-ring-location.js
+test-button-ux.js
+test-complete-fresh-analysis.js
+test-direct-geocoding.js
+test-fresh-images.js
+test-golden-mile-check.js
+test-precise-cache-fix.js
+test-property-real-images.json
+test-property.json
+test-propertylist-api.js
+test-urbanization-cache.js

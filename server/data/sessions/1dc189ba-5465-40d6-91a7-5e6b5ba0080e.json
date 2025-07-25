@@ -1,0 +1,68 @@
+{
+  "sessionId": "1dc189ba-5465-40d6-91a7-5e6b5ba0080e",
+  "createdAt": "2025-01-27T12:00:00.000Z",
+  "property": {
+    "id": 301,
+    "is_sale": true,
+    "reference": "RL0301",
+    "price": 650000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "build_square_meters": 145,
+    "plot_square_meters": 350,
+    "terrace_square_meters": 25,
+    "parking_spaces": 2,
+    "furnished": true,
+    "property_type": 1,
+    "city_id": 2,
+    "city": "Marbella",
+    "suburb_id": 118,
+    "suburb": "Nueva Andalucía",
+    "address": "Calle del Golf 15, Nueva Andalucía",
+    "is_long_term": false,
+    "is_short_term": false,
+    "monthly_price": null,
+    "weekly_price_low": null,
+    "weekly_price_high": null,
+    "floor_number": null,
+    "ibi": 2200,
+    "basura": 160,
+    "community_fees": 380,
+    "energy_rating": "B",
+    "feature_ids": [15, 27, 33, 38, 41, 47, 51, 58, 65, 78, 83, 91, 98, 102, 134, 140, 155],
+    "images": [
+      {
+        "id": 3001,
+        "small": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop&crop=entropy&auto=format",
+        "medium": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&h=800&fit=crop&crop=entropy&auto=format"
+      },
+      {
+        "id": 3002,
+        "small": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&crop=entropy&auto=format",
+        "medium": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=800&fit=crop&crop=entropy&auto=format"
+      },
+      {
+        "id": 3003,
+        "small": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop&crop=entropy&auto=format",
+        "medium": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=800&fit=crop&crop=entropy&auto=format"
+      },
+      {
+        "id": 3004,
+        "small": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop&crop=entropy&auto=format",
+        "medium": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&h=800&fit=crop&crop=entropy&auto=format"
+      },
+      {
+        "id": 3005,
+        "small": "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=800&h=600&fit=crop&crop=entropy&auto=format",
+        "medium": "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=1200&h=800&fit=crop&crop=entropy&auto=format"
+      }
+    ]
+  },
+  "status": "ready",
+  "steps": {
+    "market": { "status": "pending" },
+    "comparables": { "status": "pending" },
+    "insights": { "status": "pending" },
+    "report": { "status": "pending" }
+  }
+} 

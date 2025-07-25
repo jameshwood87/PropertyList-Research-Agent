@@ -233,9 +233,9 @@
         pricePerSqm: this.calculatePricePerSqm(property),
         
         // Size and layout
-        buildArea: property.build_area,
+        buildArea: property.build_size,
         plotArea: property.plot_size,
-        terraceArea: property.terrace_area,
+        terraceArea: property.terrace_size,
         bedrooms: property.bedrooms,
         bathrooms: property.bathrooms,
         

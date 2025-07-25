@@ -7,14 +7,15 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
   const mapRef = useRef(null)
   const [mapLoaded, setMapLoaded] = useState(false)
   const [error, setError] = useState(null)
+  const [dynamicCoordinates, setDynamicCoordinates] = useState(null)
 
   // Default to Marbella center if no coordinates
-  const defaultCoords = { lat: 36.5084, lng: -4.9531 }
+  const defaultCoords = { lat: 36.5125, lng: -4.8884 }
   
   // Helper function to get coordinates for known cities/locations
   const getCityCoordinates = (cityName) => {
     const knownCities = {
-      'marbella': { lat: 36.5084, lng: -4.9531 },
+      'marbella': { lat: 36.5125, lng: -4.8884 },
       'málaga': { lat: 36.7213, lng: -4.4217 },
       'malaga': { lat: 36.7213, lng: -4.4217 },
       'manilva': { lat: 36.3433, lng: -5.2483 },
@@ -31,7 +32,11 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
       'san pedro': { lat: 36.4856, lng: -5.0139 },
       'cancelada': { lat: 36.4775, lng: -5.0361 },
       'benahavís': { lat: 36.5167, lng: -5.0167 },
-      'benahavis': { lat: 36.5167, lng: -5.0167 }
+      'benahavis': { lat: 36.5167, lng: -5.0167 },
+      'las chapas': { lat: 36.4858, lng: -4.8047 },
+      'elviria': { lat: 36.4858, lng: -4.8047 },
+      'golden mile': { lat: 36.5065, lng: -4.9052 },
+      'calahonda': { lat: 36.4656, lng: -4.7103 }
     };
     
     return knownCities[cityName?.toLowerCase()];
@@ -66,7 +71,13 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
       return propertyCoords;
     }
 
-    // SECOND PRIORITY: Use enhanced location coordinates from user input AI processing
+    // SECOND PRIORITY: Use dynamically geocoded coordinates from landmarks
+    if (dynamicCoordinates) {
+      console.log('🎯 Using dynamically geocoded coordinates from landmarks:', dynamicCoordinates);
+      return dynamicCoordinates;
+    }
+
+    // THIRD PRIORITY: Use enhanced location coordinates from user input AI processing
     if (locationContext?.enhancedLocation?.coordinates?.lat && locationContext?.enhancedLocation?.coordinates?.lng) {
       console.log('🎯 Using ENHANCED location coordinates from user input:', locationContext.enhancedLocation.coordinates);
       console.log('🏛️ Enhanced method:', locationContext.enhancedLocation.method);
@@ -83,26 +94,38 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
       console.log('   - lng exists:', locationContext?.enhancedLocation?.coordinates?.lng);
     }
 
-    // THIRD PRIORITY: Use coordinates from location intelligence
+    // FOURTH PRIORITY: Use coordinates from location intelligence
     if (locationContext?.coordinates?.lat && locationContext?.coordinates?.lng) {
       console.log('🗺️ Using location intelligence coordinates:', locationContext.coordinates);
       return locationContext.coordinates;
     }
     
-    // FOURTH PRIORITY: Use lat/lng from location intelligence
+    // FIFTH PRIORITY: Use lat/lng from location intelligence
     if (locationContext?.lat && locationContext?.lng) {
       console.log('🗺️ Using location intelligence lat/lng:', { lat: locationContext.lat, lng: locationContext.lng });
       return { lat: locationContext.lat, lng: locationContext.lng };
     }
     
-    // FIFTH PRIORITY: Try direct geocoding of street address if available
+    // ENHANCED: Check for landmark references in property description
+    if (propertyData?.descriptions?.en || propertyData?.descriptions?.es) {
+      const description = propertyData.descriptions.en || propertyData.descriptions.es || '';
+      console.log('🔍 Checking property description for landmark references...');
+      
+                   // Check if we found landmarks and need dynamic geocoding
+      if (description.toLowerCase().includes('la cabana') || description.toLowerCase().includes('la cabaña') || description.toLowerCase().includes('los monteros')) {
+        console.log('🎯 Found landmark references, will attempt progressive geocoding...');
+        // Dynamic geocoding will be handled in useEffect
+      }
+    }
+    
+    // SIXTH PRIORITY: Try direct geocoding of street address if available
     if (propertyData?.street_address || propertyData?.urbanization) {
       const addressToGeocode = propertyData.street_address || propertyData.urbanization;
       console.log('🏢 Should directly geocode address (not implemented in frontend):', addressToGeocode);
       // Note: This would need to be handled in the backend during property creation
     }
     
-    // SIXTH PRIORITY: Try to get coordinates for known cities/suburbs
+    // SEVENTH PRIORITY: Try to get coordinates for known cities/suburbs
     if (propertyData?.suburb) {
       const suburbCoords = getCityCoordinates(propertyData.suburb);
       if (suburbCoords) {
@@ -111,7 +134,7 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
       }
     }
     
-    // SEVENTH PRIORITY: Try to get city coordinates for known cities
+    // EIGHTH PRIORITY: Try to get city coordinates for known cities
     if (propertyData?.city) {
       const cityCoords = getCityCoordinates(propertyData.city);
       if (cityCoords) {
@@ -120,7 +143,7 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
       }
     }
     
-    // EIGHTH PRIORITY: Try to get coordinates for resolved location
+    // NINTH PRIORITY: Try to get coordinates for resolved location
     if (locationContext?.location) {
       const locationCoords = getCityCoordinates(locationContext.location);
       if (locationCoords) {
@@ -138,6 +161,89 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
   const locationName = locationContext?.location || propertyData?.city || 'Property Location'
   const confidence = locationContext?.confidence || 0
 
+  // Progressive geocoding for landmarks found in descriptions
+  useEffect(() => {
+    const performProgressiveGeocoding = async () => {
+      // Only geocode if we don't have coordinates and found landmarks
+      if (propertyData?.latitude || propertyData?.longitude || locationContext?.coordinates || dynamicCoordinates) return;
+      
+      const description = propertyData?.descriptions?.en || propertyData?.descriptions?.es || '';
+      
+      if (description.toLowerCase().includes('la cabana') || description.toLowerCase().includes('la cabaña') || description.toLowerCase().includes('los monteros')) {
+        console.log('🎯 Starting progressive geocoding for landmarks...');
+        
+        try {
+          const progressiveQueries = [];
+          
+          // Build progressive queries based on what we found
+          if ((description.toLowerCase().includes('la cabana') || description.toLowerCase().includes('la cabaña')) && description.toLowerCase().includes('los monteros')) {
+            progressiveQueries.push(
+              'La Cabana beach club, Los Monteros, Marbella, Spain',
+              'La Cabaña beach club, Los Monteros, Marbella, Spain',
+              'La Cabana, Los Monteros, Marbella, Spain', 
+              'La Cabaña, Los Monteros, Marbella, Spain',
+              'La Cabana beach club, Marbella, Spain',
+              'La Cabaña beach club, Marbella, Spain',
+              'La Cabana, Marbella, Spain',
+              'La Cabaña, Marbella, Spain'
+            );
+          } else if (description.toLowerCase().includes('los monteros')) {
+            progressiveQueries.push(
+              'Los Monteros, Marbella, Málaga, Spain',
+              'Los Monteros, Marbella, Spain',
+              'Urbanización Los Monteros, Marbella, Spain'
+            );
+          } else if (description.toLowerCase().includes('la cabana') || description.toLowerCase().includes('la cabaña')) {
+            progressiveQueries.push(
+              'La Cabana beach club, Marbella, Spain',
+              'La Cabaña beach club, Marbella, Spain', 
+              'La Cabana, Marbella, Spain',
+              'La Cabaña, Marbella, Spain'
+            );
+          }
+          
+          // Try each query progressively
+          for (const query of progressiveQueries) {
+            console.log(`🌍 Trying geocoding query: "${query}"`);
+            
+            const geocodeResult = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(query)}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`);
+            
+            if (geocodeResult.ok) {
+              const data = await geocodeResult.json();
+              
+              if (data.status === 'OK' && data.results.length > 0) {
+                const result = data.results[0];
+                const coordinates = {
+                  lat: result.geometry.location.lat,
+                  lng: result.geometry.location.lng
+                };
+                
+                console.log(`✅ Successfully geocoded "${query}" to:`, coordinates);
+                console.log(`📍 Formatted address: ${result.formatted_address}`);
+                
+                setDynamicCoordinates(coordinates);
+                return; // Stop on first success
+              } else {
+                console.log(`❌ No results for "${query}" (status: ${data.status})`);
+              }
+            } else {
+              console.log(`❌ Geocoding request failed for "${query}"`);
+            }
+          }
+          
+          console.log('⚠️ All progressive geocoding attempts failed, will use fallback coordinates');
+          
+        } catch (error) {
+          console.error('❌ Error during progressive geocoding:', error);
+        }
+      }
+    };
+    
+    if (propertyData && process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
+      performProgressiveGeocoding();
+    }
+  }, [propertyData, locationContext, dynamicCoordinates]);
+
   useEffect(() => {
     // Check if Google Maps API key is available
     if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
@@ -151,15 +257,15 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places,geometry`
       script.async = true
       script.defer = true
-      script.onload = initializeMap
+      script.onload = () => initializeMap().catch(err => console.error('Map initialization error:', err))
       script.onerror = () => setError('Failed to load Google Maps')
       document.head.appendChild(script)
     } else {
-      initializeMap()
+      initializeMap().catch(err => console.error('Map initialization error:', err))
     }
   }, [coordinates])
 
-  const initializeMap = () => {
+  const initializeMap = async () => {
     if (!mapRef.current || !coordinates) return
 
     try {
@@ -268,26 +374,36 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
         console.log('Map center changed to:', center.lat(), center.lng())
       })
 
-      // Add nearby places search (dynamic content)
-      const placesService = new window.google.maps.places.PlacesService(map)
-      
-      // Search for nearby amenities
-      const nearbyRequest = {
-        location: coordinates,
-        radius: 1000, // 1km radius
-        types: ['restaurant', 'school', 'hospital', 'shopping_mall', 'bank', 'pharmacy']
-      }
+      // Add nearby places search using new Places API (dynamic content)
+      try {
+        // Search for nearby amenities using new Place API
+        const nearbyRequest = {
+          // Center point
+          location: coordinates,
+          // Search radius in meters
+          radius: 1000, 
+          // Include specified place types
+          includedTypes: ['restaurant', 'school', 'hospital', 'shopping_mall', 'bank', 'pharmacy'],
+          // Return up to 5 results
+          maxResultCount: 5,
+          // Include basic place information
+          fields: ['id', 'displayName', 'location', 'types', 'rating', 'iconMaskBaseUri']
+        }
 
-      placesService.nearbySearch(nearbyRequest, (results, status) => {
-        if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-          // Add markers for nearby places (first 5)
-          results.slice(0, 5).forEach((place, index) => {
+        // Use the new Place.searchNearby() method
+        const { places } = await window.google.maps.places.Place.searchNearby(nearbyRequest)
+        
+        if (places && places.length > 0) {
+          // Add markers for nearby places
+          places.forEach((place, index) => {
             const placeMarker = new window.google.maps.Marker({
-              position: place.geometry.location,
+              position: place.location,
               map: map,
-              title: place.name,
+              title: place.displayName,
               icon: {
-                url: place.icon,
+                url: place.iconMaskBaseUri ? 
+                      `${place.iconMaskBaseUri}.png` : 
+                      'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png',
                 scaledSize: new window.google.maps.Size(20, 20),
                 anchor: new window.google.maps.Point(10, 10)
               }
@@ -297,8 +413,8 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
             const placeInfoWindow = new window.google.maps.InfoWindow({
               content: `
                 <div style="padding: 8px; max-width: 150px;">
-                  <h4 style="margin: 0 0 4px 0; font-size: 12px; font-weight: bold;">${place.name}</h4>
-                  <p style="margin: 0; font-size: 10px; color: #666;">${place.types[0].replace(/_/g, ' ')}</p>
+                  <h4 style="margin: 0 0 4px 0; font-size: 12px; font-weight: bold;">${place.displayName}</h4>
+                  <p style="margin: 0; font-size: 10px; color: #666;">${place.types[0]?.replace(/_/g, ' ') || 'Business'}</p>
                   <p style="margin: 4px 0 0 0; font-size: 10px;">Rating: ${place.rating || 'N/A'} ⭐</p>
                 </div>
               `
@@ -309,7 +425,10 @@ export default function PropertyLocationMap({ locationContext, propertyData }) {
             })
           })
         }
-      })
+      } catch (placesError) {
+        console.warn('⚠️ Nearby places search failed (non-critical):', placesError)
+        // Gracefully handle places API errors - map will still work without nearby places
+      }
 
 
 

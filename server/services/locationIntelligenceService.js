@@ -923,11 +923,22 @@ Focus on creating the most accurate search queries for Spanish property geocodin
    */
   generateOptimalGeocodingQueries(locationDetails, originalInput, context = {}) {
     const queries = [];
-    // PRIORITY: Use suburb if available, then city (suburb is more specific)
+    // ENHANCED: Try both suburb and city contexts progressively for better coverage
     const suburb = context.propertyData?.suburb || context.suburb;
     const city = context.city || context.propertyData?.city || 'Marbella';
-    const location = suburb || city;
     const province = context.province || 'Málaga';
+    
+    // Create location contexts in priority order: suburb first, then city
+    const locationContexts = [];
+    if (suburb && suburb !== city) {
+      locationContexts.push({ name: suburb, type: 'suburb' });
+    }
+    if (city) {
+      locationContexts.push({ name: city, type: 'city' });
+    }
+    
+    // Fallback to primary location for backward compatibility
+    const primaryLocation = suburb || city;
     
     // Handle case where locationDetails is null (AI parsing failed)
     if (!locationDetails) {
@@ -945,34 +956,47 @@ Focus on creating the most accurate search queries for Spanish property geocodin
     // Priority 1: Specific streets (highest accuracy)
     if (locationDetails.specificStreets?.length > 0) {
       locationDetails.specificStreets.forEach(street => {
-        queries.push(`${street}, ${location}, ${province}, Spain`);
+        // Try with each location context progressively
+        locationContexts.forEach(locContext => {
+          queries.push(`${street}, ${locContext.name}, ${province}, Spain`);
+        });
       });
     }
 
     // Priority 2: Urbanization + context
     if (locationDetails.urbanizations?.length > 0) {
       locationDetails.urbanizations.forEach(urbanization => {
-        queries.push(`${urbanization}, ${location}, ${province}, Spain`);
-        
-        // Combine with landmarks if available
-        if (locationDetails.landmarks?.length > 0) {
-          const landmark = locationDetails.landmarks[0];
-          queries.push(`${urbanization} near ${landmark.name}, ${location}, ${province}, Spain`);
-        }
+        // Try with each location context progressively
+        locationContexts.forEach(locContext => {
+          queries.push(`${urbanization}, ${locContext.name}, ${province}, Spain`);
+          
+          // Combine with landmarks if available
+          if (locationDetails.landmarks?.length > 0) {
+            const landmark = locationDetails.landmarks[0];
+            queries.push(`${urbanization} near ${landmark.name}, ${locContext.name}, ${province}, Spain`);
+          }
+        });
       });
     }
 
-    // Priority 3: Neighborhood + landmarks
+    // Priority 3: Neighborhood + landmarks (ENHANCED: Progressive location contexts)
     if (locationDetails.neighborhoods?.length > 0 && locationDetails.landmarks?.length > 0) {
       const neighborhood = locationDetails.neighborhoods[0];
       const landmark = locationDetails.landmarks[0];
-      queries.push(`${neighborhood} near ${landmark.name}, ${location}, ${province}, Spain`);
+      
+      // Try landmark+neighborhood with each location context
+      locationContexts.forEach(locContext => {
+        queries.push(`${neighborhood} near ${landmark.name}, ${locContext.name}, ${province}, Spain`);
+        queries.push(`${landmark.name}, ${neighborhood}, ${locContext.name}, ${province}, Spain`);
+      });
     }
 
-    // Priority 4: Proximity clues (for landmark-based locations)
+    // Priority 4: Proximity clues (ENHANCED: Progressive location contexts)
     if (locationDetails.proximityClues?.length > 0) {
       locationDetails.proximityClues.forEach(clue => {
-        queries.push(`${clue.place}, ${location}, ${province}, Spain`);
+        locationContexts.forEach(locContext => {
+          queries.push(`${clue.place}, ${locContext.name}, ${province}, Spain`);
+        });
       });
     }
 
@@ -986,15 +1010,22 @@ Focus on creating the most accurate search queries for Spanish property geocodin
       queries.push(...locationDetails.searchQueries);
     }
 
-    // Fallback: Original input
+    // Fallback: Original input with progressive contexts
     if (queries.length === 0) {
-      queries.push(`${originalInput}, ${location}, ${province}, Spain`);
+      locationContexts.forEach(locContext => {
+        queries.push(`${originalInput}, ${locContext.name}, ${province}, Spain`);
+      });
+      // Ultimate fallback if no location contexts available
+      if (queries.length === 0) {
+        queries.push(`${originalInput}, ${primaryLocation}, ${province}, Spain`);
+      }
     }
 
     // Remove duplicates while preserving order
     const uniqueQueries = [...new Set(queries)];
     
-    console.log(`🔍 Generated ${uniqueQueries.length} optimal geocoding queries (using ${suburb ? 'suburb' : 'city'}: ${location}):`, uniqueQueries);
+    const contextInfo = locationContexts.map(ctx => `${ctx.name} (${ctx.type})`).join(' → ') || primaryLocation;
+    console.log(`🔍 Generated ${uniqueQueries.length} optimal geocoding queries with progressive contexts [${contextInfo}]:`, uniqueQueries);
     
     return uniqueQueries;
   }
@@ -1795,23 +1826,108 @@ Focus on creating the most accurate search queries for Spanish property geocodin
   }
 
   /**
-   * Extract location patterns from text
+   * Extract location patterns from text - IMPROVED to avoid marketing text
    */
   extractLocationPatterns(text) {
-    // Common Spanish location indicators
-    const patterns = [
-      /(?:cerca de|near|próximo a)\s+([^,.]+)/i,
-      /(?:en|in)\s+([A-Z][a-z\s]+)/g,
-      /([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/g
+    // FIRST: Look for development/project names (these are often at the start)
+    const developmentPatterns = [
+      // Development names that start the description
+      /^([A-Z][a-z]+(?:\s+[A-Z][a-z]*)*)\s+is\s+a/i,  // "Vilas6 is a..."
+      /^([A-Z][a-z]+(?:\s+[A-Z][a-z]*)*)\s+features/i, // "Marina Heights features..."
+      /^([A-Z][a-z]+(?:\s+[A-Z][a-z]*)*)\s+offers/i,   // "Los Altos offers..."
+      /^([A-Z][a-z]+(?:\s+[A-Z][a-z]*)*)\s+comprises/i, // "The Residences comprises..."
     ];
 
-    for (const pattern of patterns) {
-      const matches = text.match(pattern);
-      if (matches) {
-        return matches[1] || matches[0];
+    // SECOND: Look for specific location indicators (not property features)
+    const locationIndicators = [
+      // Geographic proximity (with location filters)
+      /(?:cerca de|near|próximo a)\s+((?:Urbanización|Urb\.?|Puerto|Plaza|Centro|Playa|Golf|Marina|Villa|Los|Las|El|La|Sierra|Costa|Monte|Río|Rio)\s+[A-Za-zÁÉÍÓÚÑñüáéíóú\s]+)/i,
+      
+      // Direct location mentions
+      /(?:en|in|located in|situated in)\s+((?:Urbanización|Urb\.?|Puerto|Plaza|Centro|Playa|Golf|Marina|Villa|Los|Las|El|La|Sierra|Costa|Monte)\s+[A-Za-zÁÉÍÓÚÑñüáéíóú\s]+)/i,
+      
+      // Area/complex names (not property features)
+      /(?:complex|desarrollo|residencial|complejo)\s+([A-Z][a-zÁÉÍÓÚÑñüáéíóú\s]+)/i,
+      
+      // Known location patterns from our database
+      /\b(Nueva Andalucía|Nueva Andalucia|Puerto Banús|Puerto Banus|Los Monteros|Golden Mile|Las Chapas|La Quinta|Sierra Blanca|Guadalmina|Elviria|Calahonda|Mijas Golf|San Pedro|Estepona|Benahavís|Benahavis)\b/i
+    ];
+
+    // THIRD: Property feature blacklist (ignore these)
+    const propertyFeatureBlacklist = [
+      /\b(bedrooms?|bathrooms?|kitchen|living|dining|terrace|balcony|garden|pool|swimming|parking|garage|air conditioning|heating|marble|flooring|tiles|furnished|unfurnished|elevator|lift|security|cameras|alarm|wifi|internet|utilities|electricity|water|gas|community fees|ibi|basura)\b/i,
+      /\b(fully fitted|fully furnished|en-suite|walk-in|built-in|double glazed|covered|uncovered|private|communal|gated|24 hour|panoramic|sea views?|mountain views?|golf views?|partial|direct)\b/i
+    ];
+
+    // Try development patterns first (highest priority)
+    for (const pattern of developmentPatterns) {
+      const match = text.match(pattern);
+      if (match) {
+        const extracted = match[1].trim();
+        
+        // Verify it's not a generic term
+        if (!this.isGenericPropertyTerm(extracted)) {
+          console.log(`🎯 Development name extracted: "${extracted}"`);
+          return extracted;
+        }
       }
     }
+
+    // Try location indicators (medium priority)
+    for (const pattern of locationIndicators) {
+      const match = text.match(pattern);
+      if (match) {
+        const extracted = match[1].trim();
+        
+        // Check it's not in our blacklist
+        if (!this.matchesPropertyFeatures(extracted, propertyFeatureBlacklist)) {
+          console.log(`🎯 Location indicator extracted: "${extracted}"`);
+          return extracted;
+        }
+      }
+    }
+
+    // Fallback: Extract the first meaningful proper noun sequence (but filter out features)
+    const properNounPattern = /\b([A-Z][a-zÁÉÍÓÚÑñüáéíóú]+(?:\s+[A-Z][a-zÁÉÍÓÚÑñüáéíóú]+){0,2})\b/g;
+    const matches = [...text.matchAll(properNounPattern)];
+    
+    for (const match of matches) {
+      const candidate = match[1].trim();
+      
+      // Skip if it matches property features
+      if (!this.matchesPropertyFeatures(candidate, propertyFeatureBlacklist) && 
+          !this.isGenericPropertyTerm(candidate) &&
+          candidate.length >= 4) { // Must be at least 4 characters
+        console.log(`🎯 Proper noun extracted: "${candidate}"`);
+        return candidate;
+      }
+    }
+
     return null;
+  }
+
+  /**
+   * Check if text matches property features (should be ignored)
+   */
+  matchesPropertyFeatures(text, blacklistPatterns) {
+    const lowerText = text.toLowerCase();
+    return blacklistPatterns.some(pattern => pattern.test(lowerText));
+  }
+
+  /**
+   * Check if text is a generic property term
+   */
+  isGenericPropertyTerm(text) {
+    const genericTerms = [
+      'apartment', 'villa', 'house', 'property', 'residences', 'homes', 'development',
+      'complex', 'building', 'tower', 'penthouse', 'studio', 'duplex', 'triplex',
+      'flat', 'maisonette', 'townhouse', 'bungalow', 'finca', 'cortijo',
+      'luxury', 'modern', 'contemporary', 'traditional', 'spacious', 'beautiful',
+      'stunning', 'magnificent', 'excellent', 'perfect', 'ideal', 'unique',
+      'exceptional', 'impressive', 'spectacular', 'charming', 'elegant'
+    ];
+    
+    return genericTerms.includes(text.toLowerCase());
   }
 
   /**

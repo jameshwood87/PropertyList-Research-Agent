@@ -1,0 +1,63 @@
+{
+  "id": "71eed4fe-c2b5-403c-8890-8752ea1de024",
+  "propertyData": {
+    "property_type": "Villa",
+    "suburb": "El Limonar",
+    "latitude": 36.7213,
+    "sale_price": 950000,
+    "reference": "VIL-2024-002",
+    "features": [
+      "Private Pool",
+      "Mountain Views",
+      "Garden",
+      "Garage",
+      "Air Conditioning",
+      "Fireplace"
+    ],
+    "plot_size": 1200,
+    "photos": [
+      "https://via.placeholder.com/800x600/059669/FFFFFF?text=Modern+Villa",
+      "https://via.placeholder.com/800x600/DC2626/FFFFFF?text=Garden+View"
+    ],
+    "description": "Spectacular 5-bedroom villa in El Limonar with panoramic views, private garden, and luxury finishes",
+    "bedrooms": 5,
+    "city": "Málaga",
+    "build_size": 320,
+    "bathrooms": 4,
+    "longitude": -4.4214,
+    "build_square_meters": 320,
+    "plot_square_meters": 1200,
+    "price": 950000,
+    "totalCost": {
+      "purchasePrice": 950000,
+      "annualCosts": 0,
+      "totalFirstYear": 950000,
+      "breakdown": {
+        "ibi": 0,
+        "basura": 0,
+        "communityFees": 0
+      }
+    },
+    "pricePerSqm": 2969,
+    "resolvedLocation": {
+      "location": "El Limonar",
+      "coordinates": null,
+      "confidence": 0.3,
+      "method": "basic_fallback",
+      "landmarks": [],
+      "proximityClues": [],
+      "enhancementReason": "Description too short"
+    }
+  },
+  "locationContext": {
+    "location": "El Limonar",
+    "coordinates": null,
+    "confidence": 0.3,
+    "method": "basic_fallback",
+    "landmarks": [],
+    "proximityClues": [],
+    "enhancementReason": "Description too short"
+  },
+  "createdAt": "2025-07-24T23:18:18.854Z",
+  "status": "ready"
+}

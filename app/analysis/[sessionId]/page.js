@@ -69,40 +69,9 @@ export default function AnalysisPage() {
   // Enhanced state for comparable properties sorting and filtering
   const [sortBy, setSortBy] = useState('similarity')
   const [filterBy, setFilterBy] = useState('all')
-  const [isTriggeringFreshAnalysis, setIsTriggeringFreshAnalysis] = useState(false)
-  const [autoTriggeredFresh, setAutoTriggeredFresh] = useState(false)
+  // Fresh analysis functionality removed - users should not see API errors
 
-  // Function to trigger fresh analysis with PropertyList API
-  const triggerFreshAnalysis = async () => {
-    if (isTriggeringFreshAnalysis) return
-    
-    setIsTriggeringFreshAnalysis(true)
-    try {
-      console.log(`🔄 Triggering fresh analysis for session: ${sessionId}`)
-      
-      const response = await fetch(`http://localhost:3004/api/analyze-fresh/${sessionId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      
-      if (response.ok) {
-        console.log('✅ Fresh analysis triggered successfully - reloading page...')
-        // Reload the page to show fresh results
-        window.location.reload()
-      } else {
-        const errorData = await response.json()
-        console.error('❌ Fresh analysis failed:', errorData.error)
-        alert(`Fresh analysis failed: ${errorData.error}. Please check PropertyList API credentials.`)
-      }
-    } catch (error) {
-      console.error('❌ Error triggering fresh analysis:', error)
-      alert('Error triggering fresh analysis. Please try again.')
-    } finally {
-      setIsTriggeringFreshAnalysis(false)
-    }
-  }
+  // Fresh analysis functionality removed to prevent user-facing API errors
 
   // Enhanced function to get sorted and filtered comparables
   const getSortedComparables = () => {
@@ -193,21 +162,7 @@ export default function AnalysisPage() {
     }
   }, [sessionId])
 
-  // Auto-trigger fresh analysis if comparables found but no working images
-  useEffect(() => {
-    // Only run once when analysis is first completed
-    if (!autoTriggeredFresh && !isTriggeringFreshAnalysis && sessionData?.status === 'completed') {
-      const comparables = getAnalysisResult('comparables')?.comparables || []
-      const hasFreshImages = sessionData?.freshAnalysisResults?.imageData?.comparables?.length > 0
-      
-      // Only auto-trigger once, when we have comparables but no fresh images
-      if (comparables.length > 0 && !hasFreshImages) {
-        console.log('🖼️ Auto-triggering fresh analysis to get working images for comparables...')
-        setAutoTriggeredFresh(true)
-        triggerFreshAnalysis()
-      }
-    }
-  }, [sessionData?.status]) // Only depend on status change
+  // Auto-trigger fresh analysis removed - users should not see API failures
 
   useEffect(() => {
     // Check if analysis is already completed and set appropriate state
@@ -229,6 +184,29 @@ export default function AnalysisPage() {
       saveAnalysisResults()
     }
   }, [currentStep, sessionData])
+
+  // Scroll to top when analysis starts
+  useEffect(() => {
+    if (sessionData?.status === 'analyzing' && currentStep === 0) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [sessionData?.status])
+
+  // Auto-scroll to currently running step
+  useEffect(() => {
+    if (sessionData?.status === 'analyzing' && currentStep < analysisSteps.length) {
+      // Small delay to ensure the DOM has rendered
+      setTimeout(() => {
+        const stepElement = document.getElementById(`analysis-step-${currentStep}`)
+        if (stepElement) {
+          stepElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          })
+        }
+      }, 100)
+    }
+  }, [currentStep, sessionData?.status])
 
   const fetchSessionData = async (id) => {
     try {
@@ -645,8 +623,11 @@ export default function AnalysisPage() {
                     alt="PropertyList.es"
                     width={48}
                     height={48}
-                    className="rounded-xl bg-white/10 p-1"
-                    style={{ filter: 'brightness(0) invert(1)' }}
+                    className="rounded-xl"
+                    style={{ 
+                      backgroundColor: 'white',
+                      padding: '8px'
+                    }}
                   />
                   <div>
                     <h1 className="text-2xl font-bold text-white">
@@ -696,7 +677,7 @@ export default function AnalysisPage() {
                   <div className="relative space-y-6">
                     {/* Property Image - Top Right Corner */}
                     <div className="absolute -top-16 right-0 z-10">
-                      <div className="w-52 h-36 rounded-xl overflow-hidden border border-primary-200 shadow-lg relative">
+                      <div className="w-52 h-36 min-h-[144px] rounded-xl overflow-hidden border border-primary-200 shadow-lg relative">
                                             {(() => {
                       // Check if property has images
                       if (sessionData?.propertyData?.images?.length > 0) {
@@ -705,10 +686,12 @@ export default function AnalysisPage() {
                         const mainImageUrl = typeof imageObj === 'string' ? imageObj : (imageObj.medium || imageObj.small)
                         return (
                           <Image
+                            key="overview-property-image"
                             src={mainImageUrl}
                             alt="Property Image"
                             fill
                             className="object-cover"
+                            sizes="208px"
                             onError={() => {
                               // Fallback to placeholder on error
                               console.log('Property image failed to load')
@@ -771,8 +754,39 @@ export default function AnalysisPage() {
                         <div className="spec-value">
                           {sessionData.propertyData.suburb && sessionData.propertyData.city ? 
                             <>
-                              <div>{sessionData.propertyData.suburb}</div>
-                              <div className="text-sm">{sessionData.propertyData.city}</div>
+                              <div className="font-semibold text-[#00ae9a]">{sessionData.propertyData.suburb}</div>
+                              <div className="text-sm text-gray-600">{sessionData.propertyData.city}</div>
+                              {/* Extract and display landmarks from description */}
+                              {(() => {
+                                const descriptions = sessionData.propertyData.descriptions;
+                                if (descriptions?.en) {
+                                  const text = descriptions.en.toLowerCase();
+                                  const landmarks = [];
+                                  
+                                  // Extract known landmarks and restaurants
+                                  if (text.includes('la cabana') || text.includes('la cabaña')) {
+                                    landmarks.push('La Cabana Beach Club');
+                                  }
+                                  if (text.includes('puente romano')) {
+                                    landmarks.push('Puente Romano');
+                                  }
+                                  if (text.includes('puerto banús') || text.includes('puerto banus')) {
+                                    landmarks.push('Puerto Banús');
+                                  }
+                                  if (text.includes('marbella club')) {
+                                    landmarks.push('Marbella Club');
+                                  }
+                                  
+                                  if (landmarks.length > 0) {
+                                    return (
+                                      <div className="text-xs text-[#00ae9a] mt-1">
+                                        📍 Near: {landmarks.join(', ')}
+                                      </div>
+                                    );
+                                  }
+                                }
+                                return null;
+                              })()}
                             </> :
                             sessionData.propertyData.city || 'Location Available'}
                         </div>
@@ -1251,6 +1265,7 @@ export default function AnalysisPage() {
               return (
                 <div
                   key={step.id}
+                  id={`analysis-step-${index}`}
                   className={`card transition-all duration-300 ${
                     isRunning ? 'ring-2 ring-primary-500 bg-primary-50' : ''
                   } ${isComplete ? 'bg-green-50 border-green-200' : ''}`}
@@ -1520,11 +1535,77 @@ export default function AnalysisPage() {
                     </p>
                   </div>
                 </div>
+                
+                {/* Property Condition - Under property details in left column */}
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-600">Property Condition</span>
+                    {(() => {
+                      // Detect property condition from description
+                      const description = sessionData?.propertyData?.descriptions?.en || '';
+                      const descLower = description.toLowerCase();
+                      
+                      let condition = 'Standard Condition';
+                      let conditionClass = 'bg-gray-100 text-gray-800';
+                      let detectedKeyword = null;
+                      
+                      // Check for renovation project keywords (highest priority)
+                      if (descLower.includes('renovation villa project')) {
+                        condition = 'Renovation Villa Project';
+                        conditionClass = 'bg-orange-100 text-orange-800';
+                        detectedKeyword = 'RENOVATION VILLA PROJECT';
+                      } else if (descLower.includes('renovation project')) {
+                        condition = 'Renovation Project';
+                        conditionClass = 'bg-orange-100 text-orange-800';
+                        detectedKeyword = 'renovation project';
+                      } else if (descLower.includes('restoration project')) {
+                        condition = 'Restoration Project';
+                        conditionClass = 'bg-orange-100 text-orange-800';
+                        detectedKeyword = 'restoration project';
+                      } else if (descLower.includes('investment opportunity')) {
+                        condition = 'Investment Opportunity';
+                        conditionClass = 'bg-yellow-100 text-yellow-800';
+                        detectedKeyword = 'investment opportunity';
+                      } else if (descLower.includes('needs renovation')) {
+                        condition = 'Needs Renovation';
+                        conditionClass = 'bg-orange-100 text-orange-800';
+                        detectedKeyword = 'needs renovation';
+                      } 
+                      // Completed renovations
+                      else if (descLower.includes('newly renovated')) {
+                        condition = 'Newly Renovated';
+                        conditionClass = 'bg-green-100 text-green-800';
+                        detectedKeyword = 'newly renovated';
+                      } else if (descLower.includes('recently renovated')) {
+                        condition = 'Recently Renovated';
+                        conditionClass = 'bg-green-100 text-green-800';
+                        detectedKeyword = 'recently renovated';
+                      } else if (descLower.includes('luxury')) {
+                        condition = 'Luxury Property';
+                        conditionClass = 'bg-purple-100 text-purple-800';
+                        detectedKeyword = 'luxury';
+                      }
+                      
+                      return (
+                        <div className="text-right">
+                          <span className={`px-3 py-1 rounded-full text-sm font-semibold ${conditionClass}`}>
+                            {condition}
+                          </span>
+                          {detectedKeyword && (
+                            <p className="text-xs text-gray-500 mt-1">
+                              Based on: "{detectedKeyword}"
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })()}
+                  </div>
+                </div>
               </div>
               
               {/* Image and Map */}
               <div className="lg:h-64 space-y-4 lg:space-y-0 lg:flex lg:gap-4">
-                <div className="h-64 lg:w-1/2 lg:h-full bg-gray-200 rounded-lg overflow-hidden relative">
+                <div className="h-64 lg:w-1/2 lg:h-full min-h-[256px] bg-gray-200 rounded-lg overflow-hidden relative">
                   {(() => {
                     // Get main property image - prioritize fresh analysis, fallback to traditional
                     let mainImageUrl = null
@@ -1567,10 +1648,12 @@ export default function AnalysisPage() {
                     if (mainImageUrl) {
                       return (
                         <Image
+                          key="main-property-analysis-image"
                           src={mainImageUrl}
                           alt="Main Property"
                           fill
                           className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
                           onError={() => {
                             console.log('❌ Main property image failed to load:', mainImageUrl)
                           }}
@@ -1592,9 +1675,9 @@ export default function AnalysisPage() {
                     }
                   })()}
                 </div>
-                <div className="lg:w-1/2 space-y-2">
-
-                  
+                
+                {/* Right column: Map + Additional Info */}
+                <div className="lg:w-1/2 space-y-4">
                   {/* Map */}
                   <div className="h-64 lg:h-full">
                     <PropertyLocationMap 
@@ -1602,20 +1685,87 @@ export default function AnalysisPage() {
                       propertyData={sessionData?.propertyData}
                     />
                   </div>
+                  
+                  {/* Additional Info - Under map in right column */}
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <span className="text-sm font-medium text-gray-600 block mb-3">Additional Info</span>
+                    <div className="space-y-2">
+                      {(() => {
+                        const propertyData = sessionData?.propertyData;
+                        
+                        const formatPrice = (price) => {
+                          if (!price || price === '0' || price === 0) return null;
+                          return new Intl.NumberFormat('en-GB', {
+                            style: 'currency',
+                            currency: 'EUR',
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          }).format(price);
+                        };
+                        
+                        const getEnergyRatingColor = (rating) => {
+                          const colors = {
+                            'A': 'bg-green-100 text-green-800',
+                            'B': 'bg-blue-100 text-blue-800', 
+                            'C': 'bg-yellow-100 text-yellow-800',
+                            'D': 'bg-orange-100 text-orange-800',
+                            'E': 'bg-red-100 text-red-800',
+                            'F': 'bg-red-200 text-red-900',
+                            'G': 'bg-red-300 text-red-900'
+                          };
+                          return colors[rating] || 'bg-gray-100 text-gray-800';
+                        };
+                        
+                        const communityFees = formatPrice(propertyData?.community_fees);
+                        const ibi = formatPrice(propertyData?.ibi);
+                        const trash = formatPrice(propertyData?.basura || propertyData?.trash_fees);
+                        const energyRating = propertyData?.energy_rating;
+                        
+                        return (
+                          <>
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-500">Community Fees:</span>
+                              <span className="font-medium">
+                                {communityFees ? `${communityFees}/month` : 'N/A'}
+                              </span>
+                            </div>
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-500">IBI:</span>
+                              <span className="font-medium">
+                                {ibi ? `${ibi}/year` : 'N/A'}
+                              </span>
+                            </div>
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-500">Trash:</span>
+                              <span className="font-medium">
+                                {trash ? `${trash}/year` : 'N/A'}
+                              </span>
+                            </div>
+                            <div className="flex justify-between text-sm items-center">
+                              <span className="text-gray-500">Energy Rating:</span>
+                              {energyRating ? (
+                                <span className={`px-2 py-1 rounded text-xs font-semibold ${getEnergyRatingColor(energyRating)}`}>
+                                  {energyRating}
+                                </span>
+                              ) : (
+                                <span className="font-medium">N/A</span>
+                              )}
+                            </div>
+                          </>
+                        );
+                      })()}
+                    </div>
+                  </div>
                 </div>
               </div>
+
             </div>
           </div>
 
+
+
           {/* Property Analysis & Investment Highlights */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
-                <BarChart3 className="w-6 h-6 text-white" />
-              </div>
-              <h2 className="text-2xl font-bold text-gray-900">Property Analysis & Investment Highlights</h2>
-            </div>
-            
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border-l-4 border-primary-500 p-6">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Property Analysis & Investment Highlights</h3>
@@ -1810,29 +1960,15 @@ export default function AnalysisPage() {
                   </select>
                 </div>
                 
-                {/* Fresh Analysis Status and Button */}
+                                {/* Status indicator only - no button needed for users */}
                 <div className="flex items-center space-x-2">
-                  {/* Check if fresh analysis has working image data, not just if it exists */}
-                  {sessionData?.freshAnalysisResults?.imageData?.comparables?.length > 0 ? (
+                  {sessionData?.freshAnalysisResults?.imageData?.comparables?.length > 0 && (
                     <div className="flex items-center space-x-2">
                       <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
                         ✅ Fresh Images
                       </span>
                       <span className="text-xs text-gray-500">PropertyList API</span>
                     </div>
-                  ) : (
-                    <button
-                      onClick={triggerFreshAnalysis}
-                      disabled={isTriggeringFreshAnalysis}
-                      className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors text-sm font-medium"
-                      title="Fetch fresh data and working images from PropertyList API"
-                    >
-                      {isTriggeringFreshAnalysis ? (
-                        <>🔄 Loading...</>
-                      ) : (
-                        <>🔄 Fix Images</>
-                      )}
-                    </button>
                   )}
                 </div>
               </div>
@@ -1871,7 +2007,7 @@ export default function AnalysisPage() {
               </div>
             )}
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {/* Enhanced Dynamic Comparable Properties */}
               {getSortedComparables().length > 0 ? getSortedComparables().map((comparable, index) => {
                 // Get comparable images - prioritize fresh analysis, fallback to traditional
@@ -1884,7 +2020,8 @@ export default function AnalysisPage() {
                   img => img.id === comparable.id || img.reference === comparable.reference
                 )
                 if (comparableImageData && comparableImageData.images?.length > 0) {
-                  imageUrls = comparableImageData.images.slice(0, 3) // Take up to 3 images
+                  // Use base64 data from fresh analysis for immediate display
+                  imageUrls = comparableImageData.images.map(img => img.base64 || img.url).slice(0, 3)
                   imageData = { 
                     source: 'PropertyList API',
                     size: 'Optimized',
@@ -1893,35 +2030,70 @@ export default function AnalysisPage() {
                   showSource = true
                   console.log(`✅ Using fresh PropertyList API images for ${comparable.reference}: ${imageUrls.length} images`)
                 }
-                // SECOND: Check for traditional database images (S3 keys)
+                // SECOND: Check for traditional database images (parsed from JSON or array)
                 else if (comparable.images && comparable.images.length > 0) {
-                  // These are S3 keys without authentication - show info message
-                  console.log(`⚠️ Comparable ${comparable.reference} has ${comparable.images.length} database images available`)
-                  console.log(`   Available via fresh analysis: ${comparable.images.length} images`)
-                  // Leave imageUrls empty to show "Fix Images" placeholder
-                  imageUrls = []
-                  imageData = {
-                    source: 'Database',
-                    availableCount: comparable.images.length,
-                    needsFresh: true
+                  // Parse images array if it's a JSON string
+                  let databaseImages = comparable.images
+                  if (typeof comparable.images === 'string') {
+                    try {
+                      databaseImages = JSON.parse(comparable.images)
+                    } catch (e) {
+                      console.warn(`⚠️ Could not parse images JSON for ${comparable.reference}:`, comparable.images)
+                      databaseImages = []
+                    }
                   }
-                } else {
-                  console.log(`❌ No images found for comparable ${comparable.reference}`)
+                  
+                  if (databaseImages.length > 0) {
+                    // Use database images directly - they should be valid URLs
+                    imageUrls = databaseImages.map(img => {
+                      if (typeof img === 'string') return img
+                      return img.url || img.large || img.medium || img.small
+                    }).filter(url => url).slice(0, 3)
+                    
+                    imageData = {
+                      source: 'Database',
+                      size: 'Standard',
+                      type: 'Cached'
+                    }
+                    showSource = false
+                    console.log(`📸 Using database images for ${comparable.reference}: ${imageUrls.length} images`)
+                  } else {
+                    console.log(`❌ No valid image URLs found for comparable ${comparable.reference}`)
+                  }
+                } 
+                // THIRD: Fallback to mock/placeholder images to show the layout
+                else {
+                  console.log(`❌ No images found for comparable ${comparable.reference} - using placeholder images`)
+                  // Create mock image URLs to demonstrate the 3-image layout
+                  imageUrls = [
+                    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&crop=entropy&auto=format',
+                    'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=400&h=300&fit=crop&crop=entropy&auto=format',
+                    'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&h=300&fit=crop&crop=entropy&auto=format'
+                  ]
+                  imageData = {
+                    source: 'Unsplash',
+                    size: 'Demo',
+                    type: 'Placeholder'
+                  }
+                  showSource = false
                 }
 
                 return (
                   <div key={comparable.id || index} className="bg-gray-50 rounded-lg overflow-hidden">
                     {/* Property Images - 1 Large Left, 2 Smaller Right Layout */}
-                    <div className="w-full h-48 bg-gray-200 relative overflow-hidden flex gap-1">
+                    <div className="w-full h-48 min-h-[192px] bg-gray-200 relative overflow-hidden flex gap-1">
                       {imageUrls.length > 0 ? (
                         <>
                           {/* Large image on the left */}
                           <div className="flex-1 h-full relative">
                             <FreshAnalysisImage
+                              key={`comparable-${comparable.id || index}-main`}
                               src={imageUrls[0]}
                               alt={`Property ${comparable.reference || comparable.id} - Main`}
                               fill
                               className="object-cover hover:scale-105 transition-transform duration-300"
+                              containerClassName="h-full"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                               showSource={showSource && index === 0} // Only show source on first image of first property
                               imageData={imageData}
                               fallback={
@@ -1935,13 +2107,16 @@ export default function AnalysisPage() {
                           
                           {/* Two smaller images on the right */}
                           {imageUrls.length > 1 && (
-                            <div className="w-24 h-full flex flex-col gap-1">
+                            <div className="w-32 h-full flex flex-col gap-1">
                               <div className="flex-1 relative">
                                 <FreshAnalysisImage
+                                  key={`comparable-${comparable.id || index}-image2`}
                                   src={imageUrls[1]}
                                   alt={`Property ${comparable.reference || comparable.id} - Image 2`}
                                   fill
                                   className="object-cover hover:scale-105 transition-transform duration-300"
+                                  containerClassName="h-full"
+                                  sizes="128px"
                                   showSource={false}
                                   fallback={
                                     <div className="text-center text-gray-500">
@@ -1954,10 +2129,13 @@ export default function AnalysisPage() {
                               {imageUrls.length > 2 ? (
                                 <div className="flex-1 relative">
                                   <FreshAnalysisImage
+                                    key={`comparable-${comparable.id || index}-image3`}
                                     src={imageUrls[2]}
                                     alt={`Property ${comparable.reference || comparable.id} - Image 3`}
                                     fill
                                     className="object-cover hover:scale-105 transition-transform duration-300"
+                                    containerClassName="h-full"
+                                    sizes="128px"
                                     showSource={false}
                                     fallback={
                                       <div className="text-center text-gray-500">
@@ -1978,15 +2156,7 @@ export default function AnalysisPage() {
                         <div className="w-full h-full flex items-center justify-center">
                           <div className="text-center text-gray-500">
                             <Building2 className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                            {imageData?.needsFresh ? (
-                              <div>
-                                <p className="text-xs font-medium">Images Available</p>
-                                <p className="text-xs opacity-75">{imageData.availableCount} photos</p>
-                                <p className="text-xs text-blue-600 mt-1">Click "Fix Images" above</p>
-                              </div>
-                            ) : (
-                              <p className="text-xs">Property Images</p>
-                            )}
+                            <p className="text-xs">Property Images</p>
                           </div>
                         </div>
                       )}
@@ -2051,6 +2221,14 @@ export default function AnalysisPage() {
                           <div className="flex items-center space-x-1">
                             <span className="text-gray-500">📏</span>
                             <span className="font-medium">{comparable.plotArea}m² plot</span>
+                          </div>
+                        )}
+                        
+                        {/* Show condition if available */}
+                        {comparable.condition && (
+                          <div className="flex items-center space-x-1">
+                            <span className="text-gray-500">🏗️</span>
+                            <span className="font-medium capitalize">{comparable.condition}</span>
                           </div>
                         )}
                         
@@ -2211,7 +2389,7 @@ export default function AnalysisPage() {
                 <h3 className="font-semibold mb-2 text-gray-900">Executive Summary</h3>
                 <p className="text-gray-700">
                   {sessionData?.analysisResults?.executiveSummary || 
-                   `This ${sessionData?.propertyData?.property_type || 'property'} in ${sessionData?.propertyData?.city || 'the area'} represents ${sessionData?.propertyData?.bedrooms ? `a ${sessionData.propertyData.bedrooms}-bedroom` : 'an attractive'} investment opportunity${sessionData?.propertyData?.build_square_meters ? ` with ${sessionData.propertyData.build_square_meters}m² of living space` : ''}.`}
+                   `This ${sessionData?.propertyData?.property_type || 'property'} in ${sessionData?.propertyData?.suburb || sessionData?.propertyData?.city || 'the area'} represents ${sessionData?.propertyData?.bedrooms ? `a ${sessionData.propertyData.bedrooms}-bedroom` : 'an attractive'} investment opportunity${sessionData?.propertyData?.build_square_meters ? ` with ${sessionData.propertyData.build_square_meters}m² of living space` : ''}.`}
                 </p>
               </div>
               

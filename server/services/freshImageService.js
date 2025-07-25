@@ -348,23 +348,27 @@ class FreshImageService {
       }
       
              // PRIORITY 3: Database images array (XML feed fallback - NOTE: URLs expire every 24h)
-       if (urls.length === 0 && property.images) {
+       if (urls.length === 0 && (property.images || property.fallbackImages)) {
          let imageArray = [];
          
+         // First try fallbackImages (for enhanced dual-source approach)
+         const imageSource = property.fallbackImages || property.images;
+         
          // Handle both JSON string and actual array
-         if (typeof property.images === 'string') {
+         if (typeof imageSource === 'string') {
            try {
-             imageArray = JSON.parse(property.images);
+             imageArray = JSON.parse(imageSource);
            } catch (e) {
-             console.warn(`   ⚠️ Could not parse images JSON: ${property.images}`);
+             console.warn(`   ⚠️ Could not parse images JSON: ${imageSource}`);
              imageArray = [];
            }
-         } else if (Array.isArray(property.images)) {
-           imageArray = property.images;
+         } else if (Array.isArray(imageSource)) {
+           imageArray = imageSource;
          }
          
          if (imageArray.length > 0) {
-           console.log(`   🔄 Using database images as fallback (${imageArray.length} available) - WARNING: URLs may be expired (24h limit)`);
+           const sourceType = property.fallbackImages ? 'enhanced fallback' : 'database fallback';
+           console.log(`   🔄 Using ${sourceType} images (${imageArray.length} available) - NOTE: URLs may have 24h expiry`);
            imageArray.forEach(image => {
              let imageUrl = null;
              
@@ -377,7 +381,7 @@ class FreshImageService {
              if (imageUrl) {
                // Check if it's already a full URL (from XML feed)
                if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                 console.log(`   📸 Using XML feed URL (may be expired): ${imageUrl.substring(0, 60)}...`);
+                 console.log(`   📸 Using XML feed URL: ${imageUrl.substring(0, 60)}...`);
                  urls.push(imageUrl);
                } else {
                  // Legacy S3 key - convert to full URL

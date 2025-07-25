@@ -1,0 +1,28 @@
+{
+  "id": "575b4ac1-0f07-453a-8b74-c9fccdeaa8e6",
+  "propertyData": {
+    "propertyInput": "Beautiful villa located in Puerto Banús, Marbella, Costa del Sol. 4 bedrooms, 3 bathrooms, 300m2 built area, private pool, garden, close to beach. Asking price 750,000 EUR. Located on Calle Ram�n Areces near the marina.",
+    "totalCost": null,
+    "pricePerSqm": null,
+    "resolvedLocation": {
+      "location": "Unknown location",
+      "coordinates": null,
+      "confidence": 0.3,
+      "method": "basic_fallback",
+      "landmarks": [],
+      "proximityClues": [],
+      "enhancementReason": "Description too short"
+    }
+  },
+  "locationContext": {
+    "location": "Unknown location",
+    "coordinates": null,
+    "confidence": 0.3,
+    "method": "basic_fallback",
+    "landmarks": [],
+    "proximityClues": [],
+    "enhancementReason": "Description too short"
+  },
+  "createdAt": "2025-07-25T00:43:59.882Z",
+  "status": "ready"
+}

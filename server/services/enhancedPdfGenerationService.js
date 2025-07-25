@@ -704,10 +704,11 @@ class EnhancedPdfGenerationService {
        .fillColor(this.config.colors.text)
        .text(this.formatPrice(comparable.price || comparable.sale_price || comparable.for_sale_price), detailsX, detailsY + 20);
     
-    // Property specs
+    // Property specs with enhanced details
     const specs = [
-      `${comparable.property_type || 'Property'} • ${comparable.bedrooms || 'N/A'} beds`,
-      `${comparable.build_size ? comparable.build_size + 'm²' : 'Size N/A'} • ${comparable.city || 'Location N/A'}`,
+      `${comparable.property_type || 'Property'} • ${comparable.bedrooms || 'N/A'} beds • ${comparable.bathrooms || 'N/A'} baths`,
+      `Build: ${comparable.build_size ? comparable.build_size + 'm²' : 'N/A'}${comparable.terrace_size ? ` • Terrace: ${comparable.terrace_size}m²` : ''}${comparable.plot_size ? ` • Plot: ${comparable.plot_size}m²` : ''}`,
+      `${comparable.condition_rating ? `Condition: ${comparable.condition_rating} • ` : ''}${comparable.city || 'Location N/A'}`,
       `Distance: ${comparable.distance || 'N/A'} • Match: ${comparable.overallPercent || 'N/A'}%`
     ];
     

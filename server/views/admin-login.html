@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - AI Property Research Agent</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        .input-group {
+            position: relative;
+        }
+        .input-group input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+        .btn-login {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #FCA5A5;
+        }
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="gradient-bg text-white">
+    <div class="login-container">
+        <div class="login-card rounded-2xl p-8 w-full max-w-md mx-4">
+            <div class="text-center mb-8">
+                <div class="mb-4">
+                    <i class="fas fa-shield-alt text-6xl text-white opacity-80"></i>
+                </div>
+                <h1 class="text-3xl font-bold mb-2">Admin Access</h1>
+                <p class="text-white opacity-70">Enterprise Dashboard Login</p>
+            </div>
+
+            <form id="loginForm" class="space-y-6">
+                <div class="input-group">
+                    <label for="password" class="block text-sm font-medium mb-2 text-white opacity-80">
+                        <i class="fas fa-lock mr-2"></i>Admin Password
+                    </label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        class="w-full px-4 py-3 rounded-lg text-white placeholder-white placeholder-opacity-50"
+                        placeholder="Enter admin password"
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <div id="errorMessage" class="error-message p-3 rounded-lg hidden">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    <span id="errorText">Invalid password. Please try again.</span>
+                </div>
+
+                <button 
+                    type="submit" 
+                    id="loginBtn"
+                    class="btn-login w-full py-3 px-6 rounded-lg font-semibold text-white"
+                >
+                    <i id="loginIcon" class="fas fa-sign-in-alt mr-2"></i>
+                    <span id="loginText">Access Dashboard</span>
+                </button>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-white border-opacity-20">
+                <div class="text-center">
+                    <p class="text-sm text-white opacity-60">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Secure admin access to enterprise monitoring
+                    </p>
+                </div>
+            </div>
+
+            <!-- System Status Indicator -->
+            <div class="mt-6 flex items-center justify-center space-x-4 text-sm text-white opacity-60">
+                <div class="flex items-center">
+                    <div id="systemStatusDot" class="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                    <span id="systemStatusText">System Online</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-clock mr-1"></i>
+                    <span id="currentTime"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTime();
+            setInterval(updateTime, 1000);
+            checkSystemStatus();
+            
+            // Check if already logged in
+            const token = localStorage.getItem('adminToken');
+            if (token) {
+                // Validate token and redirect if valid
+                validateTokenAndRedirect(token);
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            const loginIcon = document.getElementById('loginIcon');
+            const loginText = document.getElementById('loginText');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Show loading state
+            loginBtn.classList.add('loading');
+            loginIcon.className = 'fas fa-spinner spinner mr-2';
+            loginText.textContent = 'Authenticating...';
+            errorMessage.classList.add('hidden');
+            
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ password: password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    // Store token and redirect
+                    localStorage.setItem('adminToken', data.token);
+                    
+                    // Success feedback
+                    loginIcon.className = 'fas fa-check mr-2';
+                    loginText.textContent = 'Access Granted';
+                    loginBtn.classList.remove('loading');
+                    loginBtn.classList.add('bg-green-500');
+                    
+                    // Redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = '/admin/dashboard';
+                    }, 1000);
+                    
+                } else {
+                    // Show error
+                    showError(data.message || 'Invalid password. Please try again.');
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                showError('Connection error. Please try again.');
+            } finally {
+                // Reset button state if there was an error
+                if (!loginBtn.classList.contains('bg-green-500')) {
+                    loginBtn.classList.remove('loading');
+                    loginIcon.className = 'fas fa-sign-in-alt mr-2';
+                    loginText.textContent = 'Access Dashboard';
+                }
+            }
+        });
+
+        // Show error message
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            
+            // Shake animation
+            errorMessage.style.animation = 'shake 0.5s ease-in-out';
+            setTimeout(() => {
+                errorMessage.style.animation = '';
+            }, 500);
+        }
+
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-GB', { 
+                hour: '2-digit', 
+                minute: '2-digit'
+            });
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Check system status
+        async function checkSystemStatus() {
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                
+                const statusDot = document.getElementById('systemStatusDot');
+                const statusText = document.getElementById('systemStatusText');
+                
+                if (data.status === 'healthy') {
+                    statusDot.className = 'w-2 h-2 bg-green-400 rounded-full mr-2';
+                    statusText.textContent = 'System Online';
+                } else {
+                    statusDot.className = 'w-2 h-2 bg-yellow-400 rounded-full mr-2';
+                    statusText.textContent = 'System Issues';
+                }
+            } catch (error) {
+                const statusDot = document.getElementById('systemStatusDot');
+                const statusText = document.getElementById('systemStatusText');
+                
+                statusDot.className = 'w-2 h-2 bg-red-400 rounded-full mr-2';
+                statusText.textContent = 'System Offline';
+            }
+        }
+
+        // Validate existing token and redirect
+        async function validateTokenAndRedirect(token) {
+            try {
+                const response = await fetch('/api/admin/validate', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    // Token is valid, redirect to dashboard
+                    window.location.href = '/admin/dashboard';
+                } else {
+                    // Token is invalid, remove it
+                    localStorage.removeItem('adminToken');
+                }
+            } catch (error) {
+                // Network error, keep login form
+                localStorage.removeItem('adminToken');
+            }
+        }
+
+        // Handle Enter key in password field
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // Focus password field on load
+        window.addEventListener('load', function() {
+            document.getElementById('password').focus();
+        });
+    </script>
+
+    <style>
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</body>
+</html> 
